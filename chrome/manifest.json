@@ -1,0 +1,18 @@
+{
+  "manifest_version": "1",
+  "name": "Business Next",
+  "description": "New-page for chrome",
+  "default_locale": "zh-TW",
+  "chrome_url_overrides" : {
+    "newtab": "myPage.html"
+  }
+//  "icons": {
+//    "16": "icon.png"
+//  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "version": "1.0",
+  "minimum_chrome_version": "30",
+  
+}
