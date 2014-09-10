@@ -4,11 +4,8 @@
   "description": "New-page for chrome",
   "default_locale": "zh-TW",
   "chrome_url_overrides" : {
-    "newtab": "myPage.html"
+    "newtab": "manager.html"
   }
-//  "icons": {
-//    "16": "icon.png"
-//  },
   "background": {
     "scripts": ["background.js"]
   },
