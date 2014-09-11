@@ -1,4 +1,9 @@
+@font-face{
+  font-family:Ubuntu;
+  url(resource/font/Ubuntu-M.ttf);
+}
 body{
+  font-family:Ubuntu;
   background:#16a085;
 }
 
