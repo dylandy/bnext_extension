@@ -3,10 +3,10 @@
   url(resource/font/Ubuntu-M.ttf);
 }
 body{
-  font-family:Ubuntu;
+  font-family:"Ubuntu", "微軟正黑體" , "Heiti TC" , "Droid-Sans";
   background:#16a085;
+  color:white;
 }
-
 #setting_ribbon {
   position:absolute;
   left:85%;
@@ -17,7 +17,6 @@ body{
   box-shadow: 0 0 15px 0 black;
 }
 #current_time{
-  color:white;
   font-size:7em;
   position: absolute;
   top:3%;
@@ -25,15 +24,19 @@ body{
 }
 
 #current_date {
-  color:white;
   position:absolute;
   top:30%;
   left:41%;
 }
 
 #location {
-  color:white;
   position:absolute;
   top:38%;
-  left:44%;
+  left:42%;
+}
+
+#greeting_msg {
+  position:absolute;
+  top:10%;
+  left:10%;
 }
