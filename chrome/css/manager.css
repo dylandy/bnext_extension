@@ -1,3 +1,20 @@
 body{
   background:#16a085;
 }
+
+#setting_ribbon {
+  position:absolute;
+  left:85%;
+  top:0;
+  height:20%;
+  width:4%;
+  background:rgb(231, 76, 60);
+  box-shadow: 0 0 15px 0 black;
+}
+#current_time{
+  color:white;
+  font-size:7em;
+  position: absolute;
+  top:3%;
+  left:40%;
+}
