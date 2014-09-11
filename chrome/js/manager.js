@@ -2,8 +2,12 @@ var set_current_time = function(){
   var current = new Date;
   var year = current.getFullYear();
   var month = current.getMonth()+1;
+  var day = current.getDate();
   var hour = current.getHours();
   var minute = current.getMinutes();
+
+  var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
 
   //show time in correct format
   if( hour.toString().length == 1){
@@ -18,6 +22,7 @@ var set_current_time = function(){
   }
 
   $('#current_time')[0].innerHTML = time_result;
+  $('#current_date')[0].innerHTML = monthNames[ month -1 ] + "," + day + "," + year;
 }
 jQuery(function($){
   set_current_time();

@@ -23,3 +23,10 @@ body{
   top:3%;
   left:40%;
 }
+
+#current_date {
+  color:white;
+  position:absolute;
+  top:30%;
+  left:42%;
+}
