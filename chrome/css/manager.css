@@ -25,13 +25,13 @@ body{
 
 #current_date {
   position:absolute;
-  top:30%;
+  top:21%;
   left:41%;
 }
 
 #location {
   position:absolute;
-  top:38%;
+  top:30%;
   left:42%;
 }
 
@@ -43,8 +43,7 @@ body{
 
 #setting_btn {
   font-size:2em;
-  margin:0 auto;
-  display:block;
-  width:50%;
-  margin: 2.5em auto 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 30%;
 }
