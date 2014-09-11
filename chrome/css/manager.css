@@ -28,5 +28,12 @@ body{
   color:white;
   position:absolute;
   top:30%;
-  left:42%;
+  left:41%;
+}
+
+#location {
+  color:white;
+  position:absolute;
+  top:38%;
+  left:44%;
 }

@@ -22,7 +22,7 @@ var set_current_time = function(){
   }
 
   $('#current_time')[0].innerHTML = time_result;
-  $('#current_date')[0].innerHTML = monthNames[ month -1 ] + "," + day + "," + year;
+  $('#current_date')[0].innerHTML = monthNames[ month -1 ] + " , " + day + " , " + year;
 }
 jQuery(function($){
   set_current_time();
