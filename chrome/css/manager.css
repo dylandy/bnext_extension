@@ -16,24 +16,6 @@ body{
   background:rgb(231, 76, 60);
   box-shadow: 0 0 15px 0 black;
 }
-#current_time{
-  font-size:7em;
-  position: absolute;
-  top:3%;
-  left:40%;
-}
-
-#current_date {
-  position:absolute;
-  top:21%;
-  left:41%;
-}
-
-#location {
-  position:absolute;
-  top:30%;
-  left:42%;
-}
 
 #greeting_msg {
   position:absolute;
@@ -46,4 +28,25 @@ body{
   position: absolute;
   top: 50%;
   left: 30%;
+}
+
+#center_info {
+  position:absolute;
+  top:10%;
+  left:40%;
+}
+
+#current_time {
+  font-size:7em;
+  margin:0;
+}
+
+#current_date {
+  margin:0;
+  text-align: center;
+}
+
+#location {
+  margin:0;
+  text-align: center;
 }
