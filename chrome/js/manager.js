@@ -43,5 +43,6 @@ var set_greeting_word = function(){
 
 jQuery(function($){
   set_current_time();
+  setInterval(set_current_time, 60000);
   set_greeting_word();
 });
