@@ -6,8 +6,8 @@ var set_current_time = function(){
   var hour = current.getHours();
   var minute = current.getMinutes();
 
-  var monthNames = [ "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December" ];
+  var monthNames = [ "一月", "二月", "三月", "四月", "五月", "六月",
+    "七月", "八月", "九月", "十月", "十一月", "十二月" ];
 
   //show time in correct format
   if( hour < 10){
@@ -43,6 +43,6 @@ var set_greeting_word = function(){
 
 jQuery(function($){
   set_current_time();
-  setInterval(set_current_time, 60000);
+  setInterval(set_current_time, 10000);
   set_greeting_word();
 });
