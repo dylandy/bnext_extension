@@ -1,5 +1,9 @@
 var save_change = function(){
   var my_name = $('#name')[0].value;
+  chrome.storage.sync.set({
+
+
+  });
 }
 
 var set_dropdown = function(){
