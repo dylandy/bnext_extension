@@ -70,11 +70,17 @@ body{
     vertical-align:middle;
 }
 
-#managaer_logo {
+#manager_logo {
+  color:rgb(231, 76, 60);
+  font-size:2em;
+  font-weight:bold;
   position:absolute;
   top:80%;
-  left:80%;
+  left:75%;
+}
 
+#manager_logo sup{
+  font-size:0.5em;
 }
 
 
