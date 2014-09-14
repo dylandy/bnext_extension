@@ -51,6 +51,8 @@ body{
 #location {
   margin:0;
   text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 #to_options {
@@ -84,3 +86,15 @@ body{
 }
 
 
+
+#city {
+  display: inline-block;
+}
+
+#name {
+  display: inline-block;
+}
+
+#greeting_word {
+  display: inline-block;
+}

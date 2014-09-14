@@ -41,9 +41,29 @@ var set_greeting_word = function(){
   }
 }
 
+var get_name = function(){
+  var my_name = "";
+  chrome.storage.local.get("my_name" , function(result){
+      my_name = result.my_name;
+      $('#name')[0].innerHTML = my_name;
+  });
+}
+
+var get_city = function(){
+  var location = "";
+  chrome.storage.local.get("location",function(result){
+    location = result.location;
+    $('#city')[0].innerHTML = location;
+  });
+}
+
+
 jQuery(function($){
   set_current_time();
   set_greeting_word();
+  get_name();
+  get_city();
+
   setInterval(set_current_time, 10000);
   setInterval(set_greeting_word, 3600000);
 });
