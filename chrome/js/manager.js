@@ -9,21 +9,50 @@ var set_current_time = function(){
   var monthNames = [ "一月", "二月", "三月", "四月", "五月", "六月",
     "七月", "八月", "九月", "十月", "十一月", "十二月" ];
 
-  //show time in correct format
-  if( hour < 10){
-    if( minute < 10){
-      var time_result = "0" + hour.toString() + ":" + "0" + minute.toString();
+  //get 12/24 format
+  var time_format = "";
+  chrome.storage.local.get("time_format" , function(result){
+    time_format = result.time_format;
+
+    //show time in correct format
+    if( time_format == 0 ){
+      if( hour < 12){
+        if( minute < 10){
+          var time_result = "0" + hour.toString() + ":" + "0" + minute.toString() + "AM";
+        }
+        var time_result = "0" + hour.toString() + ":" + minute.toString();
+      }else if( hour >= 12 ){
+        if( (hour - 12 ) > 10 && minute < 10 ){
+          var time_result = (hour - 12).toString() + ":" + "0" + minute.toString() + "PM";
+        }else{
+          var time_result = "0" + (hour - 12).toString() + ":" + minute.toString() + "PM";
+        }
+      }else{
+        var time_result = hour.toString() + ":" + minute.toString() + "AM";
+      }
+    }else{
+      if( hour < 10){
+        if( minute < 10){
+          var time_result = "0" + hour.toString() + ":" + "0" + minute.toString();
+        }
+      }else if( minute < 10 && hour > 10 ){
+        var time_result = toString() + ":" + "0" + minute.toString() ;
+      }else{
+        var time_result = hour.toString() + ":" + minute.toString();
+      }
     }
-    var time_result = "0" + hour.toString() + ":" + minute.toString();
-  }else if( minute < 10 && hour > 10 ){
-    var time_result = hour.toString() + ":" + "0" + minute.toString();
-  }else{
-    var time_result = hour.toString() + ":" + minute.toString();
-  }
 
-  $('#current_time')[0].innerHTML = time_result;
+    $('#current_time')[0].innerHTML = time_result;
+
+
+    //re-adjust the center infomation after add "AM/PM" info on it
+    if( time_format == 0 ){
+      $('#center_info').css('left' , "35%");
+    }
+  });
+
+
   $('#current_date')[0].innerHTML = monthNames[ month -1 ] + " , " + day + " , " + year;
-
 }
 
 var set_greeting_word = function(){
