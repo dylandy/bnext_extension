@@ -24,6 +24,8 @@ var set_current_time = function(){
       }else if( hour >= 12 ){
         if( (hour - 12 ) > 10 && minute < 10 ){
           var time_result = (hour - 12).toString() + ":" + "0" + minute.toString() + "PM";
+        }else if ( (hour - 12 ) < 10 &&  minute < 10 ){
+          var time_result = "0" + (hour - 12).toString() + ":" + "0" + minute.toString() + "PM";
         }else{
           var time_result = "0" + (hour - 12).toString() + ":" + minute.toString() + "PM";
         }
