@@ -13,38 +13,45 @@
     <div id='content' class='col-lg-5 col-lg-offset-4'>
       <label>我的姓名：</label><input type='text' id='name'><br><br>
 
-      <div class="dropdown" data-toggle="dropdown" id='where'>
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-          我的地區
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-          <li role="presentation"><a role="menuitem" id='tp' data-target="#">臺北市</a></li>
-          <li role="presentation"><a role="menuitem" id='ntp'data-target="#">新北市</a></li>
-          <li role="presentation"><a role="menuitem" id='tc' data-target="#">臺中市</a></li>
-          <li role="presentation"><a role="menuitem" id='tn' data-target="#">臺南市</a></li>
-          <li role="presentation"><a role="menuitem" id='ks' data-target="#">高雄市</a></li>
-          <li role="presentation"><a role="menuitem" id='kl' data-target="#">基隆市</a></li>
-          <li role="presentation"><a role="menuitem" id='sjs' data-target="#">新竹市</a></li>
-          <li role="presentation"><a role="menuitem" id='kgs' data-target="#">嘉義市</a></li>
-          <li role="presentation"><a role="menuitem" id='ty' data-target="#">桃園縣</a></li>
-          <li role="presentation"><a role="menuitem" id='sj' data-target="#">新竹縣</a></li>
-          <li role="presentation"><a role="menuitem" id='ml' data-target="#">苗栗縣</a></li>
-          <li role="presentation"><a role="menuitem" id='ch' data-target="#">彰化縣</a></li>
-          <li role="presentation"><a role="menuitem" id='nt' data-target="#">南投縣</a></li>
-          <li role="presentation"><a role="menuitem" id='yl' data-target="#">雲林縣</a></li>
-          <li role="presentation"><a role="menuitem" id='kg' data-taget="#">嘉義縣</a></li>
-          <li role="presentation"><a role="menuitem" id='pt' data-taget="#">屏東縣</a></li>
-          <li role="presentation"><a role="menuitem" id='yl' data-taget="#">宜蘭縣</a></li>
-          <li role="presentation"><a role="menuitem" id='hl' data-taget="#">花蓮縣</a></li>
-          <li role="presentation"><a role="menuitem" id='td' data-taget="#">臺東縣</a></li>
-          <li role="presentation"><a role="menuitem" id='ph' data-taget="#">澎湖縣</a></li>
-          <li role="presentation"><a role="menuitem" id='km' data-taget="#">金門縣</a></li>
-          <li role="presentation"><a role="menuitem" id='lk' data-taget="#">連江縣</a></li>
-        </ul>
-      </div>
+        <div class="dropdown" data-toggle="dropdown" id='where'>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            我的地區
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" id='tp' data-target="#">臺北市</a></li>
+            <li role="presentation"><a role="menuitem" id='ntp'data-target="#">新北市</a></li>
+            <li role="presentation"><a role="menuitem" id='tc' data-target="#">臺中市</a></li>
+            <li role="presentation"><a role="menuitem" id='tn' data-target="#">臺南市</a></li>
+            <li role="presentation"><a role="menuitem" id='ks' data-target="#">高雄市</a></li>
+            <li role="presentation"><a role="menuitem" id='kl' data-target="#">基隆市</a></li>
+            <li role="presentation"><a role="menuitem" id='sjs' data-target="#">新竹市</a></li>
+            <li role="presentation"><a role="menuitem" id='kgs' data-target="#">嘉義市</a></li>
+            <li role="presentation"><a role="menuitem" id='ty' data-target="#">桃園縣</a></li>
+            <li role="presentation"><a role="menuitem" id='sj' data-target="#">新竹縣</a></li>
+            <li role="presentation"><a role="menuitem" id='ml' data-target="#">苗栗縣</a></li>
+            <li role="presentation"><a role="menuitem" id='ch' data-target="#">彰化縣</a></li>
+            <li role="presentation"><a role="menuitem" id='nt' data-target="#">南投縣</a></li>
+            <li role="presentation"><a role="menuitem" id='yl' data-target="#">雲林縣</a></li>
+            <li role="presentation"><a role="menuitem" id='kg' data-taget="#">嘉義縣</a></li>
+            <li role="presentation"><a role="menuitem" id='pt' data-taget="#">屏東縣</a></li>
+            <li role="presentation"><a role="menuitem" id='yl' data-taget="#">宜蘭縣</a></li>
+            <li role="presentation"><a role="menuitem" id='hl' data-taget="#">花蓮縣</a></li>
+            <li role="presentation"><a role="menuitem" id='td' data-taget="#">臺東縣</a></li>
+            <li role="presentation"><a role="menuitem" id='ph' data-taget="#">澎湖縣</a></li>
+            <li role="presentation"><a role="menuitem" id='km' data-taget="#">金門縣</a></li>
+            <li role="presentation"><a role="menuitem" id='lk' data-taget="#">連江縣</a></li>
+          </ul>
+        </div><br/>
 
-
+        <label>12 / 24 小時制</label>
+        <div class="onoffswitch">
+          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
       <br>
       <button class='col-lg-3 col-lg-offset-3 btn btn-danger' id="summit">送出</button>
     </div>
