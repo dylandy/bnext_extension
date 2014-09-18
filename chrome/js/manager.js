@@ -39,6 +39,9 @@ var set_current_time = function(){
         if( minute < 10){
           var time_result = "0" + hour.toString() + ":" + "0" + minute.toString();
         }
+        else{
+          var time_result = "0" + hour.toString() + ":" + minute.toString();
+        }
       }else if( minute < 10 && hour > 10 ){
         var time_result = hour.toString() + ":" + "0" + minute.toString() ;
       }else{
