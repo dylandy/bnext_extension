@@ -57,12 +57,23 @@ var set_time_format = function(){
       $('.onoffswitch-inner').attr('data-after' , "12");
       var now_setting = 1;
       $('#myonoffswitch').click(function(){
-          chrome.storage.local.set(
-            {"time_format" : now_setting },
-            function(){
-              console.log("time format set to 12");
-            }
-          );
+          if(now_setting == 1){
+            now_setting = 0;
+            chrome.storage.local.set(
+              {"time_format" : now_setting },
+              function(){
+                console.log("time format set to 12");
+              }
+            );
+          }else{
+            now_setting = 1;
+            chrome.storage.local.set(
+              {"time_format" : now_setting },
+              function(){
+                console.log("time format set to 24");
+              }
+            );
+          }
       });
     }
   });
