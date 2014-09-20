@@ -80,8 +80,12 @@ var set_greeting_word = function(){
 var get_name = function(){
   var my_name = "";
   chrome.storage.local.get("my_name" , function(result){
-      my_name = result.my_name;
+    my_name = result.my_name;
+    if(my_name){
       $('#name')[0].innerHTML = my_name;
+    }else{
+      $('#name')[0].innerHTML = "使用者";
+    }
   });
 }
 
@@ -89,7 +93,11 @@ var get_city = function(){
   var location = "";
   chrome.storage.local.get("location",function(result){
     location = result.location;
-    $('#city')[0].innerHTML = location;
+    if(location){
+      $('#city')[0].innerHTML = location;
+    }else{
+      $('#city')[0].innerHTML = "台北市";
+    }
   });
 }
 
