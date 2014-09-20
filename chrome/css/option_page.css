@@ -64,13 +64,13 @@ input[type='text']{
     -webkit-box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "12";
+    content: attr(data-before);
     padding-left: 10px;
     background-color: #27AE60;
     color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-    content: "24";
+    content: attr(data-after);
     padding-right: 10px;
     background-color: #2980B9;
     color:white ;
