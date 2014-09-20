@@ -10,6 +10,6 @@
   "minimum_chrome_version": "30",
   "permissions":[
     "storage",
-    "http://opendata.cwb.gov.tw/"
+    "http://api.bnext.com.tw/"
   ]
 }
