@@ -60,7 +60,7 @@ var set_current_time = function(){
   });
 
 
-  $('#current_date')[0].innerHTML = monthNames[ month -1 ] + " , " + day + " , " + year;
+  $('#current_date')[0].innerHTML = monthNames[ month -1 ] + " , " + day + "日" + " , " + year;
 }
 
 var set_greeting_word = function(){

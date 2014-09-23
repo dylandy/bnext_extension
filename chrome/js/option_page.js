@@ -109,6 +109,5 @@ jQuery(function($){
   $('#summit').click(function(){
     save_change();
     $(this)[0].innerHTML = "已儲存";
-    $(this).addClass("disabled");
   });
 });
