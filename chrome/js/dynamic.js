@@ -4,14 +4,15 @@ var get_weather = function(){
       url: "http://api.bnext.com.tw:3000/weather",
       dataType: "json",
       success: function(json){
-        $(json).each(function(){
-          if( this.name === $('#city').html()){
-            console.log(this.name);
-            console.log(this.wx);
-            console.log(this.maxt);
-            console.log(this.mint);
-          }
-        });
+          var i = 0;
+          $(json).each(function(){
+            if( this.name === $('#city').html()){
+              $("#wx"+ i)[0].innerHTML = this.wx;
+              $("#maxt"+ i )[0].innerHTML = this.maxt;
+              $("#mint"+ i)[0].innerHTML = this.mint;
+              i++;
+            }
+          });
       },
       error: function(){
        alert("error");

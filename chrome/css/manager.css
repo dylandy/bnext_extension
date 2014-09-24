@@ -34,7 +34,7 @@ body{
 
 #center_info {
   position:absolute;
-  top:10%;
+  top:3%;
   left:40%;
 }
 
@@ -97,4 +97,19 @@ body{
 
 #greeting_word {
   display: inline-block;
+}
+
+.temp {
+  display:inline;
+}
+
+.box {
+  float: left;
+  margin:1em;
+}
+
+#current_weather {
+  position: absolute;
+  left: 33%;
+  top: 30%;
 }
