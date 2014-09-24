@@ -41,6 +41,7 @@ body{
 #current_time {
   font-size:7em;
   margin:0;
+  text-align: center;
 }
 
 #current_date {
@@ -109,7 +110,5 @@ body{
 }
 
 #current_weather {
-  position: absolute;
-  left: 33%;
-  top: 30%;
+  text-align: center;
 }
