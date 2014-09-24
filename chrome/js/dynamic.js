@@ -7,6 +7,9 @@ var get_weather = function(){
         $(json).each(function(){
           if( this.name === $('#city').html()){
             console.log(this.name);
+            console.log(this.wx);
+            console.log(this.maxt);
+            console.log(this.mint);
           }
         });
       },
