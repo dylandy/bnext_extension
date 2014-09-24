@@ -1,10 +1,13 @@
 var get_weather = function(){
   $.ajax({
       type: "GET",
-      url: "http://api.bnext.com.tw/weather",
+      url: "http://api.bnext.com.tw:3000/weather",
       dataType: "json",
       success: function(json){
-        $(json).find("location").each(function(){
+        $(json).each(function(){
+          if( this.name === $('#city').html()){
+            console.log(this.name);
+          }
         });
       },
       error: function(){
@@ -14,4 +17,6 @@ var get_weather = function(){
 }
 
 
-jQuery(function($){});
+jQuery(function($){
+  get_weather();
+});
