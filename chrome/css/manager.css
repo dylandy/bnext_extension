@@ -1,9 +1,9 @@
 @font-face{
-  font-family:Ubuntu;
-  url(resource/font/Ubuntu-M.ttf);
+  font-family: "Ubuntu";
+  src:url('/resource/font/Ubuntu-M.ttf');
 }
 body{
-  font-family:"Ubuntu", "微軟正黑體" , "Heiti TC" , "Droid-Sans";
+  font-family:"Ubuntu", "Microsoft YaHei" , "Heiti TC" , "Droid-Sans";
   background:rgb(236, 240, 241);
   color:black;
 }
