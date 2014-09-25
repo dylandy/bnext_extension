@@ -15,7 +15,11 @@ var get_weather = function(){
           });
       },
       error: function(){
-       alert("error");
+        for( var i = 0 ; i < 3 ; i++ ){
+          $("#wx"+i)[0].innerHTML = "無資料";
+          $("#maxt"+i)[0].innerHTML = "無資料";
+          $("#mint"+i)[0].innerHTML = "無資料";
+        }
       }
   });
 }

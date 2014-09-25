@@ -32,7 +32,7 @@ var set_current_time = function(){
         }else if( (hour - 12) < 10 && minute > 10 ){
           var time_result = "0" + (hour - 12).toString() + ":" + minute.toString() + "PM";
         }else if( (hour - 12) >= 10 && minute > 10 ){
-          var time_result = (hour - 12).toString() + ":" + minute.toString() + "PM";
+            var time_result = (hour - 12).toString() + ":" + minute.toString() + "PM";
         }
       }
     }else{
@@ -56,6 +56,9 @@ var set_current_time = function(){
     //re-adjust the center infomation after add "AM/PM" info on it
     if( time_format == 0 ){
       $('#center_info').css('left' , "35%");
+    }
+    else{
+      $('#center_info').css('left' , "36%");
     }
   });
 
