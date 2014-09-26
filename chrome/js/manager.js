@@ -100,7 +100,7 @@ var get_city = function(){
     if(location){
       $('#city')[0].innerHTML = location;
     }else{
-      $('#city')[0].innerHTML = "台北市";
+      $('#city')[0].innerHTML = "臺北市";
     }
   });
 }
