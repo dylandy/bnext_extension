@@ -1,3 +1,4 @@
+var time_format = "";
 var set_current_time = function(){
   var current = new Date;
   var year = current.getFullYear();
@@ -10,7 +11,7 @@ var set_current_time = function(){
     "七月", "八月", "九月", "十月", "十一月", "十二月" ];
 
   //get 12/24 format
-  var time_format = "";
+
   chrome.storage.local.get("time_format" , function(result){
     time_format = result.time_format;
 
@@ -56,9 +57,9 @@ var set_current_time = function(){
     //re-adjust the center infomation after add "AM/PM" info on it
     if( time_format == 0 ){
       $('#center_info').css('left' , "35%");
-    }
-    else{
-      $('#center_info').css('left' , "36%");
+      $('.box').css("margin" , "0 9%");
+    }else{
+      $('.box').css("margin"  , "0 5%");
     }
   });
 
@@ -105,12 +106,65 @@ var get_city = function(){
   });
 }
 
+var get_weather = function(){
+  $.ajax({
+      type: "GET",
+      url: "http://api.bnext.com.tw:3000/weather",
+      dataType: "json",
+      success: function(json){
+          var i = 0;
+          $(json).each(function(){
+            if( this.name === $('#city').html()){
+              $("#maxt"+ i )[0].innerHTML = this.maxt;
+              $("#mint"+ i)[0].innerHTML = this.mint;
+
+              $("#wx" + i).attr("title" , this.wx );
+
+              if( this.wx.match("多雲") || this.wx.match("陰") ){
+                $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
+              }
+              if( this.wx.match("短暫陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/little-rain-64.gif");
+              }
+              if( this.wx.match("雷陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/cloud-lighting-64.gif");
+              }
+              if( this.wx.match("有雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/rain-64.gif");
+              }
+              if( this.wx.match("晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/sun-64.gif");
+              }
+              if( this.wx.match("晴時多雲") || this.wx.match("多雲時晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/partly-cloudy-day-64.gif");
+              }
+              i++;
+            }
+          });
+      },
+      error: function(){
+        for( var i = 0 ; i < 3 ; i++ ){
+          $("#wx"+i).attr( "src" , "resource/img/weather/file-64.gif");
+          $("#maxt"+i)[0].innerHTML = "無資料";
+          $("#mint"+i)[0].innerHTML = "無資料";
+
+          if( time_format == 0 ){
+            $(".box").css("margin" , "0 2.4%");
+          }else{
+            $(".box").css("margin" , "0 2%");
+          }
+        }
+      }
+  });
+}
+
 
 jQuery(function($){
   set_current_time();
   set_greeting_word();
   get_name();
   get_city();
+  get_weather();
 
   setInterval(set_current_time, 10000);
   setInterval(set_greeting_word, 3600000);

@@ -102,11 +102,11 @@ body{
 
 .temp {
   display:inline;
+  font-size:12px;
 }
 
 .box {
   float: left;
-  margin:20pt;
   display:inline-block;
 }
 
