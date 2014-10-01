@@ -106,11 +106,11 @@ body{
 
 .box {
   float: left;
-  margin:4pt;
+  margin:20pt;
   display:inline-block;
 }
 
 #current_weather {
   text-align: center;
-  display: inline-block;
+  width: 100%;
 }
