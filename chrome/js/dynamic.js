@@ -16,7 +16,7 @@ var get_weather = function(){
       },
       error: function(){
         for( var i = 0 ; i < 3 ; i++ ){
-          $("#wx"+i)[0].innerHTML = "無資料";
+          $("#wx"+i).attr( "src" , "resource/img/weather/file-64.gif");
           $("#maxt"+i)[0].innerHTML = "無資料";
           $("#mint"+i)[0].innerHTML = "無資料";
         }
