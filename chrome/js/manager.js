@@ -55,12 +55,7 @@ var set_current_time = function(){
 
 
     //re-adjust the center infomation after add "AM/PM" info on it
-    if( time_format == 0 ){
-      $('#center_info').css('left' , "35%");
-      $('.box').css("margin" , "0 9%");
-    }else{
-      $('.box').css("margin"  , "0 5%");
-    }
+
   });
 
 
@@ -127,7 +122,7 @@ var get_weather = function(){
                 $("#wx" + i ).attr("src" , "resource/img/weather/little-rain-64.gif");
               }
               if( this.wx.match("雷陣雨")){
-                $("#wx" + i ).attr("src" , "resource/img/weather/cloud-lighting-64.gif");
+                $("#wx" + i ).attr("src" , "resource/img/weather/storm-64.gif");
               }
               if( this.wx.match("有雨")){
                 $("#wx" + i ).attr("src" , "resource/img/weather/rain-64.gif");
@@ -138,9 +133,20 @@ var get_weather = function(){
               if( this.wx.match("晴時多雲") || this.wx.match("多雲時晴")){
                 $("#wx" + i ).attr("src" , "resource/img/weather/partly-cloudy-day-64.gif");
               }
+              if( this.wx.match("多雲時晴偶陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/chance-of-storm-64.gif");
+              }
               i++;
             }
           });
+
+          if( time_format == 0 ){
+            $('#center_info').css('left' , "35%");
+            $('.box').css("margin" , "0 9.5%");
+          }else{
+            $('.box').css("margin"  , "0 5.4%");
+          }
+
       },
       error: function(){
         for( var i = 0 ; i < 3 ; i++ ){
@@ -149,12 +155,15 @@ var get_weather = function(){
           $("#mint"+i)[0].innerHTML = "無資料";
 
           if( time_format == 0 ){
-            $(".box").css("margin" , "0 2.4%");
+            $('#center_info').css('left' , "35%");
+            $(".box").css("margin" , "0 7.5%");
           }else{
             $(".box").css("margin" , "0 2%");
           }
         }
       }
+
+
   });
 }
 
