@@ -118,7 +118,7 @@ var get_weather = function(){
               if( this.wx.match("多雲") || this.wx.match("陰") ){
                 $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
               }
-              if( this.wx.match("短暫陣雨")){
+              if( this.wx.match("短暫陣雨") || this.wx.match("短暫雨")){
                 $("#wx" + i ).attr("src" , "resource/img/weather/little-rain-64.gif");
               }
               if( this.wx.match("雷陣雨")){
