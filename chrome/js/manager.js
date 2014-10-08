@@ -142,9 +142,9 @@ var get_weather = function(){
 
           if( time_format == 0 ){
             $('#center_info').css('left' , "35%");
-            $('.box').css("margin" , "0 9.5%");
+            $('.box').css("margin" , "0 8.5%");
           }else{
-            $('.box').css("margin"  , "0 5.4%");
+            $('.box').css("margin"  , "0 3.4%");
           }
 
       },
