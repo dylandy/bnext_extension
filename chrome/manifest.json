@@ -10,6 +10,6 @@
   "minimum_chrome_version": "30",
   "permissions":[
     "storage",
-    "http://api.bnext.com.tw/"
+    "http://api.managers.today/"
   ]
 }

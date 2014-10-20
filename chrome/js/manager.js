@@ -104,7 +104,7 @@ var get_city = function(){
 var get_weather = function(){
   $.ajax({
       type: "GET",
-      url: "http://api.bnext.com.tw:3000/weather",
+      url: "http://api.managers.today:3000/weather",
       dataType: "json",
       success: function(json){
           var i = 0;
@@ -144,7 +144,7 @@ var get_weather = function(){
             $('#center_info').css('left' , "35%");
             $('.box').css("margin" , "0 8.5%");
           }else{
-            $('.box').css("margin"  , "0 3.4%");
+            $('.box').css("margin"  , "0 4.9%");
           }
 
       },
@@ -167,6 +167,21 @@ var get_weather = function(){
   });
 }
 
+var get_sentence = function(){
+   $.ajax({
+      type: "GET",
+      url: "http://api.managers.today:3000/sentence",
+      dataType: "json",
+      success: function(json){
+        $(json).each(function(){
+          $('#today_sentence')[0].innerHTML = this.content;
+        });
+      },
+      error: function(){
+        console.log("error happened");
+      }
+  });
+}
 
 jQuery(function($){
   set_current_time();
@@ -174,6 +189,7 @@ jQuery(function($){
   get_name();
   get_city();
   get_weather();
+  get_sentence();
 
   setInterval(set_current_time, 10000);
   setInterval(set_greeting_word, 3600000);
