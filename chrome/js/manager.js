@@ -174,7 +174,8 @@ var get_sentence = function(){
       dataType: "json",
       success: function(json){
         $(json).each(function(){
-          $('#today_sentence')[0].innerHTML = this.content;
+          $('#today_sentence h2')[0].innerHTML = this.content;
+          $('#today_sentence h3')[0].innerHTML = "《" + this.author_title +"》" + this.author_chin_name;
         });
       },
       error: function(){

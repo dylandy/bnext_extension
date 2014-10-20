@@ -3,9 +3,10 @@
   src:url('/resource/font/Ubuntu-M.ttf');
 }
 body{
-  font-family:"Ubuntu", "Microsoft YaHei" , "Heiti TC" , "Droid-Sans";
+  font-family:"Ubuntu", "微軟正黑體" , "Heiti TC" , "Droid-Sans";
   background:rgb(236, 240, 241);
   color:black;
+  overflow-x: hidden;
 }
 #setting_ribbon {
   position:absolute;
@@ -113,4 +114,18 @@ body{
 #current_weather {
   text-align: center;
   width: 100%;
+}
+
+#today_sentence {
+  position:absolute;
+  top:50%;
+  width:100%;
+  display:inline-block;
+  text-align:center;
+}
+
+
+#today_sentence h3{
+  position:absolute;
+  left:55%;
 }
