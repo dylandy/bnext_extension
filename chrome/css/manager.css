@@ -124,8 +124,12 @@ body{
   text-align:center;
 }
 
+#today_sentence h2{
+  font-size:28px;
+}
 
 #today_sentence h3{
   position:absolute;
   left:55%;
+  font-size:24px;
 }
