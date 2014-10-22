@@ -139,27 +139,12 @@ var get_weather = function(){
               i++;
             }
           });
-
-          if( time_format == 0 ){
-            $('#center_info').css('left' , "35%");
-            $('.box').css("margin" , "0 8.5%");
-          }else{
-            $('.box').css("margin"  , "0 4.9%");
-          }
-
       },
       error: function(){
         for( var i = 0 ; i < 3 ; i++ ){
           $("#wx"+i).attr( "src" , "resource/img/weather/file-64.gif");
           $("#maxt"+i)[0].innerHTML = "無資料";
           $("#mint"+i)[0].innerHTML = "無資料";
-
-          if( time_format == 0 ){
-            $('#center_info').css('left' , "35%");
-            $(".box").css("margin" , "0 7.5%");
-          }else{
-            $(".box").css("margin" , "0 2%");
-          }
         }
       }
 

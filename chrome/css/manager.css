@@ -107,13 +107,18 @@ body{
 }
 
 .box {
-  float: left;
   display:inline-block;
 }
 
 #current_weather {
-  text-align: center;
+  text-align: justify;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#current_weather:after{
+  display:inline-block;
 }
 
 #today_sentence {
