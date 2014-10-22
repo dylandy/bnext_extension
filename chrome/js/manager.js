@@ -153,13 +153,24 @@ var get_weather = function(){
 }
 
 var get_sentence = function(){
-   $.ajax({
+  Array.prototype.insert = function (index, item) {
+    this.splice(index, 0, item);
+  };
+  $.ajax({
       type: "GET",
       url: "http://api.managers.today:3000/sentence",
       dataType: "json",
       success: function(json){
         $(json).each(function(){
-          $('#today_sentence h2')[0].innerHTML = this.content;
+          var tmp_content;
+          var rest_content;
+          if( this.content.length > 40 ){
+            tmp_content = this.content.split("，").slice(0,2).join('，');
+            rest_content = this.content.split("，").slice(3).join('，');
+            $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content ;
+          }else{
+            $('#today_sentence h2')[0].innerHTML = this.content;
+          }
           $('#today_sentence h3')[0].innerHTML = "《" + this.author_title +"》" + this.author_chin_name;
         });
       },
