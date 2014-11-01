@@ -162,6 +162,9 @@ var get_sentence = function(){
       dataType: "json",
       success: function(json){
         $(json).each(function(){
+          localStorage.setItem("sentence",this.content);
+          localStorage.setItem("author",this.author_chin_name);
+          localStorage.setItem("title",this.author_title);
           var tmp_content;
           var rest_content;
           if( this.content.length > 40 ){
@@ -176,9 +179,23 @@ var get_sentence = function(){
       },
       error: function(){
         console.log("error happened");
+        if(localStorage.getItem("sentence")){
+          var tmp = localStorage.getItem("sentence");
+          if( tmp.length > 40 ){
+            tmp_content = tmp.split("，").slice(0,2).join('，');
+            rest_content = tmp.split("，").slice(3).join('，');
+            $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content ;
+          }else{
+            $('#today_sentence h2')[0].innerHTML = tmp;
+          }
+          $('#today_sentence h3')[0].innerHTML = "《" + localStorage.getItem("title") +"》" + localStorage.getItem("author");
+        }else{
+          console.log("error happened");
+        }
       }
   });
 }
+
 
 jQuery(function($){
   set_current_time();
