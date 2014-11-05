@@ -103,7 +103,7 @@ var get_city = function(){
 
 var get_weather = function(){
   if(!localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0){
-    var i = 0;
+
     var tmp = [];
     $.ajax({
         type: "GET",
@@ -111,7 +111,7 @@ var get_weather = function(){
         dataType: "json",
         success: function(json){
             /* update_weather == 0 必須更新，每六小時更新一次 */
-
+            var i = 0;
             $(json).each(function(){
               if( this.name === $('#city').html()){
                 tmp.push(this.maxt);
@@ -275,7 +275,8 @@ var get_sentence = function(){
         $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content ;
       }else{
         $('#today_sentence h2')[0].innerHTML = tmp;
-  }
+    }
+    $('#today_sentence h3')[0].innerHTML = "《" + localStorage.getItem("title") +"》" + localStorage.getItem("author");
   }
 }
 
