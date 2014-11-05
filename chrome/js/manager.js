@@ -53,9 +53,9 @@ var set_current_time = function(){
 
     $('#current_time')[0].innerHTML = time_result;
 
-
-    //re-adjust the center infomation after add "AM/PM" info on it
-
+    if(hour == 0 || hour == 6 || hour == 12 || hour == 18 ){
+      localStorage.setItem("update_weather" , 0);
+    }
   });
 
 
@@ -107,12 +107,18 @@ var get_weather = function(){
       url: "http://api.managers.today:3000/weather",
       dataType: "json",
       success: function(json){
+        if(!localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0){
+          /* update_weather == 0 必須更新，每六小時更新一次 */
           var i = 0;
+          var tmp = [];
           $(json).each(function(){
             if( this.name === $('#city').html()){
+              tmp.push(this.maxt);
+              tmp.push(this.mint);
+              tmp.push(this.wx);
+
               $("#maxt"+ i )[0].innerHTML = this.maxt;
               $("#mint"+ i)[0].innerHTML = this.mint;
-
               $("#wx" + i).attr("title" , this.wx );
 
               if( this.wx.match("多雲") || this.wx.match("陰") ){
@@ -138,13 +144,81 @@ var get_weather = function(){
               }
               i++;
             }
-          });
+          }
+        );
+          var a = 0;
+          for( var i = 0 ; i < tmp.length ; i++ ){
+            if( i % 3 == 0 ){
+              localStorage.setItem("max_t" + a , tmp[i]);
+              localStorage.setItem("min_t" + a , tmp[i+1]);
+              localStorage.setItem("wx" + a , tmp[i+2]);
+              a++;
+            }
+          }
+          localStorage.setItem("update_weather" , 1);
+        }else{
+          for( var i = 0 ; i < 3 ; i++ ){
+            $("#maxt"+ i)[0].innerHTML = localStorage.getItem("max_t" + i);
+            $("#mint"+ i)[0].innerHTML = localStorage.getItem("min_t" + i );
+
+            if( localStorage.getItem("wx" + i).match("多雲") || localStorage.getItem("wx" + i).match("陰") ){
+                $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("短暫陣雨") || localStorage.getItem("wx" + i).match("短暫雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/little-rain-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("雷陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/storm-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("有雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/rain-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/sun-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("晴時多雲") || localStorage.getItem("wx" + i).match("多雲時晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/partly-cloudy-day-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("多雲時晴偶陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/chance-of-storm-64.gif");
+              }
+          }
+        }
       },
       error: function(){
-        for( var i = 0 ; i < 3 ; i++ ){
-          $("#wx"+i).attr( "src" , "resource/img/weather/file-64.gif");
-          $("#maxt"+i)[0].innerHTML = "無資料";
-          $("#mint"+i)[0].innerHTML = "無資料";
+        if( localStorage.getItem("max_t0") ){
+          for( var i = 0 ; i < 3 ; i++ ){
+            $("#maxt"+ i)[0].innerHTML = localStorage.getItem("max_t" + i);
+            $("#mint"+ i)[0].innerHTML = localStorage.getItem("min_t" + i );
+
+            if( localStorage.getItem("wx" + i).match("多雲") || localStorage.getItem("wx" + i).match("陰") ){
+                $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("短暫陣雨") || localStorage.getItem("wx" + i).match("短暫雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/little-rain-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("雷陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/storm-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("有雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/rain-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/sun-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("晴時多雲") || localStorage.getItem("wx" + i).match("多雲時晴")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/partly-cloudy-day-64.gif");
+              }
+              if( localStorage.getItem("wx" + i).match("多雲時晴偶陣雨")){
+                $("#wx" + i ).attr("src" , "resource/img/weather/chance-of-storm-64.gif");
+              }
+          }
+        }else{
+          for( var i = 0 ; i < 3 ; i++ ){
+            $("#wx"+i).attr( "src" , "resource/img/weather/file-64.gif");
+            $("#maxt"+i)[0].innerHTML = "無資料";
+            $("#mint"+i)[0].innerHTML = "無資料";
+          }
         }
       }
 
