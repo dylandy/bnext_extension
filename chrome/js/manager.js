@@ -52,8 +52,12 @@ var set_current_time = function(){
     }
 
     $('#current_time')[0].innerHTML = time_result;
+    tmp  = new Date(localStorage.getItem("update_time"));
 
+    /*change flag for updating weather*/
     if(hour == 0 || hour == 6 || hour == 12 || hour == 18 ){
+      localStorage.setItem("update_weather" , 0);
+    }else if( ( current.getMonth() - tmp.getMonth() ) > 0 || ( current.getDate() - tmp.getDate() > 0 ) || ( current.getHours() - tmp.getHours() > 6 ) ){
       localStorage.setItem("update_weather" , 0);
     }
   });
@@ -102,7 +106,7 @@ var get_city = function(){
 }
 
 var get_weather = function(){
-  if(!localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0){
+  if(!localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0 ){
 
     var tmp = [];
     $.ajax({
@@ -156,6 +160,7 @@ var get_weather = function(){
               }
             }
             localStorage.setItem("update_weather" , 1);
+            localStorage.setItem("update_time" , new Date);
         },
         error: function(){
           if( localStorage.getItem("max_t0") ){
