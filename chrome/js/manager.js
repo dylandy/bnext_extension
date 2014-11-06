@@ -165,8 +165,9 @@ var get_weather = function(){
         error: function(){
           if( localStorage.getItem("max_t0") ){
             for( var i = 0 ; i < 3 ; i++ ){
-              $("#maxt"+ i)[0].innerHTML = localStorage.getItem("max_t" + i);
-              $("#mint"+ i)[0].innerHTML = localStorage.getItem("min_t" + i );
+              $("#maxt"+ i)[0].innerHTML = localStorage.getItem( "max_t" + i );
+              $("#mint"+ i)[0].innerHTML = localStorage.getItem( "min_t" + i );
+              $("#wx" + i).attr("title" , localStorage.getItem( "wx" + i ) );
 
               if( localStorage.getItem("wx" + i).match("多雲") || localStorage.getItem("wx" + i).match("陰") ){
                   $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
@@ -203,6 +204,7 @@ var get_weather = function(){
         for( var i = 0 ; i < 3 ; i++ ){
           $("#maxt"+ i)[0].innerHTML = localStorage.getItem("max_t" + i);
           $("#mint"+ i)[0].innerHTML = localStorage.getItem("min_t" + i );
+          $("#wx" + i).attr("title" , localStorage.getItem( "wx" + i ) );
 
           if( localStorage.getItem("wx" + i).match("多雲") || localStorage.getItem("wx" + i).match("陰") ){
               $("#wx" + i ).attr("src" , "resource/img/weather/clouds-64.gif");
@@ -233,7 +235,9 @@ var get_sentence = function(){
   Array.prototype.insert = function (index, item) {
     this.splice(index, 0, item);
   };
-  if( !localStorage.getItem("sentence") ){
+  update_sentence = new Date(localStorage.getItem("update_sentence"));
+  current = new Date()
+  if( !localStorage.getItem("sentence") || update_sentence.getDate() != current.getDate() ){
     $.ajax({
         type: "GET",
         url: "http://api.managers.today:3000/sentence",
@@ -254,6 +258,7 @@ var get_sentence = function(){
             }
             $('#today_sentence h3')[0].innerHTML = "《" + this.author_title +"》" + this.author_chin_name;
           });
+          localStorage.setItem("update_sentence" , current);
         },
         error: function(){
           console.log("error happened");
