@@ -52,16 +52,7 @@ var set_current_time = function(){
     }
 
     $('#current_time')[0].innerHTML = time_result;
-    tmp  = new Date(localStorage.getItem("update_time"));
 
-    /*change flag for updating weather*/
-    if( ( current.getMonth() - tmp.getMonth() ) > 0 || ( current.getDate() - tmp.getDate() > 0 ) || ( current.getHours() - tmp.getHours() > 6 ) ){
-      localStorage.setItem("update_weather" , 0 );
-    }else if( localStorage.getItem("city0") != $('#city').html() ){
-      localStorage.setItem("update_weather" , 0 );
-    }else if( !localStorage.getItem("max_t0") ){
-      localStorage.setItem("update_weather" , 0);
-    }
   });
 
 
@@ -108,8 +99,7 @@ var get_city = function(){
 }
 
 var get_weather = function(){
-  if( localStorage.getItem("update_weather") === "0" ){
-
+  if( localStorage.getItem("update_weather") === 0 ){
     var tmp = [];
     $.ajax({
         type: "GET",
@@ -151,6 +141,8 @@ var get_weather = function(){
                 }
                 i++;
               }
+              localStorage.setItem( "update_weather" , 1 );
+              localStorage.setItem( "update_time" , new Date() );
             });
             var a = 0;
             for( var i = 0 ; i < tmp.length ; i++ ){
@@ -162,8 +154,7 @@ var get_weather = function(){
                 a++;
               }
             }
-            localStorage.setItem("update_weather" , 1);
-            localStorage.setItem("update_time" , new Date);
+
         },
         error: function(){
           if( localStorage.getItem("max_t0") ){
@@ -295,6 +286,19 @@ var get_sentence = function(){
 
 
 jQuery(function($){
+
+  console.log(localStorage);
+  tmp  = new Date(localStorage.getItem("update_time"));
+  current = new Date();
+  /*change flag for updating weather*/
+  if( ( current - tmp ) > 21600 ){
+    localStorage.setItem( "update_weather" , 0 );
+  }
+  if( localStorage.getItem("city0") !== $('#city').html() ){
+    localStorage.setItem( "update_weather" , 0 );
+  }
+
+
   set_current_time();
   set_greeting_word();
   get_name();
