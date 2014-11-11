@@ -55,9 +55,7 @@ var set_current_time = function(){
     tmp  = new Date(localStorage.getItem("update_time"));
 
     /*change flag for updating weather*/
-    if(hour == 0 || hour == 6 || hour == 12 || hour == 18 ){
-      localStorage.setItem("update_weather" , 0);
-    }else if( ( current.getMonth() - tmp.getMonth() ) > 0 || ( current.getDate() - tmp.getDate() > 0 ) || ( current.getHours() - tmp.getHours() > 6 ) ){
+    if( ( current.getMonth() - tmp.getMonth() ) > 0 || ( current.getDate() - tmp.getDate() > 0 ) || ( current.getHours() - tmp.getHours() > 6 ) ){
       localStorage.setItem("update_weather" , 0);
     }
   });
