@@ -106,7 +106,7 @@ var get_city = function(){
 }
 
 var get_weather = function(){
-  if(!localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0 ){
+  if( !localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0 || localStorage.getItem("city0") != $('#city').html() ){
 
     var tmp = [];
     $.ajax({
@@ -121,6 +121,7 @@ var get_weather = function(){
                 tmp.push(this.maxt);
                 tmp.push(this.mint);
                 tmp.push(this.wx);
+                tmp.push(this.name);
 
                 $("#maxt"+ i )[0].innerHTML = this.maxt;
                 $("#mint"+ i)[0].innerHTML = this.mint;
@@ -153,9 +154,10 @@ var get_weather = function(){
             var a = 0;
             for( var i = 0 ; i < tmp.length ; i++ ){
               if( i % 3 == 0 ){
-                localStorage.setItem("max_t" + a , tmp[i]);
-                localStorage.setItem("min_t" + a , tmp[i+1]);
-                localStorage.setItem("wx" + a , tmp[i+2]);
+                localStorage.setItem( "max_t" + a , tmp[i] );
+                localStorage.setItem( "min_t" + a , tmp[i+1] );
+                localStorage.setItem( "wx" + a , tmp[i+2] );
+                localStorage.setItem( "city" + a, tmp[i+3] );
                 a++;
               }
             }
