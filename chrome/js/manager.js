@@ -56,6 +56,10 @@ var set_current_time = function(){
 
     /*change flag for updating weather*/
     if( ( current.getMonth() - tmp.getMonth() ) > 0 || ( current.getDate() - tmp.getDate() > 0 ) || ( current.getHours() - tmp.getHours() > 6 ) ){
+      localStorage.setItem("update_weather" , 0 );
+    }else if( localStorage.getItem("city0") != $('#city').html() ){
+      localStorage.setItem("update_weather" , 0 );
+    }else if( !localStorage.getItem("max_t0") ){
       localStorage.setItem("update_weather" , 0);
     }
   });
@@ -104,7 +108,7 @@ var get_city = function(){
 }
 
 var get_weather = function(){
-  if( !localStorage.getItem("max_t0") || localStorage.getItem("update_weather") == 0 || localStorage.getItem("city0") != $('#city').html() ){
+  if( localStorage.getItem("update_weather") === "0" ){
 
     var tmp = [];
     $.ajax({
@@ -112,7 +116,6 @@ var get_weather = function(){
         url: "http://api.managers.today:3000/weather",
         dataType: "json",
         success: function(json){
-            /* update_weather == 0 必須更新，每六小時更新一次 */
             var i = 0;
             $(json).each(function(){
               if( this.name === $('#city').html()){
@@ -151,7 +154,7 @@ var get_weather = function(){
             });
             var a = 0;
             for( var i = 0 ; i < tmp.length ; i++ ){
-              if( i % 3 == 0 ){
+              if( i % 4 == 0 ){
                 localStorage.setItem( "max_t" + a , tmp[i] );
                 localStorage.setItem( "min_t" + a , tmp[i+1] );
                 localStorage.setItem( "wx" + a , tmp[i+2] );
