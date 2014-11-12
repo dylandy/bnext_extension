@@ -288,7 +288,7 @@ var get_sentence = function(){
 var get_english = function(){
   update = localStorage.getItem("update_sentence");
   current_time = new Date();
-  if( !localStorage.getItem("english") || update.getDate() !== current_time.getDate() ){
+  if( !localStorage.getItem("vocabulary") || update.getDate() !== current_time.getDate() ){
 
     $.ajax({
       type: "GET",
@@ -300,6 +300,10 @@ var get_english = function(){
           $('.vocabulary-box h4')[0].innerHTML = this.chinese_meaning;
           $('.vocabulary-box h4')[1].innerHTML = this.transcription;
           $('.vocabulary-box p')[0].innerHTML = this.chinese_content;
+          localStorage.setItem( "vocabulary" , this.vocabulary );
+          localStorage.setItem( "chinese_meaning" , this.chinese_meaning );
+          localStorage.setItem( "transcription" , this.transcription );
+          localStorage.setItem( "chinese_content" , this.chinese_content );
         });
       },
       error: function(){
@@ -308,7 +312,10 @@ var get_english = function(){
     });
 
   }else{
-
+    $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
+    $('.vocabulary-box h4')[0].innerHTML = localStorage.getItem("chinese_meaning");
+    $('.vocabulary-box h4')[1].innerHTML = localStorage.getItem("transcription");
+    $('.vocabulary-box p')[0].innerHTML = localStorage.getItem("chinese_content");
   }
 }
 
