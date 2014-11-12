@@ -29,18 +29,22 @@ body{
   left:10%;
 }
 
+#greeting_msg h2{
+  font-size:20px;
+}
+
 #setting_btn {
   font-size:2em;
 }
 
 #center_info {
-  width: 30%;
-  margin-left: 35%;
+  width: 20%;
+  margin-left: 40%;
   margin-top:2%;
 }
 
 #current_time {
-  font-size:9em;
+  font-size:5em;
   margin:0;
   text-align: center;
 }
@@ -86,8 +90,6 @@ body{
 #manager_logo sup{
   font-size:0.5em;
 }
-
-
 
 #city {
   display: inline-block;
@@ -148,15 +150,18 @@ body{
 
 .vocabulary-box {
   background:#ececec;
+  box-shadow: 0 1px 1px 0 black;
+  text-align: center;
 }
 
 .vocabulary-box:hover{
-  box-shadow: 0 1px 3px 0 black;
+  box-shadow: 0 1px 5px 0 black;
 }
 
 #learning-english {
   display:none;
   max-height:20%;
+  margin-top:2%;
 }
 
 #divination {
