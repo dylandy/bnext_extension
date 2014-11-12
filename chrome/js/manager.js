@@ -287,7 +287,6 @@ var get_sentence = function(){
 
 jQuery(function($){
 
-  console.log(localStorage);
   tmp  = new Date(localStorage.getItem("update_time"));
   current = new Date();
   /*change flag for updating weather*/
