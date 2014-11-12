@@ -231,7 +231,7 @@ var get_sentence = function(){
   };
   update_sentence = new Date(localStorage.getItem("update_sentence"));
   current = new Date()
-  if( !localStorage.getItem("sentence") || update_sentence.getDate() != current.getDate() ){
+  if( !localStorage.getItem("sentence") || update_sentence.getDate() !== current.getDate() ){
     $.ajax({
         type: "GET",
         url: "http://api.managers.today:3000/sentence",
@@ -285,10 +285,39 @@ var get_sentence = function(){
 }
 
 
+var get_english = function(){
+  update = localStorage.getItem("update_sentence");
+  current_time = new Date();
+  if( !localStorage.getItem("english") || update.getDate() !== current_time.getDate() ){
+
+    $.ajax({
+      type: "GET",
+      url: "http://api.managers.today:3000/english",
+      dataType: "json",
+      success: function(json){
+        $(json).each(function(){
+          $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
+          $('.vocabulary-box h4')[0].innerHTML = this.chinese_meaning;
+          $('.vocabulary-box h4')[1].innerHTML = this.transcription;
+          $('.vocabulary-box p')[0].innerHTML = this.chinese_content;
+        });
+      },
+      error: function(){
+        console.log("error");
+      }
+    });
+
+  }else{
+
+  }
+}
+
 jQuery(function($){
 
-  tmp  = new Date(localStorage.getItem("update_time"));
-  current = new Date();
+  // convert millisecond to second
+  tmp  = Math.round( new Date(localStorage.getItem("update_time")).getTime() / 1000 );
+  current = Math.round( new Date().getTime() / 1000 );
+
   /*change flag for updating weather*/
   if( ( current - tmp ) > 21600 ){
     localStorage.setItem( "update_weather" , 0 );
@@ -297,6 +326,20 @@ jQuery(function($){
     localStorage.setItem( "update_weather" , 0 );
   }
 
+  $($('.btn-group button')[0]).click(function(){
+    $('#today_sentence').show();
+    $('#today_sentence').siblings().hide();
+  });
+
+  $($('.btn-group button')[1]).click(function(){
+    $('#learning-english').show();
+    $('#learning-english').siblings().hide();
+  });
+
+  $($('.btn-group button')[2]).click(function(){
+    $('#divination').show();
+    $('#divination').siblings().hide();
+  });
 
   set_current_time();
   set_greeting_word();
@@ -304,6 +347,7 @@ jQuery(function($){
   get_city();
   get_weather();
   get_sentence();
+  get_english();
 
   setInterval(set_current_time, 10000);
   setInterval(set_greeting_word, 3600000);
