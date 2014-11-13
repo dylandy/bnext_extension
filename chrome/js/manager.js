@@ -342,19 +342,14 @@ var get_weather_controller = function(){
 
 var initial = function(){
   get_city(function(){
-
     set_current_time();
     set_greeting_word();
     get_name();
-
     get_sentence();
     get_english();
-
     setInterval(set_current_time, 10000);
     setInterval(set_greeting_word, 3600000);
-
     get_weather_controller();
-
   });
 }
 
