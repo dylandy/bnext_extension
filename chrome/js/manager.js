@@ -1,4 +1,5 @@
 var time_format = "";
+
 var set_current_time = function(){
   var current = new Date;
   var year = current.getFullYear();
@@ -86,7 +87,7 @@ var get_name = function(){
   });
 }
 
-var get_city = function(){
+var get_city = function(callback){
   var location = "";
   chrome.storage.local.get("location",function(result){
     location = result.location;
@@ -95,11 +96,14 @@ var get_city = function(){
     }else{
       $('#city')[0].innerHTML = "臺北市";
     }
+    callback();
   });
+
 }
 
 var get_weather = function(){
-  if( localStorage.getItem("update_weather") === 0 ){
+
+  if( localStorage.getItem("update_weather") == 0 ){
     var tmp = [];
     $.ajax({
         type: "GET",
@@ -286,7 +290,7 @@ var get_sentence = function(){
 
 
 var get_english = function(){
-  update = localStorage.getItem("update_sentence");
+  update = new Date(localStorage.getItem("update_sentence"));
   current_time = new Date();
   if( !localStorage.getItem("vocabulary") || update.getDate() !== current_time.getDate() ){
 
@@ -299,11 +303,11 @@ var get_english = function(){
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
           $('.vocabulary-box h4')[0].innerHTML = this.chinese_meaning;
           $('.vocabulary-box h4')[1].innerHTML = this.transcription;
-          $('.vocabulary-box p')[0].innerHTML = this.chinese_content;
+          //$('.vocabulary-box p')[0].innerHTML = this.chinese_content;
           localStorage.setItem( "vocabulary" , this.vocabulary );
           localStorage.setItem( "chinese_meaning" , this.chinese_meaning );
           localStorage.setItem( "transcription" , this.transcription );
-          localStorage.setItem( "chinese_content" , this.chinese_content );
+          //localStorage.setItem( "chinese_content" , this.chinese_content );
         });
       },
       error: function(){
@@ -315,24 +319,47 @@ var get_english = function(){
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
     $('.vocabulary-box h4')[0].innerHTML = localStorage.getItem("chinese_meaning");
     $('.vocabulary-box h4')[1].innerHTML = localStorage.getItem("transcription");
-    $('.vocabulary-box p')[0].innerHTML = localStorage.getItem("chinese_content");
+    //$('.vocabulary-box p')[0].innerHTML = localStorage.getItem("chinese_content");
   }
 }
 
-jQuery(function($){
-
-  // convert millisecond to second
-  tmp  = Math.round( new Date(localStorage.getItem("update_time")).getTime() / 1000 );
-  current = Math.round( new Date().getTime() / 1000 );
+var get_weather_controller = function(){
+   // convert millisecond to second
+  var tmp  = Math.round( new Date(localStorage.getItem("update_time")).getTime() / 1000 );
+  var current = Math.round( new Date().getTime() / 1000 );
 
   /*change flag for updating weather*/
   if( ( current - tmp ) > 21600 ){
-    localStorage.setItem( "update_weather" , 0 );
+    $.when(localStorage.setItem( "update_weather" , 0 )).then(get_weather);
+  }else if( localStorage.getItem("city0") !== $('#city').html() ){
+    console.log(localStorage.getItem("city0"));
+    console.log($('#city').html());
+    $.when(localStorage.setItem( "update_weather" , 0 )).then(get_weather);
+  }else{
+    get_weather();
   }
-  if( localStorage.getItem("city0") !== $('#city').html() ){
-    localStorage.setItem( "update_weather" , 0 );
-  }
+}
 
+var initial = function(){
+  get_city(function(){
+
+    set_current_time();
+    set_greeting_word();
+    get_name();
+
+    get_sentence();
+    get_english();
+
+    setInterval(set_current_time, 10000);
+    setInterval(set_greeting_word, 3600000);
+
+    get_weather_controller();
+
+  });
+}
+
+jQuery(function($){
+  initial();
   $($('.btn-group button')[0]).click(function(){
     $('#today_sentence').show();
     $('#today_sentence').siblings().hide();
@@ -348,14 +375,5 @@ jQuery(function($){
     $('#divination').siblings().hide();
   });
 
-  set_current_time();
-  set_greeting_word();
-  get_name();
-  get_city();
-  get_weather();
-  get_sentence();
-  get_english();
 
-  setInterval(set_current_time, 10000);
-  setInterval(set_greeting_word, 3600000);
 });

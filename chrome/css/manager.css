@@ -152,6 +152,7 @@ body{
   background:#ececec;
   box-shadow: 0 1px 1px 0 black;
   text-align: center;
+  height:150px;
 }
 
 .vocabulary-box:hover{
