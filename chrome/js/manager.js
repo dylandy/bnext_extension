@@ -69,7 +69,7 @@ var set_greeting_word = function(){
   }else if( hour >= 12 && hour < 14 ){
     $('#greeting_word')[0].innerHTML = "午安！";
   }else if( hour >= 14 && hour < 18 ){
-    $('#greeting_word')[0].innerHTML = "下午好！";
+    $('#greeting_word')[0].innerHTML = "你好！";
   }else{
     $('#greeting_word')[0].innerHTML = "晚安！";
   }
@@ -341,33 +341,43 @@ var get_weather_controller = function(){
 }
 
 var initial = function(){
-  get_city(function(){
-    set_current_time();
-    set_greeting_word();
-    get_name();
-    get_sentence();
-    get_english();
-    setInterval(set_current_time, 10000);
-    setInterval(set_greeting_word, 3600000);
-    get_weather_controller();
-  });
+  if( localStorage.getItem( "initial_status" ) == null ){
+
+  }else{
+    get_city(function(){
+      set_current_time();
+      set_greeting_word();
+      get_name();
+      get_sentence();
+      get_english();
+      setInterval(set_current_time, 10000);
+      setInterval(set_greeting_word, 3600000);
+      get_weather_controller();
+    });
+  }
 }
 
 jQuery(function($){
   initial();
-  $($('.btn-group button')[0]).click(function(){
+  $($('.btn-group .three-btn')[0]).click(function(){
     $('#today_sentence').show();
     $('#today_sentence').siblings().hide();
+    $('.btn-group .three-btn').map(function(){ $(this).removeClass("active") });
+    $($('.btn-group .three-btn')[0]).addClass("active");
   });
 
-  $($('.btn-group button')[1]).click(function(){
+  $($('.btn-group .three-btn')[1]).click(function(){
     $('#learning-english').show();
     $('#learning-english').siblings().hide();
+    $('.btn-group .three-btn').map(function(){ $(this).removeClass("active") });
+    $($('.btn-group .three-btn')[1]).addClass("active");
   });
 
-  $($('.btn-group button')[2]).click(function(){
+  $($('.btn-group .three-btn')[2]).click(function(){
     $('#divination').show();
     $('#divination').siblings().hide();
+    $('.btn-group .three-btn').map(function(){ $(this).removeClass("active") });
+    $($('.btn-group .three-btn')[2]).addClass("active");
   });
 
 

@@ -8,64 +8,69 @@
     <link href="resource/font/font-awesome/css/font-awesome.min.css" rel='stylesheet'/>
   </head>
   <body>
-    <div id='setting_ribbon'>
-      <div id='centering'>
-        <a id='to_options' href='options.html'><i class='fa fa-cog' id='setting_btn' src='setting.html' title='設定'></i></a>
-      </div>
-    </div>
-    <div id='greeting_msg'>
-      <h2 id='greeting_word'></h2>
-      <h2 id='name'></h2>
-    </div>
-    <div id='center_info'>
-      <h1 id='current_time'></h1>
-      <h2 id='current_date'></h2>
-      <div id='location'><div id='city'></div> , 中華民國</div>
-      <div id='current_weather'>
-        <div class='box col-lg-4'>
-            <img id='wx0' src='#'><br>
-            <h3 id='maxt0' class = "temp"></h3><span>~</span><h3 id='mint0' class = "temp"></h3>
-          </div>
-          <div class='box col-lg-4'>
-            <img id='wx1' src='#'><br>
-            <h3 id='maxt1' class = "temp"></h3><span>~</span><h3 id='mint1' class = "temp"></h3>
-          </div>
-          <div class='box col-lg-4'>
-            <img id='wx2' src='#'><br>
-            <h3 id='maxt2' class = "temp"></h3><span>~</span><h3 id='mint2' class = "temp"></h3>
+    <div id='initial'>
+      <div id='ask-name' class='col-lg-9 col-lg-offset-4'>
+        <h1>Hello, 初次見面！</h1>
+        <h3>請問你叫什麼名字？</h3>
+        <div>
+          <textarea></textarea>
         </div>
+      </div>
+      <div id='location-choose'>
+      </div>
     </div>
-    </div>
-    <div id='button-group' class='btn-group'>
-      <button class='btn btn-default'>每日一句學管理</button>
-      <button class='btn btn-default'>經理人學英文</button>
-      <button class='btn btn-default'>經理人每日占卜</button>
-    </div>
-
-    <div id='main-product'>
-      <div id='today_sentence'>
-        <h2></h2>
-        <h3></h3>
+    <div id='content'>
+      <div id='setting_ribbon'>
+        <div id='centering'>
+          <a id='to_options' href='options.html'><i class='fa fa-cog' id='setting_btn' src='setting.html' title='設定'></i></a>
+        </div>
+      </div>
+      <div id='greeting_msg'>
+        <h2 id='greeting_word'></h2>
+        <h2 id='name'></h2>
+      </div>
+      <div id='center_info'>
+        <h1 id='current_time'></h1>
+        <h2 id='current_date'></h2>
+        <div id='location'><div id='city'></div> , 中華民國</div>
+        <div id='current_weather'>
+          <div class='box col-lg-4'>
+              <img id='wx0' src='#'><br>
+              <h3 id='maxt0' class = "temp"></h3><span>~</span><h3 id='mint0' class = "temp"></h3>
+            </div>
+      </div>
+      </div>
+      <div id='button-group'>
+        <button class='active three-btn'>每日一句學管理</button>
+        <button class='three-btn'>經理人學英文</button>
+        <button class='three-btn'>經理人每日占卜</button>
       </div>
 
-      <div id='learning-english'>
-        <div class='vocabulary-box col-lg-4 col-lg-offset-4'>
+      <div id='main-product'>
+        <div id='today_sentence'>
+          <h2></h2>
           <h3></h3>
-          <h4></h4>
-          <h4></h4>
-          <p></p>
+        </div>
+
+        <div id='learning-english'>
+          <div class='vocabulary-box col-lg-4 col-lg-offset-4'>
+            <h3></h3>
+            <h4></h4>
+            <h4></h4>
+            <p></p>
+          </div>
+        </div>
+
+        <div id='divination'>
         </div>
       </div>
-
-      <div id='divination'></div>
+      <div id='share_buttons'>
+        <a href='#'><img src='resource/img/facebook.png' id='fb-share'/></a>
+        <a href='#'><img src="resource/img/google-plus.png" id='gp-share'/></a>
+        <a href='#'><img src="resource/img/twitter.png" id='twitter-share'/></a>
+      </div>
+      <div id='manager_logo'>經理人<sup>TM</sup>  帶著走</div>
     </div>
-    <div id='share_buttons'>
-      <a href='#'><img src='resource/img/facebook.png' id='fb-share'/></a>
-      <a href='#'><img src="resource/img/google-plus.png" id='gp-share'/></a>
-      <a href='#'><img src="resource/img/twitter.png" id='twitter-share'/></a>
-    </div>
-    <div id='manager_logo'>經理人<sup>TM</sup>  帶著走</div>
-
     <script src="js/jquery.min.js"></script>
     <script src='resource/bootstrap/js/bootstrap.min.js'></script>
     <script src='js/manager.js'></script>

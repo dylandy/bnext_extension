@@ -1,25 +1,18 @@
 var save_change = function(){
   var my_name = $('#name')[0].value;
-
+  var where = "";
+  $('.dropdown-menu li a').click(function(){ var where = $(this).text(); });
+  set_time_format();
   chrome.storage.local.set(
-    {"my_name" : my_name },
+    {
+      "my_name" : my_name ,
+      "location" : where
+    },
     function(){
       console.log("data saved");
+      console.log("location saved");
     }
   );
-}
-
-var set_dropdown = function(){
-  $('.dropdown-menu li a').click(function(){
-    var where = $(this).text();
-
-    chrome.storage.local.set(
-      {"location" : where},
-      function(){
-        console.log("location saved");
-      }
-    );
-  });
 }
 
 var set_time_format = function(){
@@ -98,16 +91,11 @@ var set_time_format = function(){
       });
     }
   });
-
-
-
 }
 
 jQuery(function($){
-  set_dropdown();
-  set_time_format();
+  save_change();
   $('#summit').click(function(){
-    save_change();
     $(this)[0].innerHTML = "已儲存";
   });
 });
