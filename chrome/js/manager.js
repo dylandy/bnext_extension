@@ -380,17 +380,40 @@ var initial_name_and_location = function () {
       $('#initial-name').hide();
     }
   });
-  $('#initial-location').on('keydown' , function(e){
-    if( e.which == 13 ){
-
-    }
+  $('.location-choser').click(function(){
+    $('.location-panel').show();
+    $('#turn-off').css('display' , "inline-block");
   });
+  $('#turn-off').click(function(){
+    $('.location-panel').hide();
+    $('#turn-off').hide();
+  });
+  $('.location-panel li').click(function(){
+    my_location = $(this).html();
+    $('#location-choose').hide();
+    chrome.storage.local.set(
+      {
+        "my_name" : my_name,
+        "location" : my_location
+      },
+      function(){
+        console.log(my_name);
+        console.log(my_location);
+        console.log( "data initialed" );
+        localStorage.setItem( "initial_status" , "set" );
+        $('#content').show( 0 , initial );
+      }
+    );
+  });
+
 }
 
 var initial = function () {
   if (localStorage.getItem("initial_status") == null) {
     initial_name_and_location();
   } else {
+    $('#content').siblings().hide();
+    $('#content').show();
     get_city(function () {
       set_current_time();
       set_greeting_word();

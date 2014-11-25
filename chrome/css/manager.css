@@ -12,15 +12,15 @@ font-family:MyCustomFont;
 
 }
 body {
-  background:rgb(249,162,28);
-  font-family:MyCustomFont,  sans-serif;
+  background:rgb(249,
+  162,
+  28);
+  font-family:MyCustomFont,
+  sans-serif;
   color:black;
   overflow-x:hidden;
 }
 #initial-name {
-  height:100vh;
-}
-#initial-location{
   height:100vh;
 }
 #ask-name {
@@ -41,10 +41,116 @@ body {
   outline:none;
   width:100%;
   height:100px;
-  background:white;
+  /*  background:white;*/
   font-size:80px;
+  background:#ffffff;
+  /* Old browsers */
+  background:-moz-linear-gradient(left,
+  #ffffff 37%,
+  #f9f977 46%,
+  #f9f977 52%,
+  #f7f738 63%,
+  #f9f977 63%,
+  #f9f977 72%,
+  #f9f977 74%,
+  #f9f977 74%,
+  #f9f977 78%,
+  #f9f977 78%,
+  #feb645 94%,
+  #feb645 94%);
+  /* FF3.6+ */
+  background:-webkit-gradient(linear,
+  left top,
+  right top,
+  color-stop(37%,
+  #ffffff),
+  color-stop(46%,
+  #f9f977),
+  color-stop(52%,
+  #f9f977),
+  color-stop(63%,
+  #f7f738),
+  color-stop(63%,
+  #f9f977),
+  color-stop(72%,
+  #f9f977),
+  color-stop(74%,
+  #f9f977),
+  color-stop(74%,
+  #f9f977),
+  color-stop(78%,
+  #f9f977),
+  color-stop(78%,
+  #f9f977),
+  color-stop(94%,
+  #feb645),
+  color-stop(94%,
+  #feb645));
+  /* Chrome,Safari4+ */
+  background:-webkit-linear-gradient(left,
+  #ffffff 37%,
+  #f9f977 46%,
+  #f9f977 52%,
+  #f7f738 63%,
+  #f9f977 63%,
+  #f9f977 72%,
+  #f9f977 74%,
+  #f9f977 74%,
+  #f9f977 78%,
+  #f9f977 78%,
+  #feb645 94%,
+  #feb645 94%);
+  /* Chrome10+,Safari5.1+ */
+  background:-o-linear-gradient(left,
+  #ffffff 37%,
+  #f9f977 46%,
+  #f9f977 52%,
+  #f7f738 63%,
+  #f9f977 63%,
+  #f9f977 72%,
+  #f9f977 74%,
+  #f9f977 74%,
+  #f9f977 78%,
+  #f9f977 78%,
+  #feb645 94%,
+  #feb645 94%);
+  /* Opera 11.10+ */
+  background:-ms-linear-gradient(left,
+  #ffffff 37%,
+  #f9f977 46%,
+  #f9f977 52%,
+  #f7f738 63%,
+  #f9f977 63%,
+  #f9f977 72%,
+  #f9f977 74%,
+  #f9f977 74%,
+  #f9f977 78%,
+  #f9f977 78%,
+  #feb645 94%,
+  #feb645 94%);
+  /* IE10+ */
+  background:linear-gradient(to right,
+  #ffffff 37%,
+  #f9f977 46%,
+  #f9f977 52%,
+  #f7f738 63%,
+  #f9f977 63%,
+  #f9f977 72%,
+  #f9f977 74%,
+  #f9f977 74%,
+  #f9f977 78%,
+  #f9f977 78%,
+  #feb645 94%,
+  #feb645 94%);
+  /* W3C */
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+  endColorstr='#feb645',
+  GradientType=1);
+  /* IE6-9 */
+  copy
 }
-#content {
+#content,
+#location-choose {
   display:none;
   height:100vh;
 }
@@ -54,7 +160,9 @@ body {
   top:0;
   height:20%;
   width:4%;
-  background:rgb(44, 62, 80);
+  background:rgb(44,
+  62,
+  80);
   box-shadow:0 0 15px 0 black;
   display:table;
   -webkit-transition:height 1s;
@@ -165,20 +273,17 @@ body {
 #divination {
   display:none;
 }
-
 .layout-logo {
   position:absolute;
   right:10%;
   top:3%;
   width:200px;
 }
-
 .layout-left-triangle {
   position:absolute;
   left:0;
   top:10%;
 }
-
 .fa.layout-setup {
   position:absolute;
   left:5%;
@@ -186,31 +291,94 @@ body {
   color:white;
   font-size:50px;
 }
-
 .layout-right-triangle {
   position:absolute;
   right:0;
   bottom:0;
 }
-
 .initial-share {
-  display: inline-block;
+  display:inline-block;
   right:10%;
   bottom:25%;
   position:absolute;
 }
-
-.initial-share img{
+.initial-share img {
   width:64px;
 }
-
-#location-choose {
-  display: none;
-}
-
 .layout-logo-slogan {
   position:absolute;
   right:5%;
   top:12%;
   font-size:2em;
+}
+#ask-location {
+  position:absolute;
+  top:25%;
+}
+
+#ask-location h2{
+  font-size: 66px;
+  color:white;
+}
+
+.location-choser , .location-choser:hover {
+  width:100%;
+  background:white;
+  border:none;
+  height:100px;
+  text-align: left;
+  font-size: 50px;
+  padding-left:50px;
+}
+
+.location-choser i{
+  vertical-align: top;
+  margin-left: 20px;
+}
+
+.location-panel {
+  background: rgba( 0 , 0 , 0 , 0.8 );
+  width:80%;
+  height:90%;
+  top:5%;
+  left: 10%;
+  display:none;
+  position:absolute;
+  z-index: 10;
+  padding:50px;
+  border-radius: 10px;
+}
+
+.location-panel ul{
+  display:inline-block;
+}
+
+.location-panel li{
+  display:block;
+  float:left;
+  background:grey;
+  color:white;
+  margin:5px;
+  font-size:50px;
+  padding:10px;
+  cursor: pointer;
+}
+
+#turn-off {
+  position:absolute;
+  background: white;
+  border-radius: 50%;
+  top:4%;
+  right:9%;
+  font-size:50px;
+  display: none;
+  text-align:center;
+  width:50px;
+  height:50px;
+  z-index:15;
+  cursor: pointer;
+}
+
+#turn-off i{
+  vertical-align: super;
 }
