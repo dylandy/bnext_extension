@@ -1,7 +1,19 @@
+@font-face{
 
+font-family:MyCustomFont;
+ src:url('/resource/font/Noto.otf');
+
+}
+@font-face{
+
+font-family:MyCustomFont;
+ unicode-range:U+00-024F;
+ src:url('/resource/font/Ubuntu-M.ttf');
+
+}
 body {
-  font-family:"Ubuntu", "微軟正黑體" , "Heiti TC" , "Droid-Sans";
-  background:rgb(44, 62, 80);
+  font-family:MyCustomFont , sans-serif;
+  background:rgb(249,162,28);
   color:white;
 }
 

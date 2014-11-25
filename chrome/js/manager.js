@@ -368,9 +368,28 @@ var button_group_event = function () {
   });
 }
 
+var initial_name_and_location = function () {
+  var my_name = "";
+  var my_location = "";
+  $('#initial-text').on( 'keydown' , function(e){
+    if (e.which == 13) {
+      e.preventDefault();
+      my_name = $(this).val();
+      console.log(my_name);
+      $('#location-choose').show();
+      $('#initial-name').hide();
+    }
+  });
+  $('#initial-location').on('keydown' , function(e){
+    if( e.which == 13 ){
+
+    }
+  });
+}
+
 var initial = function () {
   if (localStorage.getItem("initial_status") == null) {
-
+    initial_name_and_location();
   } else {
     get_city(function () {
       set_current_time();

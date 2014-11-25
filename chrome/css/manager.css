@@ -12,13 +12,12 @@ font-family:MyCustomFont;
 
 }
 body {
+  background:rgb(249,162,28);
   font-family:MyCustomFont,  sans-serif;
-  background:rgb(236, 240, 241);
   color:black;
   overflow-x:hidden;
 }
 #initial-name {
-  background:rgb(245, 130, 32);
   height:100vh;
 }
 #initial-location{
@@ -165,4 +164,53 @@ body {
 }
 #divination {
   display:none;
+}
+
+.layout-logo {
+  position:absolute;
+  right:10%;
+  top:3%;
+  width:200px;
+}
+
+.layout-left-triangle {
+  position:absolute;
+  left:0;
+  top:10%;
+}
+
+.fa.layout-setup {
+  position:absolute;
+  left:5%;
+  bottom:5%;
+  color:white;
+  font-size:50px;
+}
+
+.layout-right-triangle {
+  position:absolute;
+  right:0;
+  bottom:0;
+}
+
+.initial-share {
+  display: inline-block;
+  right:10%;
+  bottom:25%;
+  position:absolute;
+}
+
+.initial-share img{
+  width:64px;
+}
+
+#location-choose {
+  display: none;
+}
+
+.layout-logo-slogan {
+  position:absolute;
+  right:5%;
+  top:12%;
+  font-size:2em;
 }
