@@ -172,34 +172,39 @@ body {
 }
 #greeting_msg {
   position:absolute;
-  top:10%;
-  left:10%;
+  top:17%;
+  left:15%;
+  font-weight:bold;
 }
 #greeting_msg h2 {
-  font-size:20px;
+  font-size:30px;
+  color:white;
 }
 #setting_btn {
   font-size:2em;
 }
 #center_info {
-  width:20%;
-  margin-left:40%;
-  margin-top:2%;
+  position:absolute;
+  top:0;
+  right:0;
 }
 #current_time {
-  font-size:5em;
+  font-size:20px;
   margin:0;
   text-align:center;
 }
 #current_date {
+  font-size:20px;
   margin:0;
   text-align:center;
 }
 #location {
   margin:0;
   text-align:center;
-  font-size:1.5em;
+  font-size:20px;
   font-weight:bold;
+  color:white;
+  display:inline-block;
 }
 #to_options {
   color:white;
@@ -234,13 +239,14 @@ body {
 }
 .temp {
   display:inline;
-  font-size:12px;
+  font-size:20px;
 }
 .box {
   display:inline-block;
+  color:white;
 }
-#current_weather {} #current_weather:after {
-  display:inline-block;
+#current_weather {
+
 }
 #today_sentence {
   position:absolute;
@@ -282,7 +288,7 @@ body {
 .layout-left-triangle {
   position:absolute;
   left:0;
-  top:10%;
+  top:5%;
 }
 .fa.layout-setup {
   position:absolute;
@@ -381,4 +387,17 @@ body {
 
 #turn-off i{
   vertical-align: super;
+}
+
+.info {
+  float:left;
+}
+
+#temp-num {
+  display:block;
+  float:left;
+}
+
+#wx {
+  float:left;
 }

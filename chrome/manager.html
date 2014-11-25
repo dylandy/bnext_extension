@@ -14,7 +14,7 @@
     <img src='resource/img/others/icon-01.png' width='200px' class='layout-left-triangle'/>
     <img src='resource/img/others/MT-logo.png' class='layout-logo'/>
     <span class='layout-logo-slogan'>Inspiration Everday</span>
-    <a href='options.html'><i class='fa fa-cog layout-setup'></i></a>
+    <a href='options.html' title='設定'><i class='fa fa-cog layout-setup'></i></a>
     <img src='resource/img/others/bg-02.png' width='300px' class='layout-right-triangle'/>
     <div class='initial-share'>
       <img src='resource/img/others/fb.png'/>
@@ -33,7 +33,7 @@
     <img src='resource/img/others/icon-01.png' width='200px' class='layout-left-triangle'/>
     <img src='resource/img/others/MT-logo-white.png' class='layout-logo'/>
     <span class='layout-logo-slogan'>Inspiration Everday</span>
-    <a href='options.html'><i class='fa fa-cog layout-setup'></i></a>
+    <a href='options.html' title='設定'><i class='fa fa-cog layout-setup'></i></a>
     <img src='resource/img/others/bg-02.png' width='300px' class='layout-right-triangle'/>
     <div class='initial-share'>
       <img src='resource/img/others/fb.png'/>
@@ -72,34 +72,33 @@
     </div>
     <span id='turn-off'><i class='fa fa-times'></i></span>
   </div>
+
   <div id='content'>
-    <div id='setting_ribbon'>
-      <div id='centering'>
-        <a id='to_options' href='options.html'><i class='fa fa-cog' id='setting_btn' src='setting.html' title='設定'></i></a>
-      </div>
-    </div>
+    <img src='resource/img/others/icon-01.png' width='200px' class='layout-left-triangle'/>
+    <a href='options.html' title='設定'><i class='fa fa-cog layout-setup'></i></a>
+    <img src='resource/img/others/bg-02.png' width='300px' class='layout-right-triangle'/>
+
     <div id='greeting_msg'>
       <h2 id='greeting_word'></h2>
       <h2 id='name'></h2>
     </div>
     <div id='center_info'>
-      <h1 id='current_time'></h1>
-      <h2 id='current_date'></h2>
-      <div id='location'>
-        <div id='city'></div>, 中華民國</div>
-      <div id='current_weather'>
-        <div class='box col-lg-4'>
-          <img id='wx0' src='#'>
-          <br>
-          <h3 id='maxt0' class="temp"></h3><span>~</span>
-          <h3 id='mint0' class="temp"></h3>
+      <div class='info'>
+        <div class='box'>
+          <img id='wx' src='#'>
+          <div id='temp-num'>
+            <h3 id='maxt0' class="temp"></h3>
+            <span class="temp">~</span>
+            <h3 id='mint0' class="temp"></h3>
+            <span class="temp">C</span>
+          </div>
+          <div id='location'><div id='city'></div></div>
         </div>
       </div>
-    </div>
-    <div id='button-group'>
-      <button class='active three-btn'>每日一句學管理</button>
-      <button class='three-btn'>經理人學英文</button>
-      <button class='three-btn'>經理人每日占卜</button>
+      <div class='info'>
+        <h2 id='current_time'></h2>
+        <h2 id='current_date'></h2>
+      </div>
     </div>
 
     <div id='main-product'>
@@ -120,18 +119,6 @@
       <div id='divination'>
       </div>
     </div>
-    <div id='share_buttons'>
-      <a href='#'>
-        <img src='resource/img/facebook.png' id='fb-share' />
-      </a>
-      <a href='#'>
-        <img src="resource/img/google-plus.png" id='gp-share' />
-      </a>
-      <a href='#'>
-        <img src="resource/img/twitter.png" id='twitter-share' />
-      </a>
-    </div>
-    <div id='manager_logo'>經理人<sup>TM</sup> 帶著走</div>
   </div>
   <script src="js/jquery.min.js"></script>
   <script src='resource/bootstrap/js/bootstrap.min.js'></script>
