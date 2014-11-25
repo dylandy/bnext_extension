@@ -172,12 +172,13 @@ body {
 }
 #greeting_msg {
   position:absolute;
-  top:17%;
+  top:12%;
   left:15%;
   font-weight:bold;
 }
 #greeting_msg h2 {
-  font-size:30px;
+  font-size:50px;
+  font-weight: bold;
   color:white;
 }
 #setting_btn {
@@ -189,7 +190,8 @@ body {
   right:0;
 }
 #current_time {
-  font-size:20px;
+  font-size:30px;
+  font-weight: bold;
   margin:0;
   text-align:center;
 }
@@ -199,8 +201,9 @@ body {
   text-align:center;
 }
 #location {
+  width:50%;
   margin:0;
-  text-align:center;
+  text-align:right;
   font-size:20px;
   font-weight:bold;
   color:white;
@@ -244,6 +247,8 @@ body {
 .box {
   display:inline-block;
   color:white;
+  border-right: 5px solid white;
+  padding-top:10px;
 }
 #current_weather {
 
@@ -396,8 +401,16 @@ body {
 #temp-num {
   display:block;
   float:left;
+  width:50%;
+  text-align: right;
 }
 
 #wx {
   float:left;
+}
+
+.time-date {
+  padding-top:10px;
+  margin:5px 15px;
+  height: 100%;
 }

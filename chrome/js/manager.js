@@ -8,8 +8,8 @@ var set_current_time = function () {
   var hour = current.getHours();
   var minute = current.getMinutes();
 
-  var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月",
-    "七月", "八月", "九月", "十月", "十一月", "十二月"];
+//  var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月",
+//    "七月", "八月", "九月", "十月", "十一月", "十二月"];
 
   //get 12/24 format
 
@@ -56,7 +56,7 @@ var set_current_time = function () {
   });
 
 
-  $('#current_date')[0].innerHTML = monthNames[month - 1] + " , " + day + "日" + " , " + year;
+  $('#current_date')[0].innerHTML = month + " , " + day + " , " + year;
 }
 
 var set_greeting_word = function () {
@@ -101,21 +101,24 @@ var get_city = function (callback) {
 }
 
 var get_weather = function () {
-
-  if (localStorage.getItem("update_weather") == 0) {
-    var tmp = [];
+  if (localStorage.getItem("update_weather") == 0){
     $.ajax({
       type: "GET",
       url: "http://api.managers.today:3000/weather",
       dataType: "json",
       success: function (json) {
-        var i = 0;
+        console.log(123);
+        var counter = 0;
         $(json).each(function () {
-          if (this.name === $('#city').html()) {
-            tmp.push(this.maxt);
-            tmp.push(this.mint);
-            tmp.push(this.wx);
-            tmp.push(this.name);
+          if ( this.name === $('#city').html() && counter < 1 ) {
+            localStorage.setItem("max_t", this.maxt);
+            localStorage.setItem("min_t", this.mint);
+            localStorage.setItem("wx", this.wx);
+            localStorage.setItem("city", this.name);
+            console.log(this.maxt);
+            console.log(this.mint);
+            console.log(this.wx);
+            console.log(this.name);
 
             $("#maxt")[0].innerHTML = this.maxt;
             $("#mint")[0].innerHTML = this.mint;
@@ -142,83 +145,71 @@ var get_weather = function () {
             if (this.wx.match("多雲時晴偶陣雨")) {
               $("#wx").attr("src", "resource/img/weather/chance-of-storm-64.gif");
             }
-            i++;
+            counter++;
           }
           localStorage.setItem("update_weather", 1);
           localStorage.setItem("update_time", new Date());
         });
-        var a = 0;
-        for (var i = 0; i < tmp.length; i++) {
-          if (i % 4 == 0) {
-            localStorage.setItem("max_t" + a, tmp[i]);
-            localStorage.setItem("min_t" + a, tmp[i + 1]);
-            localStorage.setItem("wx" + a, tmp[i + 2]);
-            localStorage.setItem("city" + a, tmp[i + 3]);
-            a++;
-          }
-        }
 
       },
       error: function () {
-        if (localStorage.getItem("max_t0")) {
-            $("#maxt")[0].innerHTML = localStorage.getItem("max_t" + i);
-            $("#mint")[0].innerHTML = localStorage.getItem("min_t" + i);
-            $("#wx").attr("title", localStorage.getItem("wx" + i));
+        if (localStorage.getItem("max_t")) {
+            $("#maxt")[0].innerHTML = localStorage.getItem("max_t" );
+            $("#mint")[0].innerHTML = localStorage.getItem("min_t" );
+            $("#wx").attr("title", localStorage.getItem("wx" ));
 
-            if (localStorage.getItem("wx" + 0).match("多雲") || localStorage.getItem("wx" + 0).match("陰")) {
+            if (localStorage.getItem("wx").match("多雲") || localStorage.getItem("wx").match("陰")) {
               $("#wx").attr("src", "resource/img/weather/clouds-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("短暫陣雨") || localStorage.getItem("wx" + 0).match("短暫雨")) {
+            if (localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
               $("#wx").attr("src", "resource/img/weather/little-rain-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("雷陣雨")) {
+            if (localStorage.getItem("wx").match("雷陣雨")) {
               $("#wx").attr("src", "resource/img/weather/storm-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("有雨")) {
+            if (localStorage.getItem("wx").match("有雨")) {
               $("#wx").attr("src", "resource/img/weather/rain-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("晴")) {
+            if (localStorage.getItem("wx").match("晴")) {
               $("#wx").attr("src", "resource/img/weather/sun-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("晴時多雲") || localStorage.getItem("wx" + 0).match("多雲時晴")) {
+            if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
               $("#wx").attr("src", "resource/img/weather/partly-cloudy-day-64.gif");
             }
-            if (localStorage.getItem("wx" + 0).match("多雲時晴偶陣雨")) {
+            if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
               $("#wx").attr("src", "resource/img/weather/chance-of-storm-64.gif");
             }
         } else {
-          for (var i = 0; i < 3; i++) {
-            $("#wx" + i).attr("src", "resource/img/weather/file-64.gif");
-            $("#maxt" + i)[0].innerHTML = "無資料";
-            $("#mint" + i)[0].innerHTML = "無資料";
-          }
+            $("#wx").attr("src", "resource/img/weather/file-64.gif");
+            $("#maxt")[0].innerHTML = "無資料";
+            $("#mint")[0].innerHTML = "無資料";
         }
       }
     });
   } else {
-      $("#maxt" )[0].innerHTML = localStorage.getItem("max_t" + 0 );
-      $("#mint" )[0].innerHTML = localStorage.getItem("min_t" + 0 );
-      $("#wx" ).attr("title", localStorage.getItem("wx" + 0 ));
+      $("#maxt" )[0].innerHTML = localStorage.getItem("max_t" );
+      $("#mint" )[0].innerHTML = localStorage.getItem("min_t" );
+      $("#wx" ).attr("title", localStorage.getItem("wx"));
 
-      if ( localStorage.getItem("wx" + 0 ).match("多雲") || localStorage.getItem("wx" + 0 ).match("陰")) {
+      if ( localStorage.getItem("wx" ).match("多雲") || localStorage.getItem("wx" ).match("陰")) {
         $( "#wx" ).attr("src", "resource/img/weather/clouds-64.gif");
       }
-      if ( localStorage.getItem("wx" + 0).match("短暫陣雨") || localStorage.getItem("wx" + 0).match("短暫雨")) {
+      if ( localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
         $("#wx").attr("src", "resource/img/weather/little-rain-64.gif");
       }
-      if (localStorage.getItem("wx" + 0).match("雷陣雨")) {
+      if (localStorage.getItem("wx").match("雷陣雨")) {
         $("#wx").attr("src", "resource/img/weather/storm-64.gif");
       }
-      if (localStorage.getItem("wx" + 0).match("有雨")) {
+      if (localStorage.getItem("wx").match("有雨")) {
         $("#wx").attr("src", "resource/img/weather/rain-64.gif");
       }
-      if (localStorage.getItem("wx" + 0).match("晴")) {
+      if (localStorage.getItem("wx").match("晴")) {
         $("#wx").attr("src", "resource/img/weather/sun-64.gif");
       }
-      if (localStorage.getItem("wx" + 0).match("晴時多雲") || localStorage.getItem("wx" + 0).match("多雲時晴")) {
+      if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
         $("#wx").attr("src", "resource/img/weather/partly-cloudy-day-64.gif");
       }
-      if (localStorage.getItem("wx" + 0).match("多雲時晴偶陣雨")) {
+      if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
         $("#wx").attr("src", "resource/img/weather/chance-of-storm-64.gif");
       }
   }
@@ -326,10 +317,10 @@ var get_weather_controller = function () {
   /*change flag for updating weather*/
   if ((current - tmp) > 21600) {
     $.when(localStorage.setItem("update_weather", 0)).then(get_weather);
-  } else if (localStorage.getItem("city0") !== $('#city').html()) {
-    console.log(localStorage.getItem("city0"));
+  } else if (localStorage.getItem("city") !== $('#city').html()) {
+    console.log(localStorage.getItem("city"));
     console.log($('#city').html());
-    $.when(localStorage.setItem("update_weather", 0)).then(get_weather);
+    $.when(localStorage.setItem("update_weather", 0)).done(get_weather);
   } else {
     get_weather();
   }
@@ -371,7 +362,6 @@ var initial_name_and_location = function () {
     if (e.which == 13) {
       e.preventDefault();
       my_name = $(this).val();
-      console.log(my_name);
       $('#location-choose').show();
       $('#initial-name').hide();
     }
@@ -393,8 +383,6 @@ var initial_name_and_location = function () {
         "location" : my_location
       },
       function(){
-        console.log(my_name);
-        console.log(my_location);
         console.log( "data initialed" );
         localStorage.setItem( "initial_status" , "set" );
         $('#content').show( 0 , initial );
