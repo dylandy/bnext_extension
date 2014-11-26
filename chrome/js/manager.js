@@ -237,12 +237,12 @@ var get_sentence = function () {
           if (this.content.length > 40) {
             tmp_content = this.content.split("，").slice(0, 2).join('，');
             rest_content = this.content.split("，").slice(3).join('，');
-            $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
+            $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
           } else {
-            $('#today_sentence h2')[0].innerHTML = this.content;
+            $('#sentence-content h2')[0].innerHTML = this.content;
           }
-          $('#today_sentence h2')[1].innerHTML = this.eng_content;
-          $('#today_sentence h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
+          $('#sentence-content h2')[1].innerHTML = this.eng_content;
+          $('#sentence-content h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -253,11 +253,11 @@ var get_sentence = function () {
           if (tmp.length > 40) {
             tmp_content = tmp.split("，").slice(0, 2).join('，');
             rest_content = tmp.split("，").slice(3).join('，');
-            $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
+            $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
           } else {
-            $('#today_sentence h2')[0].innerHTML = tmp;
+            $('#sentence-content h2')[0].innerHTML = tmp;
           }
-          $('#today_sentence h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
+          $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
         } else {
           console.log("error happened");
         }
@@ -268,11 +268,11 @@ var get_sentence = function () {
     if (tmp.length > 40) {
       tmp_content = tmp.split("，").slice(0, 2).join('，');
       rest_content = tmp.split("，").slice(3).join('，');
-      $("#today_sentence h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
+      $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
     } else {
-      $('#today_sentence h2')[0].innerHTML = tmp;
+      $('#sentence-content h2')[0].innerHTML = tmp;
     }
-    $('#today_sentence h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
+    $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
   }
 }
 
@@ -324,8 +324,8 @@ var get_weather_controller = function () {
 
 var button_group_event = function () {
   $($('.btn-group .three-btn')[0]).click(function () {
-    $('#today_sentence').show();
-    $('#today_sentence').siblings().hide();
+    $('#sentence-content').show();
+    $('#sentence-content').siblings().hide();
     $('.btn-group .three-btn').map(function () {
       $(this).removeClass("active")
     });
@@ -333,8 +333,8 @@ var button_group_event = function () {
   });
 
   $($('.btn-group .three-btn')[1]).click(function () {
-    $('#learning-english').show();
-    $('#learning-english').siblings().hide();
+    $('#ABC-contnent').show();
+    $('#ABC-contnent').siblings().hide();
     $('.btn-group .three-btn').map(function () {
       $(this).removeClass("active")
     });
@@ -342,8 +342,8 @@ var button_group_event = function () {
   });
 
   $($('.btn-group .three-btn')[2]).click(function () {
-    $('#divination').show();
-    $('#divination').siblings().hide();
+    $('#cc-content').show();
+    $('#cc-content').siblings().hide();
     $('.btn-group .three-btn').map(function () {
       $(this).removeClass("active")
     });
@@ -440,6 +440,8 @@ var active_tab = function(){
   var target = $('.active');
   var id_name = target.attr('id');
   target.attr( 'src' , 'resource/img/others/title-' + id_name + '.png' );
+  $( '#' + id_name + '-content' ).fadeIn( 1000 );
+  $('#' + id_name + '-content' ).siblings().hide();
 }
 
 var deactive_tab = function(){

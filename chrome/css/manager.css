@@ -250,22 +250,22 @@ body {
   border-right:5px solid white;
   padding-top:10px;
 }
-#current_weather {} #today_sentence {
+#sentence-content {
   position:absolute;
   top:45%;
   width:60%;
   left:20%;
   color:white;
 }
-#today_sentence h2 {
+#sentence-content h2 {
   font-size:28px;
 }
-#today_sentence h3 {
+#sentence-content h3 {
   position:absolute;
   left:55%;
   font-size:24px;
 }
-#learning-english {
+#ABC-content {
   display:none;
   position:absolute;
   top:40%;
@@ -273,21 +273,21 @@ body {
   width:60%;
   color:white;
 }
-#learning-english a:hover,
-#learning-english a:visited,
-#learning-english a:link,
-#learning-english a:active {
+#ABC-content a:hover,
+#ABC-content a:visited,
+#ABC-content a:link,
+#ABC-content a:active {
   text-decoration:none;
 }
-#learning-english h4 {
+#ABC-content h4 {
   color:black;
   margin-top:25px;
   font-size:25px;
 }
-#learning-english h3 {
+#ABC-content h3 {
   font-size:50px;
 }
-#divination {
+#cc-content {
   display:none;
 }
 .layout-logo {
