@@ -20,6 +20,12 @@ body {
   color:black;
   overflow-x:hidden;
 }
+a{
+  color:white;
+}
+a:hover{
+  color:white;
+}
 #initial-name {
   height:100vh;
 }

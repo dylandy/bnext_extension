@@ -233,6 +233,7 @@ var get_sentence = function () {
           localStorage.setItem("title", this.author_title);
           localStorage.setItem("english" , this.eng_content);
           localStorage.setItem("sentence_url" , this.url);
+          localStorage.setItem("author_url" , this.author_url);
           var tmp_content;
           var rest_content;
           if (this.content.length > 40) {
@@ -244,7 +245,8 @@ var get_sentence = function () {
           }
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
-          $('#sentence-content').attr( "href" , "http://192.168.0.62" + this.url );
+          $('#sentence-content a:eq(0)').attr( "href" , "http://192.168.0.62" + this.url );
+          $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + this.author_url );
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -275,7 +277,8 @@ var get_sentence = function () {
       $('#sentence-content h2')[0].innerHTML = tmp;
     }
     $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
-    $('#sentence-content').attr("href" , "http://192.168.0.62" + localStorage.getItem("sentence_url") );
+    $('#sentence-content a:eq(0)').attr("href" , "http://192.168.0.62" + localStorage.getItem("sentence_url") );
+    $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + localStorage.getItem("author_url") );
   }
 }
 
