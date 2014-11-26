@@ -232,6 +232,7 @@ var get_sentence = function () {
           localStorage.setItem("author", this.author_chin_name);
           localStorage.setItem("title", this.author_title);
           localStorage.setItem("english" , this.eng_content);
+          localStorage.setItem("sentence_url" , this.url);
           var tmp_content;
           var rest_content;
           if (this.content.length > 40) {
@@ -243,6 +244,7 @@ var get_sentence = function () {
           }
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
+          $('#sentence-content').attr( "href" , "http://192.168.0.62" + this.url );
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -273,6 +275,7 @@ var get_sentence = function () {
       $('#sentence-content h2')[0].innerHTML = tmp;
     }
     $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
+    $('#sentence-content').attr("href" , "http://192.168.0.62" + localStorage.getItem("sentence_url") );
   }
 }
 
@@ -290,8 +293,10 @@ var get_english = function () {
         $(json).each(function () {
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
           $('.vocabulary-box h3')[1].innerHTML = this.chinese_meaning;
+          $('.vocabulary-box a').attr( "href" , "http://192.168.0.62" + this.url );
           localStorage.setItem("vocabulary", this.vocabulary);
           localStorage.setItem("chinese_meaning", this.chinese_meaning);
+          localStorage.setItem("words_url" , this.url);
         });
       },
       error: function () {
@@ -302,6 +307,7 @@ var get_english = function () {
   } else {
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
     $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
+    $('.vocabulary-box a').attr("href" , "http://192.168.0.62" + localStorage.getItem("words_url"));
   }
 }
 
