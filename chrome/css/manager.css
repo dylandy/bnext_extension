@@ -178,7 +178,7 @@ body {
 }
 #greeting_msg h2 {
   font-size:50px;
-  font-weight: bold;
+  font-weight:bold;
   color:white;
 }
 #setting_btn {
@@ -191,7 +191,7 @@ body {
 }
 #current_time {
   font-size:30px;
-  font-weight: bold;
+  font-weight:bold;
   margin:0;
   text-align:center;
 }
@@ -247,17 +247,15 @@ body {
 .box {
   display:inline-block;
   color:white;
-  border-right: 5px solid white;
+  border-right:5px solid white;
   padding-top:10px;
 }
-#current_weather {
-
-}
-#today_sentence {
+#current_weather {} #today_sentence {
   position:absolute;
   top:45%;
-  width:100%;
-  text-align:center;
+  width:60%;
+  left:20%;
+  color:white;
 }
 #today_sentence h2 {
   font-size:28px;
@@ -267,19 +265,27 @@ body {
   left:55%;
   font-size:24px;
 }
-#button-group {} .vocabulary-box {
-  background:#ececec;
-  box-shadow:0 1px 1px 0 black;
-  text-align:center;
-  height:150px;
-}
-.vocabulary-box:hover {
-  box-shadow:0 1px 5px 0 black;
-}
 #learning-english {
   display:none;
-  max-height:20%;
-  margin-top:2%;
+  position:absolute;
+  top:40%;
+  left:20%;
+  width:60%;
+  color:white;
+}
+#learning-english a:hover,
+#learning-english a:visited,
+#learning-english a:link,
+#learning-english a:active {
+  text-decoration:none;
+}
+#learning-english h4 {
+  color:black;
+  margin-top:25px;
+  font-size:25px;
+}
+#learning-english h3 {
+  font-size:50px;
 }
 #divination {
   display:none;
@@ -326,45 +332,43 @@ body {
   position:absolute;
   top:25%;
 }
-
-#ask-location h2{
-  font-size: 66px;
+#ask-location h2 {
+  font-size:66px;
   color:white;
 }
-
-.location-choser , .location-choser:hover {
+.location-choser,
+.location-choser:hover {
   width:100%;
   background:white;
   border:none;
   height:100px;
-  text-align: left;
-  font-size: 50px;
+  text-align:left;
+  font-size:50px;
   padding-left:50px;
 }
-
-.location-choser i{
-  vertical-align: top;
-  margin-left: 20px;
+.location-choser i {
+  vertical-align:top;
+  margin-left:20px;
 }
-
 .location-panel {
-  background: rgba( 0 , 0 , 0 , 0.8 );
+  background:rgba(0,
+  0,
+  0,
+  0.8);
   width:80%;
   height:90%;
   top:5%;
-  left: 10%;
+  left:10%;
   display:none;
   position:absolute;
-  z-index: 10;
+  z-index:10;
   padding:50px;
-  border-radius: 10px;
+  border-radius:10px;
 }
-
-.location-panel ul{
+.location-panel ul {
   display:inline-block;
 }
-
-.location-panel li{
+.location-panel li {
   display:block;
   float:left;
   background:grey;
@@ -372,45 +376,58 @@ body {
   margin:5px;
   font-size:50px;
   padding:10px;
-  cursor: pointer;
+  cursor:pointer;
 }
-
 #turn-off {
   position:absolute;
-  background: white;
-  border-radius: 50%;
+  background:white;
+  border-radius:50%;
   top:4%;
   right:9%;
   font-size:50px;
-  display: none;
+  display:none;
   text-align:center;
   width:50px;
   height:50px;
   z-index:15;
-  cursor: pointer;
+  cursor:pointer;
 }
-
-#turn-off i{
-  vertical-align: super;
+#turn-off i {
+  vertical-align:super;
 }
-
 .info {
   float:left;
 }
-
 #temp-num {
   display:block;
   float:left;
   width:50%;
-  text-align: right;
+  text-align:right;
 }
-
 #wx {
   float:left;
 }
-
 .time-date {
   padding-top:10px;
   margin:5px 15px;
-  height: 100%;
+  height:100%;
+}
+#tabs {
+  position:absolute;
+  width:100%;
+  top:30%;
+}
+.title-tab {
+  position:absolute;
+  transition:1s;
+  cursor:pointer;
+}
+#sentence {
+  left:20%;
+}
+#ABC {
+  left:40%;
+}
+#cc {
+  left:60%;
 }

@@ -231,6 +231,7 @@ var get_sentence = function () {
           localStorage.setItem("sentence", this.content);
           localStorage.setItem("author", this.author_chin_name);
           localStorage.setItem("title", this.author_title);
+          localStorage.setItem("english" , this.eng_content);
           var tmp_content;
           var rest_content;
           if (this.content.length > 40) {
@@ -240,6 +241,7 @@ var get_sentence = function () {
           } else {
             $('#today_sentence h2')[0].innerHTML = this.content;
           }
+          $('#today_sentence h2')[1].innerHTML = this.eng_content;
           $('#today_sentence h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
         });
         localStorage.setItem("update_sentence", current);
@@ -287,13 +289,9 @@ var get_english = function () {
       success: function (json) {
         $(json).each(function () {
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
-          $('.vocabulary-box h4')[0].innerHTML = this.chinese_meaning;
-          $('.vocabulary-box h4')[1].innerHTML = this.transcription;
-          //$('.vocabulary-box p')[0].innerHTML = this.chinese_content;
+          $('.vocabulary-box h3')[1].innerHTML = this.chinese_meaning;
           localStorage.setItem("vocabulary", this.vocabulary);
           localStorage.setItem("chinese_meaning", this.chinese_meaning);
-          localStorage.setItem("transcription", this.transcription);
-          //localStorage.setItem( "chinese_content" , this.chinese_content );
         });
       },
       error: function () {
@@ -303,9 +301,7 @@ var get_english = function () {
 
   } else {
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
-    $('.vocabulary-box h4')[0].innerHTML = localStorage.getItem("chinese_meaning");
-    $('.vocabulary-box h4')[1].innerHTML = localStorage.getItem("transcription");
-    //$('.vocabulary-box p')[0].innerHTML = localStorage.getItem("chinese_content");
+    $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
   }
 }
 
@@ -412,6 +408,48 @@ var initial = function () {
   }
 }
 
+jQuery.fn.swapWith = function(to) {
+    return this.each(function() {
+        var copy_to = $(to).clone(true);
+        var copy_from = $(this).clone(true);
+        $(to).replaceWith(copy_from);
+        $(this).replaceWith(copy_to);
+    });
+};
+
+var tab_animation = function(){
+  $('.title-tab').click(function(){
+    var left = $(window).width() * 0.2;
+    var tmp = $(this).css('left');
+    var check;
+    for( var i = 0 ; i < 3 ; i++ ){
+      if( parseInt($('.title-tab:eq('+ i +')').css('left')) == parseInt($(window).width()*0.2) ){
+        check = i;
+      }
+    }
+    $(this).css('left' , $('.title-tab:eq(' +check + ')').css('left'));
+    $('.title-tab:eq('+ check + ')').css('left' , tmp );
+    $(this).addClass('active');
+    $('.title-tab:eq('+ check + ')').removeClass('active');
+    active_tab();
+    deactive_tab();
+  });
+}
+
+var active_tab = function(){
+  var target = $('.active');
+  var id_name = target.attr('id');
+  target.attr( 'src' , 'resource/img/others/title-' + id_name + '.png' );
+}
+
+var deactive_tab = function(){
+  var target = $('.title-tab:not(.active)');
+  target.map(function(){ $(this).attr( 'src' , 'resource/img/others/title-' + $(this).attr('id') + '-2.png' )});
+}
+
 jQuery(function ($) {
   initial();
+  tab_animation();
+  active_tab();
+  deactive_tab();
 });
