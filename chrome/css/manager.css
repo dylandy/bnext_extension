@@ -486,3 +486,31 @@ a:hover{
 	-webkit-animation-timing-function: linear;
 }
 */
+
+#cant-shake {
+  display:none;
+}
+
+#again {
+  cursor:pointer;
+  vertical-align: top;
+}
+
+#divination-status {
+  color:black;
+  font-weight:bold;
+  font-size:100px;
+  display:inline-block;
+}
+
+#divination-sentence {
+  display:inline-block;
+  color:black;
+  font-weight: bold;
+  font-size:25px;
+}
+
+#divi-sentences {
+  display:inline-block;
+  margin:0 50px;
+}

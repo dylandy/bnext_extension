@@ -417,15 +417,6 @@ var initial = function () {
   }
 }
 
-jQuery.fn.swapWith = function(to) {
-    return this.each(function() {
-        var copy_to = $(to).clone(true);
-        var copy_from = $(this).clone(true);
-        $(to).replaceWith(copy_from);
-        $(this).replaceWith(copy_to);
-    });
-};
-
 var tab_animation = function(){
   $('.title-tab').click(function(){
     var left = $(window).width() * 0.2;
@@ -439,6 +430,7 @@ var tab_animation = function(){
     $(this).css('left' , $('.title-tab:eq(' +check + ')').css('left'));
     $('.title-tab:eq('+ check + ')').css('left' , tmp );
     $(this).addClass('active');
+
     $('.title-tab:eq('+ check + ')').removeClass('active');
     active_tab();
     deactive_tab();
@@ -458,9 +450,90 @@ var deactive_tab = function(){
   target.map(function(){ $(this).attr( 'src' , 'resource/img/others/title-' + $(this).attr('id') + '-2.png' )});
 }
 
+var get_divination_essay = function(){
+  $.ajax({
+      type: "GET",
+      url: "http://api.managers.today:3000/article",
+      dataType: "json",
+      success: function (json) {
+        var i = 0;
+        $(json).each(function () {
+          localStorage.setItem("article_title" + i , this.title);
+          localStorage.setItem("article_url" + i, this.url);
+          i++;
+        });
+      },
+      error: function () {
+        console.log("error");
+      }
+    });
+
+}
+
+var get_divination_result = function(){
+  var counter = 0;
+  localStorage.setItem("counter" , counter);
+  var shaking_result = [];
+  var last_update = new Date(localStorage.getItem("update_time"));
+  var current = new Date();
+  for( var i = 0 ; i < 3 ; i++ ){
+    shaking_result.push();
+  }
+  if( current.getDate() !== last_update.getDate() ){
+    get_divination_essay();
+  }
+
+  $('#before-shake img').click(function(e){
+    e.preventDefault();
+    $(this).parent().hide();
+    $('#shake-result').show( 0 , function(){
+      var test = parseInt( Math.random()*10 );
+      var random_article = parseInt(Math.random()*3);
+      if( test < 2 ){
+        $('#divination-status')[0].innerHTML = "大吉";
+        $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
+        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+      }
+      if( test >= 2 && test < 6 ){
+        $('#divination-status')[0].innerHTML = "吉";
+        $('#divination-sentence')[0].innerHTML = "工作順利！若做到以下這點，運勢會更好";
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
+        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+      }
+      if( test >= 6 && test < 9 ){
+        $('#divination-status')[0].innerHTML = "中平";
+        $('#divination-sentence')[0].innerHTML = "今天的工作幸運，就在以下提示中";
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
+        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+      }
+      if( test == 9 ){
+        $('#divination-status')[0].innerHTML = "凶";
+        $('#divination-sentence')[0].innerHTML = "小心！魔鬼就在細節裡！";
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
+        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+      }
+    });
+  });
+  $('#again').click(function(e){
+    e.preventDefault();
+    $(this).parent().hide();
+
+    if( localStorage.getItem("counter") < 2){
+      counter++;
+      localStorage.setItem("counter" , counter);
+      $('#before-shake').show();
+    }else{
+      $('#cant-shake').show();
+    }
+  });
+}
+
+
 jQuery(function ($) {
   initial();
   tab_animation();
   active_tab();
   deactive_tab();
+  get_divination_result();
 });
