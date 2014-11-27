@@ -417,6 +417,7 @@ a:hover{
 }
 #wx {
   float:left;
+  width:30%;;
 }
 .time-date {
   padding-top:10px;
