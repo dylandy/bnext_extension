@@ -178,9 +178,9 @@ var get_weather = function () {
               $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
             }
         } else {
-            $("#wx").attr("src", "resource/img/weather-icon/file-64.gif");
-            $("#maxt")[0].innerHTML = "無資料";
-            $("#mint")[0].innerHTML = "無資料";
+            $("#wx").attr("src", "resource/img/weather/file-64.gif");
+            $("#maxt")[0].innerHTML = "無";
+            $("#mint")[0].innerHTML = "無";
         }
       }
     });
@@ -245,8 +245,8 @@ var get_sentence = function () {
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML =  "——" + this.author_chin_name +"（" + this.author_eng_name + "）"+
             "，" + this.author_title;
-          $('#sentence-content a:eq(0)').attr( "href" , "http://192.168.0.62" + this.url );
-          $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + this.author_url );
+          $('#sentence-content a:eq(0)').attr( "href" , "http://editor.bnext.info:8080" + this.url );
+          $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + this.author_url );
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -264,6 +264,8 @@ var get_sentence = function () {
           $('#sentence-content h2')[1].innerHTML = localStorage.english;
           $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
             "，" + localStorage.title;
+          $('#sentence-content a:eq(0)').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("sentence_url") );
+          $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + localStorage.getItem("author_url") );
         } else {
           console.log("error happened");
         }
@@ -280,9 +282,9 @@ var get_sentence = function () {
     }
     $('#sentence-content h2')[1].innerHTML = localStorage.english;
     $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
-            "，" + localStorage.title;;
-    $('#sentence-content a:eq(0)').attr("href" , "http://192.168.0.62" + localStorage.getItem("sentence_url") );
-    $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + localStorage.getItem("author_url") );
+            "，" + localStorage.title;
+    $('#sentence-content a:eq(0)').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("sentence_url") );
+    $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + localStorage.getItem("author_url") );
   }
 }
 
@@ -300,21 +302,23 @@ var get_english = function () {
         $(json).each(function () {
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
           $('.vocabulary-box h3')[1].innerHTML = this.chinese_meaning;
-          $('.vocabulary-box a').attr( "href" , "http://192.168.0.62" + this.url );
+          $('.vocabulary-box a').attr( "href" , "http://editor.bnext.info:8080" + this.url );
           localStorage.setItem("vocabulary", this.vocabulary);
           localStorage.setItem("chinese_meaning", this.chinese_meaning);
           localStorage.setItem("words_url" , this.url);
         });
       },
       error: function () {
-        console.log("error");
+        $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
+        $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
+        $('.vocabulary-box a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("words_url"));
       }
     });
 
   } else {
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
     $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-    $('.vocabulary-box a').attr("href" , "http://192.168.0.62" + localStorage.getItem("words_url"));
+    $('.vocabulary-box a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("words_url"));
   }
 }
 
@@ -333,35 +337,6 @@ var get_weather_controller = function () {
   } else {
     get_weather();
   }
-}
-
-var button_group_event = function () {
-  $($('.btn-group .three-btn')[0]).click(function () {
-    $('#sentence-content').show();
-    $('#sentence-content').siblings().hide();
-    $('.btn-group .three-btn').map(function () {
-      $(this).removeClass("active")
-    });
-    $($('.btn-group .three-btn')[0]).addClass("active");
-  });
-
-  $($('.btn-group .three-btn')[1]).click(function () {
-    $('#ABC-contnent').show();
-    $('#ABC-contnent').siblings().hide();
-    $('.btn-group .three-btn').map(function () {
-      $(this).removeClass("active")
-    });
-    $($('.btn-group .three-btn')[1]).addClass("active");
-  });
-
-  $($('.btn-group .three-btn')[2]).click(function () {
-    $('#cc-content').show();
-    $('#cc-content').siblings().hide();
-    $('.btn-group .three-btn').map(function () {
-      $(this).removeClass("active")
-    });
-    $($('.btn-group .three-btn')[2]).addClass("active");
-  });
 }
 
 var initial_name_and_location = function () {
@@ -399,26 +374,6 @@ var initial_name_and_location = function () {
     );
   });
 
-}
-
-var initial = function () {
-  if (localStorage.getItem("initial_status") == null) {
-    initial_name_and_location();
-  } else {
-    $('#content').siblings().hide();
-    $('#content').show();
-    get_city(function () {
-      set_current_time();
-      set_greeting_word();
-      get_name();
-      get_sentence();
-      get_english();
-      setInterval(set_current_time, 10000);
-      setInterval(set_greeting_word, 3600000);
-      get_weather_controller();
-      button_group_event();
-    });
-  }
 }
 
 var tab_animation = function(){
@@ -497,25 +452,25 @@ var get_divination_result = function(){
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 2 && test < 6 ){
         $('#divination-status')[0].innerHTML = "吉";
         $('#divination-sentence')[0].innerHTML = "工作順利！若做到以下這點，運勢會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 6 && test < 9 ){
         $('#divination-status')[0].innerHTML = "中平";
         $('#divination-sentence')[0].innerHTML = "今天的工作幸運，就在以下提示中";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
       }
       if( test == 9 ){
         $('#divination-status')[0].innerHTML = "凶";
         $('#divination-sentence')[0].innerHTML = "小心！魔鬼就在細節裡！";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
       }
     });
   });
@@ -532,6 +487,46 @@ var get_divination_result = function(){
   });
 }
 
+var set_default_content = function( ){
+    localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
+    localStorage.setItem("author", "喬．吉拉德" );
+    localStorage.setItem("author_eng" , "Joe Girard" );
+    localStorage.setItem("title", "美國著名業務員");
+    localStorage.setItem("english" ,
+                         "The elevator to success is out of order. You'll have to use the stairs. .. one step at a time.");
+    localStorage.setItem("sentence_url" , "/mt/quotes/view/830");
+    localStorage.setItem("author_url" , "/mt/quotes/celebrity/239");
+    localStorage.setItem("vocabulary", "workaholic");
+    localStorage.setItem("chinese_meaning", "工作狂");
+    localStorage.setItem("words_url" , "/mt/dictionary/word/26");
+    return 1;
+}
+
+var initial = function () {
+  if (localStorage.getItem("initial_status") == null) {
+    var flag = 0;
+    flag = set_default_content();
+
+    while( flag == 1 ){
+      console.log(123);
+      initial_name_and_location();
+      flag = 0;
+    }
+  } else {
+    $('#content').siblings().hide();
+    $('#content').show();
+    get_city(function () {
+      set_current_time();
+      set_greeting_word();
+      get_name();
+      get_sentence();
+      get_english();
+      setInterval(set_current_time, 10000);
+      setInterval(set_greeting_word, 3600000);
+      get_weather_controller();
+    });
+  }
+}
 
 jQuery(function ($) {
   initial();
