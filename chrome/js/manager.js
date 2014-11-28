@@ -140,7 +140,7 @@ var get_weather = function () {
               $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
             }
             if (this.wx.match("晴時多雲") || this.wx.match("多雲時晴")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sun+cloudy.png");
+              $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
             }
             if (this.wx.match("多雲時晴偶陣雨")) {
               $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
@@ -174,7 +174,7 @@ var get_weather = function () {
               $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
             }
             if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sun+cloudy.png");
+              $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
             }
             if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
               $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
@@ -207,7 +207,7 @@ var get_weather = function () {
         $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
       }
       if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
-        $("#wx").attr("src", "resource/img/weather-icon/sun+cloudy.png");
+        $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
       }
       if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
         $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
@@ -230,6 +230,7 @@ var get_sentence = function () {
         $(json).each(function () {
           localStorage.setItem("sentence", this.content);
           localStorage.setItem("author", this.author_chin_name);
+          localStorage.setItem("author_eng" , this.author_eng_name );
           localStorage.setItem("title", this.author_title);
           localStorage.setItem("english" , this.eng_content);
           localStorage.setItem("sentence_url" , this.url);
@@ -244,7 +245,8 @@ var get_sentence = function () {
             $('#sentence-content h2')[0].innerHTML = this.content;
           }
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
-          $('#sentence-content h3')[0].innerHTML = "《" + this.author_title + "》" + this.author_chin_name;
+          $('#sentence-content h3')[0].innerHTML =  "——" + this.author_chin_name +"（" + this.author_eng_name + "）"+
+            "，" + this.author_title;
           $('#sentence-content a:eq(0)').attr( "href" , "http://192.168.0.62" + this.url );
           $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + this.author_url );
         });
@@ -261,7 +263,9 @@ var get_sentence = function () {
           } else {
             $('#sentence-content h2')[0].innerHTML = tmp;
           }
-          $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
+          $('#sentence-content h2')[1].innerHTML = localStorage.english;
+          $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
+            "，" + localStorage.title;
         } else {
           console.log("error happened");
         }
@@ -276,7 +280,9 @@ var get_sentence = function () {
     } else {
       $('#sentence-content h2')[0].innerHTML = tmp;
     }
-    $('#sentence-content h3')[0].innerHTML = "《" + localStorage.getItem("title") + "》" + localStorage.getItem("author");
+    $('#sentence-content h2')[1].innerHTML = localStorage.english;
+    $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
+            "，" + localStorage.title;;
     $('#sentence-content a:eq(0)').attr("href" , "http://192.168.0.62" + localStorage.getItem("sentence_url") );
     $('#sentence-content a:eq(1)').attr( "href" , "http://192.168.0.62" + localStorage.getItem("author_url") );
   }
@@ -451,6 +457,8 @@ var deactive_tab = function(){
 }
 
 var get_divination_essay = function(){
+  var counter = 0;
+  localStorage.setItem("counter" , counter);
   $.ajax({
       type: "GET",
       url: "http://api.managers.today:3000/article",
@@ -471,8 +479,6 @@ var get_divination_essay = function(){
 }
 
 var get_divination_result = function(){
-  var counter = 0;
-  localStorage.setItem("counter" , counter);
   var shaking_result = [];
   var last_update = new Date(localStorage.getItem("update_time"));
   var current = new Date();
@@ -493,35 +499,34 @@ var get_divination_result = function(){
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 2 && test < 6 ){
         $('#divination-status')[0].innerHTML = "吉";
         $('#divination-sentence')[0].innerHTML = "工作順利！若做到以下這點，運勢會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 6 && test < 9 ){
         $('#divination-status')[0].innerHTML = "中平";
         $('#divination-sentence')[0].innerHTML = "今天的工作幸運，就在以下提示中";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
       }
       if( test == 9 ){
         $('#divination-status')[0].innerHTML = "凶";
         $('#divination-sentence')[0].innerHTML = "小心！魔鬼就在細節裡！";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divination-sentence + a').attr("src" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://192.168.0.62" + localStorage.getItem("article_url" + random_article) );
       }
     });
   });
   $('#again').click(function(e){
     e.preventDefault();
     $(this).parent().hide();
-
-    if( localStorage.getItem("counter") < 2){
-      counter++;
-      localStorage.setItem("counter" , counter);
+    var temp = localStorage.getItem("counter");
+    if( temp < 2){
+      localStorage.setItem("counter" , temp + 1 );
       $('#before-shake').show();
     }else{
       $('#cant-shake').show();
