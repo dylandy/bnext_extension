@@ -504,3 +504,14 @@ a:hover{
   color:white;
   font-size:20px;
 }
+
+.share-in-content {
+  position:absolute;
+  top:88%;
+  left:18%;
+}
+
+.share-in-content img{
+  margin: 0 5px;
+  width:37px;
+}
