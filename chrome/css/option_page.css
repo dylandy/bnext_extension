@@ -20,21 +20,43 @@ body {
 
 #content {
   position:absolute;
-  top:15%;
+  width:70%;
+  left:15%;
+  top:25%;
+  background:white;
+  border-radius:20px;
   font-size:25px;
+  color:black;
+  height:50%;
 }
 
 input[type='text']{
   padding:5px;
   vertical-align: middle;
+  background:rgb(232, 232, 232);
+  float:right;
+  width:85%;
+  margin-bottom:10px;
 }
 #logo {
-  color:rgb(231, 76, 60);
+  color:white;
+  position:absolute;
+  top:10%;
+  left:15%;
+  font-weight:100;
+}
+
+#logo span{
   font-weight:bold;
 }
 
 #name{
   color:black;
+  border:0;
+}
+#name:focus{
+  outline-style:none;
+  border:0;
 }
 
 #big-logo {
@@ -46,6 +68,7 @@ input[type='text']{
     position: relative;
     width: 90px;
     -webkit-user-select:none;
+    float:right;
 }
 .onoffswitch-checkbox {
     display: none;
@@ -107,4 +130,136 @@ input[type='text']{
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
+}
+
+.layout-left-triangle {
+  position:absolute;
+  left:0;
+  top:5%;
+}
+
+.layout-right-triangle {
+  position:absolute;
+  right:0;
+  bottom:0;
+}
+
+.content-logo {
+  position:absolute;
+  left:10%;
+  top:88%;
+  width:157px;
+}
+
+.share-in-content {
+  position:absolute;
+  top:88%;
+  left:18%;
+}
+
+.share-in-content img{
+  margin: 0 5px;
+  width:37px;
+}
+
+.fa.layout-setup {
+  position:absolute;
+  left:5%;
+  bottom:5%;
+  color:white;
+  font-size:50px;
+}
+
+#content-inner {
+  padding:50px;
+}
+
+.location-panel {
+  background:rgba(0,
+  0,
+  0,
+  0.8);
+  width:80%;
+  height:90%;
+  top:5%;
+  left:10%;
+  display:none;
+  position:absolute;
+  z-index:10;
+  padding:50px;
+  border-radius:10px;
+}
+
+
+#ask-location {
+  display:inline-block;
+  width:100%;
+}
+
+.location-choser,
+.location-choser:hover {
+  width:15%;
+  background:white;
+  text-align:center;
+  font-size:25px;
+  display:inline-block;
+  float:right;
+  line-height:1;
+  border:0;
+  float:right;
+  margin-bottom:20px;
+}
+.location-choser i{
+  margin-left:5px;
+  vertical-align: super;
+}
+
+.location-panel li {
+  display:block;
+  float:left;
+  background:grey;
+  color:white;
+  margin:5px;
+  font-size:50px;
+  padding:10px;
+  cursor:pointer;
+}
+
+#turn-off {
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  top:4%;
+  right:9%;
+  font-size:50px;
+  display:none;
+  text-align:center;
+  width:50px;
+  height:50px;
+  z-index:15;
+  cursor:pointer;
+  color:black;
+}
+
+#turn-off i {
+  vertical-align:super;
+}
+#logo i{
+  font-size:50px;
+  margin-left:20px;
+}
+
+#ask-location h2 {
+  display:inline-block;
+  font-weight:bold;
+  font-size:25px;
+}
+
+#summit {
+  border:0;
+  position:absolute;
+  bottom:10%;
+  width:20%;
+  left:40%;
+  background:black;
 }

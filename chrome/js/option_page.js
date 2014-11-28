@@ -1,8 +1,23 @@
+var my_name = "";
+var where = "";
+var now_format="";
+
+var save_location = function(){
+  $('.location-choser').click(function(){
+    $('.location-panel').show();
+    $('#turn-off').css('display' , "inline-block");
+  });
+  $('#turn-off').click(function(){
+    $('.location-panel').hide();
+    $('#turn-off').hide();
+  });
+  $('.location-panel li').click(function(){
+    where = $(this).html();
+    $('.location-panel').hide();
+    $('#turn-off').hide();
+  });
+}
 var save_change = function(){
-  var my_name = $('#name')[0].value;
-  var where = "";
-  $('.dropdown-menu li a').click(function(){ var where = $(this).text(); });
-  set_time_format();
   chrome.storage.local.set(
     {
       "my_name" : my_name ,
@@ -16,7 +31,6 @@ var save_change = function(){
 }
 
 var set_time_format = function(){
-  now_format="";
   chrome.storage.local.get("time_format" , function(result){
     now_format = result.time_format;
     if(now_format){
@@ -93,9 +107,13 @@ var set_time_format = function(){
   });
 }
 
+
 jQuery(function($){
-  save_change();
+  set_time_format();
+  save_location();
   $('#summit').click(function(){
+    my_name = $('#name').val();
     $(this)[0].innerHTML = "已儲存";
+    save_change();
   });
 });
