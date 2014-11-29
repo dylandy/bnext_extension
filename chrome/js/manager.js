@@ -233,15 +233,8 @@ var get_sentence = function () {
           localStorage.setItem("english" , this.eng_content);
           localStorage.setItem("sentence_url" , this.url);
           localStorage.setItem("author_url" , this.author_url);
-          var tmp_content;
-          var rest_content;
-          if (this.content.length > 40) {
-            tmp_content = this.content.split("，").slice(0, 2).join('，');
-            rest_content = this.content.split("，").slice(3).join('，');
-            $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
-          } else {
-            $('#sentence-content h2')[0].innerHTML = this.content;
-          }
+
+          $('#sentence-content h2')[0].innerHTML = this.content;
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML =  "——" + this.author_chin_name +"（" + this.author_eng_name + "）"+
             "，" + this.author_title;
@@ -254,13 +247,7 @@ var get_sentence = function () {
         console.log("error happened");
         if (localStorage.getItem("sentence")) {
           var tmp = localStorage.getItem("sentence");
-          if (tmp.length > 40) {
-            tmp_content = tmp.split("，").slice(0, 2).join('，');
-            rest_content = tmp.split("，").slice(3).join('，');
-            $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
-          } else {
-            $('#sentence-content h2')[0].innerHTML = tmp;
-          }
+          $('#sentence-content h2')[0].innerHTML = tmp;
           $('#sentence-content h2')[1].innerHTML = localStorage.english;
           $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
             "，" + localStorage.title;
@@ -273,13 +260,7 @@ var get_sentence = function () {
     });
   } else {
     var tmp = localStorage.getItem("sentence");
-    if (tmp.length > 40) {
-      tmp_content = tmp.split("，").slice(0, 2).join('，');
-      rest_content = tmp.split("，").slice(3).join('，');
-      $("#sentence-content h2")[0].innerHTML = tmp_content + "<br>" + rest_content;
-    } else {
-      $('#sentence-content h2')[0].innerHTML = tmp;
-    }
+    $('#sentence-content h2')[0].innerHTML = tmp;
     $('#sentence-content h2')[1].innerHTML = localStorage.english;
     $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
             "，" + localStorage.title;
