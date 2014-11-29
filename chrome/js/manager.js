@@ -54,7 +54,7 @@ var set_current_time = function () {
   });
 
 
-  $('#current_date')[0].innerHTML = month + " , " + day + " , " + year;
+  $('#current_date')[0].innerHTML = month + "," + day + ","+ year;
 }
 
 var set_greeting_word = function () {

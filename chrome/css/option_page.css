@@ -35,7 +35,7 @@ input[type='text']{
   vertical-align: middle;
   background:rgb(232, 232, 232);
   float:right;
-  width:85%;
+  width:80%;
   margin-bottom:10px;
 }
 #logo {
@@ -219,7 +219,7 @@ input[type='text']{
   float:left;
   background:grey;
   color:white;
-  margin:5px;
+  margin:4px;
   font-size:50px;
   padding:10px;
   cursor:pointer;
