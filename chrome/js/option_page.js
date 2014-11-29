@@ -109,11 +109,14 @@ var set_time_format = function(){
 
 
 jQuery(function($){
-  set_time_format();
-  save_location();
-  $('#summit').click(function(){
-    my_name = $('#name').val();
-    $(this)[0].innerHTML = "已儲存";
-    save_change();
+  chrome.storage.local.get("my_name", function (result) {
+    $('input')[0].value = result.my_name;
+    set_time_format();
+    save_location();
+    $('#summit').click(function(){
+      my_name = $('#name').val();
+      $(this)[0].innerHTML = "已儲存";
+      save_change();
+    });
   });
 });
