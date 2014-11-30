@@ -102,7 +102,7 @@ var get_weather = function () {
   if (localStorage.getItem("update_weather") == 0){
     $.ajax({
       type: "GET",
-      url: "http://api.managers.today:3000/weather",
+      url: "http://api.managers.today/weather",
       dataType: "json",
       success: function (json) {
         console.log(123);
@@ -222,7 +222,7 @@ var get_sentence = function () {
   if (!localStorage.getItem("sentence") || update_sentence.getDate() !== current.getDate()) {
     $.ajax({
       type: "GET",
-      url: "http://api.managers.today:3000/sentence",
+      url: "http://api.managers.today/sentence",
       dataType: "json",
       success: function (json) {
         $(json).each(function () {
@@ -277,7 +277,7 @@ var get_english = function () {
 
     $.ajax({
       type: "GET",
-      url: "http://api.managers.today:3000/english",
+      url: "http://api.managers.today/english",
       dataType: "json",
       success: function (json) {
         $(json).each(function () {
@@ -395,7 +395,7 @@ var get_divination_essay = function(){
   localStorage.setItem("counter" , counter);
   $.ajax({
       type: "GET",
-      url: "http://api.managers.today:3000/article",
+      url: "http://api.managers.today/article",
       dataType: "json",
       success: function (json) {
         var i = 0;
