@@ -268,11 +268,10 @@ var get_sentence = function () {
 }
 
 
-var get_english = function () {
+var get_english = function (callback) {
   update = new Date(localStorage.getItem("update_sentence"));
   current_time = new Date();
-  if (!localStorage.getItem("vocabulary") || update.getDate() !== current_time.getDate()) {
-
+  if ( update.getDate() !== current_time.getDate()) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/english",
@@ -299,6 +298,8 @@ var get_english = function () {
     $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
     $('.vocabulary-box a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("words_url"));
   }
+
+  callback();
 }
 
 var get_weather_controller = function () {
@@ -498,11 +499,11 @@ var initial = function () {
       set_current_time();
       set_greeting_word();
       get_name();
-      get_sentence();
-      get_english();
+      get_english(get_sentence);
       setInterval(set_current_time, 10000);
       setInterval(set_greeting_word, 3600000);
       get_weather_controller();
+      get_divination_essay();
     });
   }
 }
