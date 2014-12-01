@@ -214,12 +214,10 @@ var get_weather = function () {
 }
 
 var get_sentence = function () {
-  Array.prototype.insert = function (index, item) {
-    this.splice(index, 0, item);
-  };
-  update_sentence = new Date(localStorage.getItem("update_sentence"));
+  update_sentence = new Date(localStorage.update_sentence);
   current = new Date()
-  if (!localStorage.getItem("sentence") || update_sentence.getDate() !== current.getDate()) {
+  if ( update_sentence.getDate() !== current.getDate()) {
+      console.log("in sentence");
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/sentence",
