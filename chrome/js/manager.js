@@ -236,8 +236,8 @@ var get_sentence = function () {
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML =  "——" + this.author_chin_name +"（" + this.author_eng_name + "）"+
             "，" + this.author_title;
-          $('#sentence-content a:eq(0)').attr( "href" , "http://editor.bnext.info:8080" + this.url );
-          $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + this.author_url );
+          $('#sentence-content a:eq(0)').attr( "href" , "http://www.managertoday.com.tw" + this.url );
+          $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + this.author_url );
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -249,8 +249,8 @@ var get_sentence = function () {
           $('#sentence-content h2')[1].innerHTML = localStorage.english;
           $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
             "，" + localStorage.title;
-          $('#sentence-content a:eq(0)').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("sentence_url") );
-          $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + localStorage.getItem("author_url") );
+          $('#sentence-content a:eq(0)').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url") );
+          $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + localStorage.getItem("author_url") );
         } else {
           console.log("error happened");
         }
@@ -262,14 +262,14 @@ var get_sentence = function () {
     $('#sentence-content h2')[1].innerHTML = localStorage.english;
     $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
             "，" + localStorage.title;
-    $('#sentence-content a:eq(0)').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("sentence_url") );
-    $('#sentence-content a:eq(1)').attr( "href" , "http://editor.bnext.info:8080" + localStorage.getItem("author_url") );
+    $('#sentence-content a:eq(0)').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url") );
+    $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + localStorage.getItem("author_url") );
   }
 }
 
 
-var get_english = function (callback) {
-  update = new Date(localStorage.getItem("update_sentence"));
+var get_english = function () {
+  update = new Date(localStorage.update_english);
   current_time = new Date();
   if ( update.getDate() !== current_time.getDate()) {
     $.ajax({
@@ -280,7 +280,7 @@ var get_english = function (callback) {
         $(json).each(function () {
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
           $('.vocabulary-box h3')[1].innerHTML = this.chinese_meaning;
-          $('.vocabulary-box a').attr( "href" , "http://editor.bnext.info:8080" + this.url );
+          $('.vocabulary-box a').attr( "href" , "http://www.managertoday.com.tw" + this.url );
           localStorage.setItem("vocabulary", this.vocabulary);
           localStorage.setItem("chinese_meaning", this.chinese_meaning);
           localStorage.setItem("words_url" , this.url);
@@ -289,17 +289,17 @@ var get_english = function (callback) {
       error: function () {
         $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
         $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-        $('.vocabulary-box a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("words_url"));
+        $('.vocabulary-box a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
       }
     });
 
   } else {
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
     $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-    $('.vocabulary-box a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("words_url"));
+    $('.vocabulary-box a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
   }
 
-  callback();
+  localStorage.setItem( "update_english" , new Date() );
 }
 
 var get_weather_controller = function () {
@@ -432,25 +432,25 @@ var get_divination_result = function(){
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 2 && test < 6 ){
         $('#divination-status')[0].innerHTML = "吉";
         $('#divination-sentence')[0].innerHTML = "工作順利！若做到以下這點，運勢會更好";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
       }
       if( test >= 6 && test < 9 ){
         $('#divination-status')[0].innerHTML = "中平";
         $('#divination-sentence')[0].innerHTML = "今天的工作幸運，就在以下提示中";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
       }
       if( test == 9 ){
         $('#divination-status')[0].innerHTML = "凶";
         $('#divination-sentence')[0].innerHTML = "小心！魔鬼就在細節裡！";
         $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://editor.bnext.info:8080" + localStorage.getItem("article_url" + random_article) );
+        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
       }
     });
   });
@@ -499,7 +499,8 @@ var initial = function () {
       set_current_time();
       set_greeting_word();
       get_name();
-      get_english(get_sentence);
+      get_english();
+      get_sentence();
       setInterval(set_current_time, 10000);
       setInterval(set_greeting_word, 3600000);
       get_weather_controller();
