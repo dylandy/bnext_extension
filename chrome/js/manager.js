@@ -29,9 +29,9 @@ var set_current_time = function () {
           var time_result = (hour - 12).toString() + ":" + "0" + minute.toString() + "pm";
         } else if ((hour - 12) < 10 && minute < 10) {
           var time_result = "0" + (hour - 12).toString() + ":" + "0" + minute.toString() + "pm";
-        } else if ((hour - 12) < 10 && minute > 10) {
+        } else if ((hour - 12) < 10 && minute >= 10) {
           var time_result = "0" + (hour - 12).toString() + ":" + minute.toString() + "pm";
-        } else if ((hour - 12) >= 10 && minute > 10) {
+        } else if ((hour - 12) >= 10 && minute >= 10) {
           var time_result = (hour - 12).toString() + ":" + minute.toString() + "pm";
         }
       }
