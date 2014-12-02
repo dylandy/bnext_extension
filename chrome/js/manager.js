@@ -390,8 +390,7 @@ var deactive_tab = function(){
 }
 
 var get_divination_essay = function(){
-  var counter = 0;
-  localStorage.setItem("counter" , counter);
+  localStorage.setItem("counter" , 0);
   $.ajax({
       type: "GET",
       url: "http://api.managers.today/article",
@@ -412,12 +411,8 @@ var get_divination_essay = function(){
 }
 
 var get_divination_result = function(){
-  var shaking_result = [];
-  var last_update = new Date(localStorage.getItem("update_time"));
+  var last_update = new Date(localStorage.update_time);
   var current = new Date();
-  for( var i = 0 ; i < 3 ; i++ ){
-    shaking_result.push();
-  }
   if( current.getDate() !== last_update.getDate() ){
     get_divination_essay();
   }
@@ -459,7 +454,7 @@ var get_divination_result = function(){
     $(this).parent().hide();
     var temp = localStorage.getItem("counter");
     if( temp < 2){
-      localStorage.setItem("counter" , temp + 1 );
+      localStorage.setItem("counter" , parseInt(temp) + 1 );
       $('#before-shake').show();
     }else{
       $('#cant-shake').show();
@@ -488,7 +483,6 @@ var initial = function () {
     flag = set_default_content();
 
     while( flag == 1 ){
-      console.log(123);
       initial_name_and_location();
       flag = 0;
     }
@@ -504,7 +498,7 @@ var initial = function () {
       setInterval(set_current_time, 10000);
       setInterval(set_greeting_word, 3600000);
       get_weather_controller();
-      get_divination_essay();
+      get_divination_result();
     });
   }
 }

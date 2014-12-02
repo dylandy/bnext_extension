@@ -101,7 +101,7 @@ a:hover{
   right:0;
 }
 #current_time {
-  font-size:30px;
+  font-size:35px;
   font-weight:bold;
   margin:0;
   text-align:center;
@@ -159,7 +159,8 @@ a:hover{
   display:inline-block;
   color:white;
   border-right:5px solid white;
-  padding-top:10px;
+  padding-top:5px;
+  font-size:25px;
 }
 #sentence-content {
   position:absolute;
@@ -328,9 +329,10 @@ a:hover{
 }
 .time-date {
   padding-top:10px;
-  margin:5px 15px;
+  margin:3px 15px;
   height:100%;
 }
+
 #tabs {
   position:absolute;
   width:100%;
@@ -377,6 +379,7 @@ a:hover{
 #again {
   cursor:pointer;
   width:188px;
+  float:right;
 }
 
 #divination-status {
@@ -391,6 +394,7 @@ a:hover{
   color:black;
   font-weight: bold;
   font-size:25px;
+  line-height: 0.8;
 }
 
 #divi-sentences {
@@ -424,4 +428,8 @@ a:hover{
 
 #sentence-content #chinese_sentence {
   font-size:40px;
+}
+
+#divination-title {
+  line-height: 0.8;
 }
