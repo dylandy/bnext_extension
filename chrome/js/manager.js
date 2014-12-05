@@ -233,7 +233,7 @@ var get_sentence = function () {
 
           $('#sentence-content h2')[0].innerHTML = this.content;
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
-          $('#sentence-content h3')[0].innerHTML = "——" + this.author_chin_name + "（" + this.author_eng_name + "）" +
+          $('#sentence-content h3')[0].innerHTML = this.author_chin_name + "（" + this.author_eng_name + "）" +
             "，" + this.author_title;
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + this.url);
           $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + this.author_url);
@@ -246,7 +246,7 @@ var get_sentence = function () {
           var tmp = localStorage.getItem("sentence");
           $('#sentence-content h2')[0].innerHTML = tmp;
           $('#sentence-content h2')[1].innerHTML = localStorage.english;
-          $('#sentence-content h3')[0].innerHTML = "——" + localStorage.author + "（" + localStorage.author_eng + "）" +
+          $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
             "，" + localStorage.title;
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
           $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
@@ -259,7 +259,7 @@ var get_sentence = function () {
     var tmp = localStorage.getItem("sentence");
     $('#sentence-content h2')[0].innerHTML = tmp;
     $('#sentence-content h2')[1].innerHTML = localStorage.english;
-    $('#sentence-content h3')[0].innerHTML = "——" + localStorage.author + "（" + localStorage.author_eng + "）" +
+    $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
       "，" + localStorage.title;
     $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
     $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
@@ -497,12 +497,12 @@ var set_default_content = function () {
   localStorage.setItem("author_eng", "Joe Girard");
   localStorage.setItem("title", "美國著名業務員");
   localStorage.setItem("english",
-    "The elevator to success is out of order. You'll have to use the stairs. .. one step at a time.");
-  localStorage.setItem("sentence_url", "/mt/quotes/view/830");
-  localStorage.setItem("author_url", "/mt/quotes/celebrity/239");
+    "The elevator to success is out of order. You'll have to use the stairs... one step at a time.");
+  localStorage.setItem("sentence_url", "/quotes/view/830");
+  localStorage.setItem("author_url", "/quotes/celebrity/239");
   localStorage.setItem("vocabulary", "workaholic");
   localStorage.setItem("chinese_meaning", "工作狂");
-  localStorage.setItem("words_url", "/mt/dictionary/word/26");
+  localStorage.setItem("words_url", "/dictionary/word/26");
   return 1;
 }
 
