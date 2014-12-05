@@ -54,7 +54,7 @@ var set_current_time = function () {
   });
 
 
-  $('#current_date')[0].innerHTML = month + "," + day + ","+ year;
+  $('#current_date')[0].innerHTML = month + "," + day + "," + year;
 }
 
 var set_greeting_word = function () {
@@ -99,24 +99,23 @@ var get_city = function (callback) {
 }
 
 var get_weather = function () {
-  if (localStorage.getItem("update_weather") == 0){
+  if (localStorage.getItem("update_weather") == 0) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/weather",
       dataType: "json",
       success: function (json) {
-        console.log(123);
         var counter = 0;
         $(json).each(function () {
-          if ( this.name === $('#city').html() && counter < 1 ) {
+          if (this.name === $('#city').html() && counter < 1) {
             localStorage.setItem("max_t", this.maxt);
             localStorage.setItem("min_t", this.mint);
             localStorage.setItem("wx", this.wx);
             localStorage.setItem("city", this.name);
-            console.log(this.maxt);
-            console.log(this.mint);
-            console.log(this.wx);
-            console.log(this.name);
+            //            console.log(this.maxt);
+            //            console.log(this.mint);
+            //            console.log(this.wx);
+            //            console.log(this.name);
 
             $("#maxt")[0].innerHTML = this.maxt;
             $("#mint")[0].innerHTML = this.mint;
@@ -152,72 +151,72 @@ var get_weather = function () {
       },
       error: function () {
         if (localStorage.getItem("max_t")) {
-            $("#maxt")[0].innerHTML = localStorage.getItem("max_t" );
-            $("#mint")[0].innerHTML = localStorage.getItem("min_t" );
-            $("#wx").attr("title", localStorage.getItem("wx" ));
+          $("#maxt")[0].innerHTML = localStorage.getItem("max_t");
+          $("#mint")[0].innerHTML = localStorage.getItem("min_t");
+          $("#wx").attr("title", localStorage.getItem("wx"));
 
-            if (localStorage.getItem("wx").match("多雲") || localStorage.getItem("wx").match("陰")) {
-              $("#wx").attr("src", "resource/img/weather-icon/cloudy.png");
-            }
-            if (localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
-              $("#wx").attr("src", "resource/img/weather-icon/heavy-rain.png");
-            }
-            if (localStorage.getItem("wx").match("雷陣雨")) {
-              $("#wx").attr("src", "resource/img/weather-icon/storm+rain.png");
-            }
-            if (localStorage.getItem("wx").match("有雨")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sun+rain-2.png");
-            }
-            if (localStorage.getItem("wx").match("晴")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
-            }
-            if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
-            }
-            if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
-              $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
-            }
+          if (localStorage.getItem("wx").match("多雲") || localStorage.getItem("wx").match("陰")) {
+            $("#wx").attr("src", "resource/img/weather-icon/cloudy.png");
+          }
+          if (localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
+            $("#wx").attr("src", "resource/img/weather-icon/heavy-rain.png");
+          }
+          if (localStorage.getItem("wx").match("雷陣雨")) {
+            $("#wx").attr("src", "resource/img/weather-icon/storm+rain.png");
+          }
+          if (localStorage.getItem("wx").match("有雨")) {
+            $("#wx").attr("src", "resource/img/weather-icon/sun+rain-2.png");
+          }
+          if (localStorage.getItem("wx").match("晴")) {
+            $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
+          }
+          if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
+            $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
+          }
+          if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
+            $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
+          }
         } else {
-            $("#wx").attr("src", "resource/img/weather/file-64.gif");
-            $("#maxt")[0].innerHTML = "無";
-            $("#mint")[0].innerHTML = "無";
+          $("#wx").attr("src", "resource/img/weather/file-64.gif");
+          $("#maxt")[0].innerHTML = "無";
+          $("#mint")[0].innerHTML = "無";
         }
       }
     });
   } else {
-      $("#maxt" )[0].innerHTML = localStorage.getItem("max_t" );
-      $("#mint" )[0].innerHTML = localStorage.getItem("min_t" );
-      $("#wx" ).attr("title", localStorage.getItem("wx"));
+    $("#maxt")[0].innerHTML = localStorage.getItem("max_t");
+    $("#mint")[0].innerHTML = localStorage.getItem("min_t");
+    $("#wx").attr("title", localStorage.getItem("wx"));
 
-      if ( localStorage.getItem("wx" ).match("多雲") || localStorage.getItem("wx" ).match("陰")) {
-        $( "#wx" ).attr("src", "resource/img/weather-icon/cloudy.png");
-      }
-      if ( localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
-        $("#wx").attr("src", "resource/img/weather-icon/heavy-rain.png");
-      }
-      if (localStorage.getItem("wx").match("雷陣雨")) {
-        $("#wx").attr("src", "resource/img/weather-icon/storm+rain.png");
-      }
-      if (localStorage.getItem("wx").match("有雨")) {
-        $("#wx").attr("src", "resource/img/weather-icon/sun+rain-2.png");
-      }
-      if (localStorage.getItem("wx").match("晴")) {
-        $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
-      }
-      if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
-        $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
-      }
-      if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
-        $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
-      }
+    if (localStorage.getItem("wx").match("多雲") || localStorage.getItem("wx").match("陰")) {
+      $("#wx").attr("src", "resource/img/weather-icon/cloudy.png");
+    }
+    if (localStorage.getItem("wx").match("短暫陣雨") || localStorage.getItem("wx").match("短暫雨")) {
+      $("#wx").attr("src", "resource/img/weather-icon/heavy-rain.png");
+    }
+    if (localStorage.getItem("wx").match("雷陣雨")) {
+      $("#wx").attr("src", "resource/img/weather-icon/storm+rain.png");
+    }
+    if (localStorage.getItem("wx").match("有雨")) {
+      $("#wx").attr("src", "resource/img/weather-icon/sun+rain-2.png");
+    }
+    if (localStorage.getItem("wx").match("晴")) {
+      $("#wx").attr("src", "resource/img/weather-icon/sunny.png");
+    }
+    if (localStorage.getItem("wx").match("晴時多雲") || localStorage.getItem("wx").match("多雲時晴")) {
+      $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy.png");
+    }
+    if (localStorage.getItem("wx").match("多雲時晴偶陣雨")) {
+      $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
+    }
   }
 }
 
 var get_sentence = function () {
   update_sentence = new Date(localStorage.update_sentence);
   current = new Date()
-  if ( update_sentence.getDate() !== current.getDate()) {
-      console.log("in sentence");
+  if (update_sentence.getDate() !== current.getDate()) {
+    //      console.log("in sentence");
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/sentence",
@@ -226,18 +225,18 @@ var get_sentence = function () {
         $(json).each(function () {
           localStorage.setItem("sentence", this.content);
           localStorage.setItem("author", this.author_chin_name);
-          localStorage.setItem("author_eng" , this.author_eng_name );
+          localStorage.setItem("author_eng", this.author_eng_name);
           localStorage.setItem("title", this.author_title);
-          localStorage.setItem("english" , this.eng_content);
-          localStorage.setItem("sentence_url" , this.url);
-          localStorage.setItem("author_url" , this.author_url);
+          localStorage.setItem("english", this.eng_content);
+          localStorage.setItem("sentence_url", this.url);
+          localStorage.setItem("author_url", this.author_url);
 
           $('#sentence-content h2')[0].innerHTML = this.content;
           $('#sentence-content h2')[1].innerHTML = this.eng_content;
-          $('#sentence-content h3')[0].innerHTML =  "——" + this.author_chin_name +"（" + this.author_eng_name + "）"+
+          $('#sentence-content h3')[0].innerHTML = "——" + this.author_chin_name + "（" + this.author_eng_name + "）" +
             "，" + this.author_title;
-          $('#sentence-content a:eq(0)').attr( "href" , "http://www.managertoday.com.tw" + this.url );
-          $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + this.author_url );
+          $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + this.url);
+          $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + this.author_url);
         });
         localStorage.setItem("update_sentence", current);
       },
@@ -247,10 +246,10 @@ var get_sentence = function () {
           var tmp = localStorage.getItem("sentence");
           $('#sentence-content h2')[0].innerHTML = tmp;
           $('#sentence-content h2')[1].innerHTML = localStorage.english;
-          $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
+          $('#sentence-content h3')[0].innerHTML = "——" + localStorage.author + "（" + localStorage.author_eng + "）" +
             "，" + localStorage.title;
-          $('#sentence-content a:eq(0)').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url") );
-          $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + localStorage.getItem("author_url") );
+          $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
+          $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
         } else {
           console.log("error happened");
         }
@@ -260,10 +259,10 @@ var get_sentence = function () {
     var tmp = localStorage.getItem("sentence");
     $('#sentence-content h2')[0].innerHTML = tmp;
     $('#sentence-content h2')[1].innerHTML = localStorage.english;
-    $('#sentence-content h3')[0].innerHTML =  "——" + localStorage.author +"（" + localStorage.author_eng + "）"+
-            "，" + localStorage.title;
-    $('#sentence-content a:eq(0)').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url") );
-    $('#sentence-content a:eq(1)').attr( "href" , "http://www.managertoday.com.tw" + localStorage.getItem("author_url") );
+    $('#sentence-content h3')[0].innerHTML = "——" + localStorage.author + "（" + localStorage.author_eng + "）" +
+      "，" + localStorage.title;
+    $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
+    $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
   }
 }
 
@@ -271,7 +270,7 @@ var get_sentence = function () {
 var get_english = function () {
   update = new Date(localStorage.update_english);
   current_time = new Date();
-  if ( update.getDate() !== current_time.getDate()) {
+  if (update.getDate() !== current_time.getDate() && current_time.getDay() < 5 && current_time.getDay() > 0) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/english",
@@ -280,26 +279,55 @@ var get_english = function () {
         $(json).each(function () {
           $('.vocabulary-box h3')[0].innerHTML = this.vocabulary;
           $('.vocabulary-box h3')[1].innerHTML = this.chinese_meaning;
-          $('.vocabulary-box a').attr( "href" , "http://www.managertoday.com.tw" + this.url );
+          $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + this.url);
           localStorage.setItem("vocabulary", this.vocabulary);
           localStorage.setItem("chinese_meaning", this.chinese_meaning);
-          localStorage.setItem("words_url" , this.url);
+          localStorage.setItem("words_url", this.url);
         });
       },
       error: function () {
         $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
         $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-        $('.vocabulary-box a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
+        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
       }
     });
 
-  } else {
+  } else if (update.getDate() == current_time.getDate() && current_time.getDay() > 0 && current_time.getDay() < 5) {
     $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
     $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-    $('.vocabulary-box a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
+    $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
+  } else if (update.getDate() !== current_time.getDate() && current_time.getDay() >= 5) {
+    $.ajax({
+      type: "GET",
+      url: "http://api.managers.today/condition",
+      dataType: "json",
+      success: function (json) {
+        var i = 0;
+        $(json).each(function () {
+          localStorage.setItem("english_article" + i, this.title);
+          localStorage.setItem("english_article_url" + i, this.url);
+          i++;
+        });
+        var test = parseInt(Math.random() * 3);
+        $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
+        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
+          localStorage.getItem("english_ariticle_url" + test));
+      },
+      error: function () {
+        var test = parseInt(Math.random() * 3);
+        $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
+        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
+          localStorage.getItem("english_article_url" + test));
+      }
+    });
+  } else if (update.getDate() == current_time.getDate() && current_time.getDay() >= 5) {
+    var test = parseInt(Math.random() * 3);
+    $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
+    $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
+      localStorage.getItem("english_article_url" + test));
   }
 
-  localStorage.setItem( "update_english" , new Date() );
+  localStorage.setItem("update_english", new Date());
 }
 
 var get_weather_controller = function () {
@@ -311,8 +339,8 @@ var get_weather_controller = function () {
   if ((current - tmp) > 21600) {
     $.when(localStorage.setItem("update_weather", 0)).then(get_weather);
   } else if (localStorage.getItem("city") !== $('#city').html()) {
-    console.log(localStorage.getItem("city"));
-    console.log($('#city').html());
+    //    console.log(localStorage.getItem("city"));
+    //    console.log($('#city').html());
     $.when(localStorage.setItem("update_weather", 0)).done(get_weather);
   } else {
     get_weather();
@@ -322,7 +350,7 @@ var get_weather_controller = function () {
 var initial_name_and_location = function () {
   var my_name = "";
   var my_location = "";
-  $('#initial-text').on( 'keydown' , function(e){
+  $('#initial-text').on('keydown', function (e) {
     if (e.which == 13) {
       e.preventDefault();
       my_name = $(this).val();
@@ -330,151 +358,152 @@ var initial_name_and_location = function () {
       $('#initial-name').hide();
     }
   });
-  $('.location-choser').click(function(){
+  $('.location-choser').click(function () {
     $('.location-panel').show();
-    $('#turn-off').css('display' , "inline-block");
+    $('#turn-off').css('display', "inline-block");
   });
-  $('#turn-off').click(function(){
+  $('#turn-off').click(function () {
     $('.location-panel').hide();
     $('#turn-off').hide();
   });
-  $('.location-panel li').click(function(){
+  $('.location-panel li').click(function () {
     my_location = $(this).html();
     $('#location-choose').hide();
-    chrome.storage.local.set(
-      {
-        "my_name" : my_name,
-        "location" : my_location
+    chrome.storage.local.set({
+        "my_name": my_name,
+        "location": my_location
       },
-      function(){
-        console.log( "data initialed" );
-        localStorage.setItem( "initial_status" , "set" );
-        $('#content').show( 0 , initial );
+      function () {
+        console.log("data initialed");
+        localStorage.setItem("initial_status", "set");
+        $('#content').show(0, initial);
       }
     );
   });
 
 }
 
-var tab_animation = function(){
-  $('.title-tab').click(function(){
+var tab_animation = function () {
+  $('.title-tab').click(function () {
     var left = $(window).width() * 0.2;
     var tmp = $(this).css('left');
     var check;
-    for( var i = 0 ; i < 3 ; i++ ){
-      if( parseInt($('.title-tab:eq('+ i +')').css('left')) == parseInt($(window).width()*0.2) ){
+    for (var i = 0; i < 3; i++) {
+      if (parseInt($('.title-tab:eq(' + i + ')').css('left')) == parseInt($(window).width() * 0.2)) {
         check = i;
       }
     }
-    $(this).css('left' , $('.title-tab:eq(' +check + ')').css('left'));
-    $('.title-tab:eq('+ check + ')').css('left' , tmp );
+    $(this).css('left', $('.title-tab:eq(' + check + ')').css('left'));
+    $('.title-tab:eq(' + check + ')').css('left', tmp);
     $(this).addClass('active');
 
-    $('.title-tab:eq('+ check + ')').removeClass('active');
+    $('.title-tab:eq(' + check + ')').removeClass('active');
     active_tab();
     deactive_tab();
   });
 }
 
-var active_tab = function(){
+var active_tab = function () {
   var target = $('.active');
   var id_name = target.attr('id');
-  target.attr( 'src' , 'resource/img/others/title-' + id_name + '.png' );
-  $( '#' + id_name + '-content' ).fadeIn( 1000 );
-  $('#' + id_name + '-content' ).siblings().hide();
+  target.attr('src', 'resource/img/others/title-' + id_name + '.png');
+  $('#' + id_name + '-content').fadeIn(1000);
+  $('#' + id_name + '-content').siblings().hide();
 }
 
-var deactive_tab = function(){
+var deactive_tab = function () {
   var target = $('.title-tab:not(.active)');
-  target.map(function(){ $(this).attr( 'src' , 'resource/img/others/title-' + $(this).attr('id') + '-2.png' )});
+  target.map(function () {
+    $(this).attr('src', 'resource/img/others/title-' + $(this).attr('id') + '-2.png')
+  });
 }
 
-var get_divination_essay = function(){
-  localStorage.setItem("counter" , 0);
+var get_divination_essay = function () {
+  localStorage.setItem("counter", 0);
   $.ajax({
-      type: "GET",
-      url: "http://api.managers.today/article",
-      dataType: "json",
-      success: function (json) {
-        var i = 0;
-        $(json).each(function () {
-          localStorage.setItem("article_title" + i , this.title);
-          localStorage.setItem("article_url" + i, this.url);
-          i++;
-        });
-      },
-      error: function () {
-        console.log("error");
-      }
-    });
+    type: "GET",
+    url: "http://api.managers.today/article",
+    dataType: "json",
+    success: function (json) {
+      var i = 0;
+      $(json).each(function () {
+        localStorage.setItem("article_title" + i, this.title);
+        localStorage.setItem("article_url" + i, this.url);
+        i++;
+      });
+    },
+    error: function () {
+      console.log("error");
+    }
+  });
 
 }
 
-var get_divination_result = function(){
+var get_divination_result = function () {
   var last_update = new Date(localStorage.update_time);
   var current = new Date();
-  if( current.getDate() !== last_update.getDate() ){
+  if (current.getDate() !== last_update.getDate()) {
     get_divination_essay();
   }
 
-  $('#before-shake img').click(function(e){
+  $('#before-shake img').click(function (e) {
     e.preventDefault();
     $(this).parent().hide();
-    $('#shake-result').show( 0 , function(){
-      var test = parseInt( Math.random()*10 );
-      var random_article = parseInt(Math.random()*3);
-      if( test < 2 ){
+    $('#shake-result').show(0, function () {
+      var test = parseInt(Math.random() * 10);
+      var random_article = parseInt(Math.random() * 3);
+      if (test < 2) {
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
-        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title" + random_article);
+        $('#divi-sentences a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article));
       }
-      if( test >= 2 && test < 6 ){
+      if (test >= 2 && test < 6) {
         $('#divination-status')[0].innerHTML = "吉";
         $('#divination-sentence')[0].innerHTML = "工作順利！若做到以下這點，運勢會更好";
-        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title" + random_article);
+        $('#divi-sentences a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article));
       }
-      if( test >= 6 && test < 9 ){
+      if (test >= 6 && test < 9) {
         $('#divination-status')[0].innerHTML = "中平";
         $('#divination-sentence')[0].innerHTML = "今天的工作幸運，就在以下提示中";
-        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title" + random_article);
+        $('#divi-sentences a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article));
       }
-      if( test == 9 ){
+      if (test == 9) {
         $('#divination-status')[0].innerHTML = "凶";
         $('#divination-sentence')[0].innerHTML = "小心！魔鬼就在細節裡！";
-        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title"+random_article);
-        $('#divi-sentences a').attr("href" , "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article) );
+        $('#divination-title')[0].innerHTML = localStorage.getItem("article_title" + random_article);
+        $('#divi-sentences a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("article_url" + random_article));
       }
     });
   });
-  $('#again').click(function(e){
+  $('#again').click(function (e) {
     e.preventDefault();
     $(this).parent().hide();
     var temp = localStorage.getItem("counter");
-    if( temp < 2){
-      localStorage.setItem("counter" , parseInt(temp) + 1 );
+    if (temp < 2) {
+      localStorage.setItem("counter", parseInt(temp) + 1);
       $('#before-shake').show();
-    }else{
+    } else {
       $('#cant-shake').show();
     }
   });
 }
 
-var set_default_content = function( ){
-    localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
-    localStorage.setItem("author", "喬．吉拉德" );
-    localStorage.setItem("author_eng" , "Joe Girard" );
-    localStorage.setItem("title", "美國著名業務員");
-    localStorage.setItem("english" ,
-                         "The elevator to success is out of order. You'll have to use the stairs. .. one step at a time.");
-    localStorage.setItem("sentence_url" , "/mt/quotes/view/830");
-    localStorage.setItem("author_url" , "/mt/quotes/celebrity/239");
-    localStorage.setItem("vocabulary", "workaholic");
-    localStorage.setItem("chinese_meaning", "工作狂");
-    localStorage.setItem("words_url" , "/mt/dictionary/word/26");
-    return 1;
+var set_default_content = function () {
+  localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
+  localStorage.setItem("author", "喬．吉拉德");
+  localStorage.setItem("author_eng", "Joe Girard");
+  localStorage.setItem("title", "美國著名業務員");
+  localStorage.setItem("english",
+    "The elevator to success is out of order. You'll have to use the stairs. .. one step at a time.");
+  localStorage.setItem("sentence_url", "/mt/quotes/view/830");
+  localStorage.setItem("author_url", "/mt/quotes/celebrity/239");
+  localStorage.setItem("vocabulary", "workaholic");
+  localStorage.setItem("chinese_meaning", "工作狂");
+  localStorage.setItem("words_url", "/mt/dictionary/word/26");
+  return 1;
 }
 
 var initial = function () {
@@ -482,7 +511,7 @@ var initial = function () {
     var flag = 0;
     flag = set_default_content();
 
-    while( flag == 1 ){
+    while (flag == 1) {
       initial_name_and_location();
       flag = 0;
     }
