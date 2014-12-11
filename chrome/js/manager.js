@@ -105,9 +105,9 @@ var get_weather = function () {
       url: "http://api.managers.today/weather",
       dataType: "json",
       success: function (json) {
-        var counter = 0;
+        var counting = 0;
         $(json).each(function () {
-          if (this.name === $('#city').html() && counter < 1) {
+          if (this.name === $('#city').html() && counting < 1) {
             localStorage.setItem("max_t", this.maxt);
             localStorage.setItem("min_t", this.mint);
             localStorage.setItem("wx", this.wx);
@@ -142,7 +142,7 @@ var get_weather = function () {
             if (this.wx.match("多雲時晴偶陣雨")) {
               $("#wx").attr("src", "resource/img/weather-icon/sunny+cloudy+shower.png");
             }
-            counter++;
+            counting++;
           }
           localStorage.setItem("update_weather", 1);
           localStorage.setItem("update_time", new Date());
@@ -464,17 +464,6 @@ var get_divination_result = function () {
       }
     });
   });
-  $('#again').click(function (e) {
-    e.preventDefault();
-    $(this).parent().hide();
-    var temp = localStorage.counter;
-    if (temp < 3) {
-      $('#before-shake').show();
-    }else{
-      $('#cant-shake').show();
-    }
-    localStorage.setItem("counter", parseInt(temp) + 1);
-  });
 }
 
 var set_default_content = function () {
@@ -489,7 +478,7 @@ var set_default_content = function () {
   localStorage.setItem("vocabulary", "workaholic");
   localStorage.setItem("chinese_meaning", "工作狂");
   localStorage.setItem("words_url", "/dictionary/word/26");
-  localStorage.setItem("counter", 0);
+  localStorage.setItem("counter", 1);
   return 1;
 }
 
@@ -525,4 +514,23 @@ jQuery(function ($) {
   active_tab();
   deactive_tab();
   get_divination_result();
+  $('.title-tab:eq(2)').click(function(){
+    if(localStorage.counter < 3){
+      $('#before-shake').show();
+    }else{
+      $('#before-shake').hide();
+      $('#cant-shake').show();
+    }
+  });
+  $('#again').click(function (e) {
+    e.preventDefault();
+    $(this).parent().hide();
+    if (localStorage.counter < 3) {
+      $('#before-shake').show( 0 , function(){localStorage.setItem("counter", parseInt(localStorage.counter) + 1);});
+      console.log(localStorage.counter);
+    }else{
+      $('#before-shake').hide();
+      $('#cant-shake').show();
+    }
+  });
 });
