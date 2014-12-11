@@ -380,13 +380,16 @@ var tab_animation = function () {
         check = i;
       }
     }
-    $(this).css('left', $('.title-tab:eq(' + check + ')').css('left'));
-    $('.title-tab:eq(' + check + ')').css('left', tmp);
-    $(this).addClass('active');
 
-    $('.title-tab:eq(' + check + ')').removeClass('active');
-    active_tab();
-    deactive_tab();
+    if($(this).attr("src") !== $('.title-tab:eq('+ check + ')').attr("src")){
+      console.log(123);
+      $(this).css('left', $('.title-tab:eq(' + check + ')').css('left'));
+      $('.title-tab:eq(' + check + ')').css('left', tmp);
+      $(this).addClass('active');
+      $('.title-tab:eq(' + check + ')').removeClass('active');
+      active_tab();
+      deactive_tab();
+    }
   });
 }
 
