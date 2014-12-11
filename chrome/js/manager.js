@@ -437,7 +437,7 @@ var get_divination_result = function () {
     $(this).parent().hide();
     $('#shake-result').show(0, function () {
       var test = parseInt(Math.random() * 10);
-      var random_article = localStorage.counter;
+      var random_article = parseInt(localStorage.counter) - 1;
       if (test < 2) {
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
