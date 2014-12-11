@@ -227,12 +227,12 @@ var get_sentence = function () {
           localStorage.setItem("author", this.author_chin_name);
           localStorage.setItem("author_eng", this.author_eng_name);
           localStorage.setItem("title", this.author_title);
-          localStorage.setItem("english", this.eng_content);
+//          localStorage.setItem("english", this.eng_content);
           localStorage.setItem("sentence_url", this.url);
           localStorage.setItem("author_url", this.author_url);
 
           $('#sentence-content h2')[0].innerHTML = this.content;
-          $('#sentence-content h2')[1].innerHTML = this.eng_content;
+//          $('#sentence-content h2')[1].innerHTML = this.eng_content;
           $('#sentence-content h3')[0].innerHTML = this.author_chin_name + "（" + this.author_eng_name + "）" +
             "，" + this.author_title;
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + this.url);
@@ -245,7 +245,7 @@ var get_sentence = function () {
         if (localStorage.getItem("sentence")) {
           var tmp = localStorage.getItem("sentence");
           $('#sentence-content h2')[0].innerHTML = tmp;
-          $('#sentence-content h2')[1].innerHTML = localStorage.english;
+//          $('#sentence-content h2')[1].innerHTML = localStorage.english;
           $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
             "，" + localStorage.title;
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
@@ -258,7 +258,7 @@ var get_sentence = function () {
   } else {
     var tmp = localStorage.getItem("sentence");
     $('#sentence-content h2')[0].innerHTML = tmp;
-    $('#sentence-content h2')[1].innerHTML = localStorage.english;
+//    $('#sentence-content h2')[1].innerHTML = localStorage.english;
     $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
       "，" + localStorage.title;
     $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
@@ -268,9 +268,8 @@ var get_sentence = function () {
 
 
 var get_english = function () {
-  update = new Date(localStorage.update_english);
   current_time = new Date();
-  if (update.getDate() !== current_time.getDate() && current_time.getDay() < 5 && current_time.getDay() > 0) {
+  if (current_time.getDay() < 5 && current_time.getDay() > 0) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/english",
@@ -291,12 +290,7 @@ var get_english = function () {
         $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
       }
     });
-
-  } else if (update.getDate() == current_time.getDate() && current_time.getDay() > 0 && current_time.getDay() < 5) {
-    $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("vocabulary");
-    $('.vocabulary-box h3')[1].innerHTML = localStorage.getItem("chinese_meaning");
-    $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
-  } else if (update.getDate() !== current_time.getDate() && current_time.getDay() >= 5) {
+  } else if ( current_time.getDay() >= 5 ) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/condition",
@@ -320,14 +314,7 @@ var get_english = function () {
           localStorage.getItem("english_article_url" + test));
       }
     });
-  } else if (update.getDate() == current_time.getDate() && current_time.getDay() >= 5) {
-    var test = parseInt(Math.random() * 3);
-    $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
-    $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
-      localStorage.getItem("english_article_url" + test));
   }
-
-  localStorage.setItem("update_english", new Date());
 }
 
 var get_weather_controller = function () {
@@ -419,7 +406,6 @@ var deactive_tab = function () {
 }
 
 var get_divination_essay = function () {
-  localStorage.setItem("counter", 0);
   $.ajax({
     type: "GET",
     url: "http://api.managers.today/article",
@@ -451,7 +437,7 @@ var get_divination_result = function () {
     $(this).parent().hide();
     $('#shake-result').show(0, function () {
       var test = parseInt(Math.random() * 10);
-      var random_article = parseInt(Math.random() * 3);
+      var random_article = localStorage.counter;
       if (test < 2) {
         $('#divination-status')[0].innerHTML = "大吉";
         $('#divination-sentence')[0].innerHTML = "恭喜你！多吸收知識，明天會更好";
@@ -481,13 +467,13 @@ var get_divination_result = function () {
   $('#again').click(function (e) {
     e.preventDefault();
     $(this).parent().hide();
-    var temp = localStorage.getItem("counter");
-    if (temp < 2) {
-      localStorage.setItem("counter", parseInt(temp) + 1);
+    var temp = localStorage.counter;
+    if (temp < 3) {
       $('#before-shake').show();
-    } else {
+    }else{
       $('#cant-shake').show();
     }
+    localStorage.setItem("counter", parseInt(temp) + 1);
   });
 }
 
@@ -496,13 +482,14 @@ var set_default_content = function () {
   localStorage.setItem("author", "喬．吉拉德");
   localStorage.setItem("author_eng", "Joe Girard");
   localStorage.setItem("title", "美國著名業務員");
-  localStorage.setItem("english",
-    "The elevator to success is out of order. You'll have to use the stairs... one step at a time.");
+//  localStorage.setItem("english",
+//    "The elevator to success is out of order. You'll have to use the stairs... one step at a time.");
   localStorage.setItem("sentence_url", "/quotes/view/830");
   localStorage.setItem("author_url", "/quotes/celebrity/239");
   localStorage.setItem("vocabulary", "workaholic");
   localStorage.setItem("chinese_meaning", "工作狂");
   localStorage.setItem("words_url", "/dictionary/word/26");
+  localStorage.setItem("counter", 0);
   return 1;
 }
 
