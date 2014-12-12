@@ -233,8 +233,12 @@ var get_sentence = function () {
 
           $('#sentence-content h2')[0].innerHTML = this.content;
 //          $('#sentence-content h2')[1].innerHTML = this.eng_content;
-          $('#sentence-content h3')[0].innerHTML = this.author_chin_name + "（" + this.author_eng_name + "）" +
-            "，" + this.author_title;
+          if(this.author_eng_name){
+            $('#sentence-content h3')[0].innerHTML = this.author_chin_name + "（" + this.author_eng_name + "）" +
+            "<br>" + this.author_title;
+          }else{
+            $('#sentence-content h3')[0].innerHTML = this.author_chin_name +"<br>" + this.author_title;
+          }
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + this.url);
           $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + this.author_url);
         });
@@ -246,8 +250,12 @@ var get_sentence = function () {
           var tmp = localStorage.getItem("sentence");
           $('#sentence-content h2')[0].innerHTML = tmp;
 //          $('#sentence-content h2')[1].innerHTML = localStorage.english;
-          $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
-            "，" + localStorage.title;
+          if( localStorage.author_eng ){
+            $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
+            "<br>" + localStorage.title;
+          }else{
+            $('#sentence-content h3')[0].innerHTML = localStorage.author + "<br>" + localStorage.title;
+          }
           $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
           $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
         } else {
@@ -259,8 +267,13 @@ var get_sentence = function () {
     var tmp = localStorage.getItem("sentence");
     $('#sentence-content h2')[0].innerHTML = tmp;
 //    $('#sentence-content h2')[1].innerHTML = localStorage.english;
-    $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
-      "，" + localStorage.title;
+
+    if( localStorage.author_eng ){
+            $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
+            "<br>" + localStorage.title;
+    }else{
+      $('#sentence-content h3')[0].innerHTML = localStorage.author + "<br>" + localStorage.title;
+    }
     $('#sentence-content a:eq(0)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("sentence_url"));
     $('#sentence-content a:eq(1)').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("author_url"));
   }
