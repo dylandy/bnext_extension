@@ -317,13 +317,13 @@ var get_english = function () {
         });
         var test = parseInt(Math.random() * 3);
         $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
-        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
-          localStorage.getItem("english_ariticle_url" + test));
+        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw/" +
+          localStorage.getItem("english_article_url" + test));
       },
       error: function () {
         var test = parseInt(Math.random() * 3);
         $('.vocabulary-box h3')[0].innerHTML = localStorage.getItem("english_article" + test);
-        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" +
+        $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw/" +
           localStorage.getItem("english_article_url" + test));
       }
     });

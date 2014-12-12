@@ -431,3 +431,14 @@ a:hover {
 #divination-title {
   line-height:0.8;
 }
+
+@media screen and (max-width:1440px){
+  .share-in-content{
+    left:28%;
+  }
+}
+@media screen and (max-width : 1290px ){
+ .share-in-content{
+   left:30%;
+ }
+}
