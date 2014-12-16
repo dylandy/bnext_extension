@@ -10,7 +10,8 @@
   "minimum_chrome_version": "30",
   "permissions": [
     "storage",
-    "http://api.managers.today/"
+    "http://api.managers.today/",
+    "tabs"
   ],
   "icons": {
     "128": "128-128.png",

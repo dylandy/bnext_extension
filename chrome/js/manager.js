@@ -54,7 +54,7 @@ var set_current_time = function () {
   });
 
 
-  $('#current_date')[0].innerHTML = month + "," + day + "," + year;
+  $('#current_date')[0].innerHTML = year + "/" + month + "/" + day;
 }
 
 var set_greeting_word = function () {
@@ -527,8 +527,15 @@ var initial = function () {
   }
 }
 
+var mix_sharing_link = function(){
+  $('#sentence-share-fb').click(function(){
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http://www.managertoday.com.tw"+localStorage.sentence_url+"&display=popup&ref=plugin",'manager', config='height=500,width=500')
+  });
+}
+
 jQuery(function ($) {
   initial();
+  mix_sharing_link();
   get_divination_result();
   $('.title-tab:eq(2)').click(function(){
     if(localStorage.counter < 3){

@@ -442,3 +442,26 @@ a:hover {
    left:30%;
  }
 }
+
+#sentence-share-fb {
+  font-size:20px;
+  cursor:pointer;
+  background:white;
+  width:180px;
+  height:30px;
+  border-radius:10px;
+  color:rgb(249, 162, 28);
+  text-align:center;
+}
+
+#sentence-share-fb span{
+  position:relative;
+  left:0;
+  vertical-align:text-bottom;
+  font-size:25px;
+}
+
+#sentence-share-fb i{
+  vertical-align: super;
+}
+
