@@ -303,7 +303,7 @@ var get_english = function () {
         $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
       }
     });
-  } else if ( current_time.getDay() >= 5 ) {
+  } else if ( current_time.getDay() >= 5 && current_time.getDay() == 0 ) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/condition",
@@ -520,6 +520,10 @@ var initial = function () {
       get_weather_controller();
       get_divination_result();
     });
+    var current = new Date();
+    if( new Date(localStorage.update_divi).getDate() != current.getDate() ){
+      localStorage.setItem("counter" , 1);
+    }
   }
 }
 
@@ -547,6 +551,7 @@ jQuery(function ($) {
     }else{
       $('#before-shake').hide();
       $('#cant-shake').show();
+      localStorage.setItem("update_divi" , new Date());
     }
   });
   $('.title-tab:eq(1)').click(function(){
