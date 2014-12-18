@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "經理人帶著走",
+  "name": "經�?人帶?�走",
   "description": "Replace new page with daily manager quote, english, weather and divination",
   "chrome_url_overrides": {
     "newtab": "manager.html"
   },
   "options_page": "options.html",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "minimum_chrome_version": "30",
   "permissions": [
     "storage",
