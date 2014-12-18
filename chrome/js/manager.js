@@ -303,7 +303,7 @@ var get_english = function () {
         $('.vocabulary-box a').attr("href", "http://www.managertoday.com.tw" + localStorage.getItem("words_url"));
       }
     });
-  } else if ( current_time.getDay() >= 5 && current_time.getDay() == 0 ) {
+  } else if ( current_time.getDay() >= 5 || current_time.getDay() == 0 ) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/condition",
@@ -562,7 +562,7 @@ jQuery(function ($) {
     }
   });
   $('.title-tab:eq(1)').click(function(){
-    get_english();
+      get_english();  
   });
   tab_animation();
   active_tab();
