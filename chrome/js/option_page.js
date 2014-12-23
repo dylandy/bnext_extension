@@ -3,6 +3,9 @@ var where = "";
 var now_format = "";
 
 var save_location = function () {
+  chrome.storage.local.get("location" , function(result){
+    $('#ask-location h2')[0].value = result.location;
+  });
   $('.location-choser').click(function () {
     $('.location-panel').show();
     $('#turn-off').css('display', "inline-block");
@@ -15,6 +18,7 @@ var save_location = function () {
     where = $(this).html();
     $('.location-panel').hide();
     $('#turn-off').hide();
+    $('#ask-location h2')[0].value = $(this).html();
   });
 }
 var save_change = function () {
