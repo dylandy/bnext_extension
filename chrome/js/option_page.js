@@ -4,7 +4,7 @@ var now_format = "";
 
 var save_location = function () {
   chrome.storage.local.get("location" , function(result){
-    $('#ask-location h2')[0].value = result.location;
+    $('#ask-location button')[0].innerHTML = result.location + "<i class='fa fa-sort-desc'></i>";
   });
   $('.location-choser').click(function () {
     $('.location-panel').show();
@@ -18,7 +18,7 @@ var save_location = function () {
     where = $(this).html();
     $('.location-panel').hide();
     $('#turn-off').hide();
-    $('#ask-location h2')[0].value = $(this).html();
+    $('#ask-location button')[0].innerHTML = where + "<i class='fa fa-sort-desc'></i>";
   });
 }
 var save_change = function () {
@@ -33,7 +33,7 @@ var save_change = function () {
   );
 }
 
-var set_time_format = function () {
+var set_time_format = function (){
   chrome.storage.local.get("time_format", function (result) {
     now_format = result.time_format;
     if (now_format) {

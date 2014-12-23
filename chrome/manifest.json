@@ -6,7 +6,7 @@
     "newtab": "manager.html"
   },
   "options_page": "options.html",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "minimum_chrome_version": "30",
   "permissions": [
     "storage",
