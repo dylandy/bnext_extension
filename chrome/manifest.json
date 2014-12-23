@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "經�?人帶?�走",
+  "name": "經理人帶著走",                                                                                                                    
   "description": "Replace new page with daily manager quote, english, weather and divination",
   "chrome_url_overrides": {
     "newtab": "manager.html"
@@ -19,3 +19,4 @@
     "16": "16-16.png"
   }
 }
+
