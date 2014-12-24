@@ -14,9 +14,8 @@ font-family:MyCustomFont;
 body {
   font-family:MyCustomFont,
   sans-serif;
-  background:rgb(249,
-  162,
-  28);
+  background:url("../resource/C1920x1080.jpg");
+  background-size: 1920px 1080px;
   color:white;
 }
 #content {
@@ -42,7 +41,7 @@ input[type='text'] {
   text-align:right;
 }
 #logo {
-  color:white;
+  color:#72828f;
   position:absolute;
   top:10%;
   left:15%;
@@ -265,4 +264,25 @@ input[type='text'] {
   top:2%;
   color:grey;
   font-size:30px;
+}
+
+@media screen and (max-width:1440px){
+  body{
+    background-size:1440px 900px;
+    background-repeat: no-repeat;
+  }
+  .share-in-content{
+    left:28%;
+  }
+}
+
+@media screen and (max-width : 1280px ){
+  body{
+    background-image: url("../resource/C1920x1440.jpg");
+    background-size: 1280px 768px;
+    background-repeat: no-repeat;
+  }
+  .share-in-content{
+    left:30%;
+  }
 }
