@@ -356,14 +356,25 @@ a:hover {
   /*  -webkit-transform:scale(0.5);*/
   height:54px;
 }
+/*
+
+input[type=radio]{
+  display:none;
+}
+*/
+
+
 #sentence {
   left:20%;
+  background-image: url(../resource/img/others/title-sentence.png);
 }
 #ABC {
   left:40%;
+  background-image: url(../resource/img/others/title-ABC.png);
 }
 #cc {
   left:60%;
+  background-image: url(../resource/img/others/title-cc.png);
 }
 #shake-result {
   display:none;

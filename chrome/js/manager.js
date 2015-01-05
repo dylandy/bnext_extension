@@ -399,26 +399,26 @@ var tab_animation = function () {
       $('.title-tab:eq(' + check + ')').css('left', tmp);
       $(this).addClass('active');
       $('.title-tab:eq(' + check + ')').removeClass('active');
-      active_tab();
-      deactive_tab();
+//      active_tab();
+//      deactive_tab();
     }
   });
 }
 
-var active_tab = function () {
-  var target = $('.active');
-  var id_name = target.attr('id');
-  target.attr('src', 'resource/img/others/title-' + id_name + '.png');
-  $('#' + id_name + '-content').fadeIn(1000);
-  $('#' + id_name + '-content').siblings().hide();
-}
+//var active_tab = function () {
+//  var target = $('.active');
+//  var id_name = target.attr('id');
+//  target.attr('src', 'resource/img/others/title-' + id_name + '.png');
+//  $('#' + id_name + '-content').fadeIn(1000);
+//  $('#' + id_name + '-content').siblings().hide();
+//}
 
-var deactive_tab = function () {
-  var target = $('.title-tab:not(.active)');
-  target.map(function () {
-    $(this).attr('src', 'resource/img/others/title-' + $(this).attr('id') + '-2.png')
-  });
-}
+//var deactive_tab = function () {
+//  var target = $('.title-tab:not(.active)');
+//  target.map(function () {
+//    $(this).attr('src', 'resource/img/others/title-' + $(this).attr('id') + '-2.png')
+//  });
+//}
 
 var get_divination_essay = function () {
   $.ajax({
@@ -565,6 +565,6 @@ jQuery(function ($) {
       get_english();  
   });
   tab_animation();
-  active_tab();
-  deactive_tab();
+//  active_tab();
+//  deactive_tab();
 });
