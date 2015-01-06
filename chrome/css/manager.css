@@ -352,29 +352,47 @@ a:hover {
 .title-tab {
   position:absolute;
   transition:1s;
-  cursor:pointer;
-  /*  -webkit-transform:scale(0.5);*/
   height:54px;
+  width:30%;
 }
-/*
+
+.title-tab:nth-child(1){
+  left:20%;
+}
+.title-tab:nth-child(2){
+  left:40%;
+}
+.title-tab:nth-child(3){
+  left:60%;
+}
 
 input[type=radio]{
   display:none;
 }
-*/
 
-
-#sentence {
-  left:20%;
+#sentence-pic {
+  cursor:pointer;
   background-image: url(../resource/img/others/title-sentence.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
 }
-#ABC {
-  left:40%;
-  background-image: url(../resource/img/others/title-ABC.png);
+#ABC-pic {
+  cursor:pointer;
+  background-image: url(../resource/img/others/title-ABC-2.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
 }
-#cc {
-  left:60%;
-  background-image: url(../resource/img/others/title-cc.png);
+#cc-pic {
+  cursor:pointer;
+  background-image: url(../resource/img/others/title-cc-2.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
 }
 #shake-result {
   display:none;
