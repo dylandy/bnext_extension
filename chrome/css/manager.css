@@ -353,7 +353,7 @@ a:hover {
   position:absolute;
   transition:1s;
   height:54px;
-  width:30%;
+  display: inline-block;
 }
 
 .title-tab:nth-child(1){

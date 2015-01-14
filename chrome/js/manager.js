@@ -1,4 +1,5 @@
 var time_format = "";
+last_tab = "";
 
 var set_current_time = function () {
   var current = new Date;
@@ -379,28 +380,15 @@ var initial_name_and_location = function () {
 }
 
 var tab_animation = function () {
-  $('.title-tab').click(function () {
+  $('label').click(function () {
     var left = $(window).width() * 0.2;
-    var tmp = $(this).css('left');
-    var check;
-    for (var i = 0; i < 3; i++) {
-      if (parseInt($('.title-tab:eq(' + i + ')').css('left')) == parseInt($(window).width() * 0.2)) {
-        check = i;
-      }
-    }
-
-    if($(this).attr("src") !== $('.title-tab:eq('+ check + ')').attr("src")){
-      $(this).css('left', $('.title-tab:eq(' + check + ')').css('left'));
-      $('.title-tab:eq(' + check + ')').css('left', tmp);
-      $(this).addClass('active');
-      $('.title-tab:eq(' + check + ')').removeClass('active');
-    }
-  });
-}
-
-var tab_checked = function(){
-  $('label').click(function(){
-    $('input').prop("checked" , false);
+    var tmp = $(this).parent().css('left');
+    var id = $(this).attr("id").split('-')[0];
+    $("#"+id+"-content").fadeIn(1000);
+    $("#"+id+"-content").siblings().hide();
+    $(this).parent().css("left", left);
+    $("#"+last_tab).parent().css("left", tmp);
+    last_tab = $(this).attr("id");
   });
 }
 
@@ -479,6 +467,7 @@ var get_divination_result = function () {
 
 var set_default_content = function () {
   $("input").first().prop("checked" , true);
+  last_tab = $("input:checked ~ label").attr("id");
   localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
   localStorage.setItem("author", "喬．吉拉德");
   localStorage.setItem("author_eng", "Joe Girard");
@@ -505,6 +494,7 @@ var initial = function () {
     $('#content').siblings().hide();
     $('#content').show();
     $("input").first().prop("checked" , true);
+    last_tab = $("input:checked ~ label").attr("id");
     get_city(function () {
       set_current_time();
       set_greeting_word();
@@ -540,9 +530,9 @@ jQuery(function ($) {
   });
   mix_sharing_link();
   get_divination_result();
-  $('.title-tab:eq(2)').click(function(){
+  $('#cc-pic').click(function(){
     if(localStorage.counter < 3){
-      if( $('.title-tab:eq(2)').hasClass("active") && $('#shake-result').css("display") === "block"){
+      if( $('#cc').attr("id") === $("input:checked").attr("id") && $('#shake-result').css("display") === "block"){
         localStorage.setItem("counter" , parseInt(localStorage.counter) + 1 );
       }
       $('#shake-result').hide();
@@ -564,7 +554,7 @@ jQuery(function ($) {
       localStorage.setItem("update_divi" , new Date());
     }
   });
-  $('.title-tab:eq(1)').click(function(){
+  $('#ABC-pic').click(function(){
       get_english();  
   });
   tab_animation();
