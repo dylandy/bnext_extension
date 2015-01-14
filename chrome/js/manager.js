@@ -398,9 +398,22 @@ var tab_animation = function () {
   });
 }
 
+var tab_checked = function(){
+  $('label').click(function(){
+    $('input').prop("checked" , false);
+  });
+}
+
 var checked_pic = function(){
-  var id_name = $('input[type=radio]:checked ~ label').attr("id").split('-')[0];
-  $('input[type=radio]:checked ~ label').css('background-image' , "url('../resource/img/others/title-'+ id_name +'.png')");
+  var id_name = $('input:checked ~ label').attr("id").split('-')[0];
+  $('input:checked ~ label').css('background-image' ,
+                                             "url(chrome-extension://hbindcgocgdjhphjeoknjkcjiodfjkac/resource/img/others/title-"+id_name+".png)");
+  $('input:not(:checked) ~ label').map(function(){
+    var id = $(this).attr("id").split('-')[0];
+    $(this).css("background-image", "url(chrome-extension://hbindcgocgdjhphjeoknjkcjiodfjkac/resource/img/others/title-"+id+"-2.png)");
+  });
+
+
 }
 
 var get_divination_essay = function () {
@@ -465,6 +478,7 @@ var get_divination_result = function () {
 }
 
 var set_default_content = function () {
+  $("input").first().prop("checked" , true);
   localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
   localStorage.setItem("author", "喬．吉拉德");
   localStorage.setItem("author_eng", "Joe Girard");
@@ -490,6 +504,7 @@ var initial = function () {
   } else {
     $('#content').siblings().hide();
     $('#content').show();
+    $("input").first().prop("checked" , true);
     get_city(function () {
       set_current_time();
       set_greeting_word();
@@ -500,6 +515,7 @@ var initial = function () {
       setInterval(set_greeting_word, 3600000);
       get_weather_controller();
       get_divination_result();
+
     });
     var current = new Date();
     if( new Date(localStorage.update_divi).getDate() != current.getDate() ){
@@ -517,6 +533,11 @@ var mix_sharing_link = function(){
 jQuery(function ($) {
   initial();
   checked_pic();
+  $("label").click(function(){
+    $("input").prop("checked" , "false");
+    $(this).prev().prop("checked", "true");
+    checked_pic();
+  });
   mix_sharing_link();
   get_divination_result();
   $('.title-tab:eq(2)').click(function(){
