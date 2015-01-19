@@ -395,10 +395,10 @@ var tab_animation = function () {
 var checked_pic = function(){
   var id_name = $('input:checked ~ label').attr("id").split('-')[0];
   $('input:checked ~ label').css('background-image' ,
-                                             "url(chrome-extension://hbindcgocgdjhphjeoknjkcjiodfjkac/resource/img/others/title-"+id_name+".png)");
+                                             "url(../resource/img/others/title-"+id_name+".png)");
   $('input:not(:checked) ~ label').map(function(){
     var id = $(this).attr("id").split('-')[0];
-    $(this).css("background-image", "url(chrome-extension://hbindcgocgdjhphjeoknjkcjiodfjkac/resource/img/others/title-"+id+"-2.png)");
+    $(this).css("background-image", "url(../resource/img/others/title-"+id+"-2.png)");
   });
 
 
