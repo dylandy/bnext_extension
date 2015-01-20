@@ -15,8 +15,7 @@ var post_to_server = function(){
 //    url:"http://127.0.0.1:3000/statistics",
     data: JSON.stringify(data),
     dataType: "json",
-    success: function(){console.log("data pushed to server")},
-    error: function(){console.log("data pushed error")}
+    success: function(){console.log("done")},
   });
 }
 
