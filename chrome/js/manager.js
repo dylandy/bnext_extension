@@ -478,6 +478,7 @@ var set_default_content = function () {
   localStorage.setItem("chinese_meaning", "工作狂");
   localStorage.setItem("words_url", "/dictionary/word/26");
   localStorage.setItem("counter", 1);
+  localStorage.setItem("last_to_server" , new Date());
   return 1;
 }
 
