@@ -11,7 +11,7 @@ var post_to_server = function(){
   console.log(JSON.stringify(data));
   $.ajax({
     type: "POST",
-    url: "http://api.managers.today/statistics/new",
+    url: "http://api.managers.today/statistics",
 //    url:"http://127.0.0.1:3000/statistics",
     data: JSON.stringify(data),
     dataType: "json",
