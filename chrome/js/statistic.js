@@ -1,6 +1,6 @@
-localStorage.sentence_counter ? sentence_counter = localStorage.sentence_counter : sentence_counter = 0;
-localStorage.ABC_counter ? ABC_counter = localStorage.ABC_counter : ABC_counter = 0;
-localStorage.cc_counter ? cc_counter = localStorage.cc_counter : cc_counter = 0;
+localStorage.sentence_counter ? sentence_counter = parseInt(localStorage.sentence_counter) : sentence_counter = 0;
+localStorage.ABC_counter ? ABC_counter = parseInt(localStorage.ABC_counter) : ABC_counter = 0;
+localStorage.cc_counter ? cc_counter = parseInt(localStorage.cc_counter) : cc_counter = 0;
 localStorage.last_to_server? last_to_server = localStorage.last_to_server : last_to_server = new Date();
 
 var post_to_server = function(){
@@ -20,7 +20,8 @@ var post_to_server = function(){
 
 var daily_inital = function(){
   var current = new Date();
-  if(current.getDate() !== localStorage.last_to_server){
+  var last_to_server = new Date(localStorage.last_to_server);
+  if(current.getDate() !== last_to_server.getDate()){
     post_to_server();
     localStorage.setItem("last_to_server" , current);
   }
@@ -39,4 +40,5 @@ jQuery(function($){
     localStorage.setItem("cc_counter" , cc_counter+=1);
 //    console.log("cc_counter = "+cc_counter);
   });
+  daily_inital();
 });
