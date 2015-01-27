@@ -216,7 +216,7 @@ var get_weather = function () {
 var get_sentence = function () {
   update_sentence = new Date(localStorage.update_sentence);
   current = new Date()
-  if (update_sentence.getDate() !== current.getDate()) {
+  if (update_sentence.getDate() !== current.getDate() && current.getHours() >= 3) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/sentence",
