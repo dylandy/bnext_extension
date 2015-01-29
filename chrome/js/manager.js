@@ -392,7 +392,6 @@ var tab_animation = function () {
     var left = $(window).width() * 0.2;
     var tmp = $(this).parent().css('left');
     var id = $(this).attr("id").split('-')[0];
-    $("#"+id+"-content").fadeIn(1000);
     $("#"+id+"-content").siblings().hide();
     $(this).parent().css("left", left);
     $("#"+last_tab).parent().css("left", tmp);
@@ -402,6 +401,7 @@ var tab_animation = function () {
 
 var checked_pic = function(){
   var id_name = $('input:checked ~ label').attr("id").split('-')[0];
+  $( "#"+id_name+"-content").fadeIn(1000);
   $('input:checked ~ label').css('background-image' ,
                                              "url(../resource/img/others/title-"+id_name+".png)");
   $('input:not(:checked) ~ label').map(function(){

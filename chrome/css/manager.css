@@ -163,6 +163,7 @@ a:hover {
   font-size:25px;
 }
 #sentence-content {
+  display: none;
   position:absolute;
   top:40%;
   width:65%;
