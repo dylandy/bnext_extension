@@ -379,6 +379,14 @@ var initial_name_and_location = function () {
 
 }
 
+var place_tab = function(){
+  $("input:checked").parent().css("left" , $(window).width()*0.2 );
+  var i = 0.2;
+  $("input:checked").parent().siblings().each(function(){
+    $(this).css("left" , $(window).width()*(i+=0.2));
+  });
+}
+
 var tab_animation = function () {
   $('label').click(function () {
     var left = $(window).width() * 0.2;
@@ -466,7 +474,8 @@ var get_divination_result = function () {
 }
 
 var set_default_content = function () {
-  $("input").first().prop("checked" , true);
+  var random_tab = parseInt(Math.random() * 3);
+  $("input").eq(random_tab).prop("checked" , true);
   last_tab = $("input:checked ~ label").attr("id");
   localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
   localStorage.setItem("author", "喬．吉拉德");
@@ -494,7 +503,8 @@ var initial = function () {
   } else {
     $('#content').siblings().hide();
     $('#content').show();
-    $("input").first().prop("checked" , true);
+    var random_tab = parseInt(Math.random() * 3);
+    $("input").eq(random_tab).prop("checked" , true);
     last_tab = $("input:checked ~ label").attr("id");
     get_city(function () {
       set_current_time();
@@ -559,4 +569,5 @@ jQuery(function ($) {
       get_english();  
   });
   tab_animation();
+  place_tab();
 });
