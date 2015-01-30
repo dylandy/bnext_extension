@@ -133,9 +133,15 @@
       </div>
     </div>
     <div id='tabs'>
-      <img src="resource/img/others/title-sentence.png" id='sentence' class='active title-tab' />
-      <img src='resource/img/others/title-ABC-2.png' id='ABC' class='title-tab' />
-      <img src='resource/img/others/title-cc-2.png' id='cc' class="title-tab " />
+      <div class="title-tab">
+        <input type="radio" id="sentence" name="title"/><label id="sentence-pic"></label>
+      </div>
+      <div class="title-tab">
+        <input type="radio" id="ABC" name='title'/><label id="ABC-pic"></label>
+      </div>
+      <div class="title-tab">
+        <input type="radio" id="cc" name='title'/><label id="cc-pic"></label>
+      </div>
     </div>
     <div id='main-product'>
 
@@ -187,7 +193,7 @@
   <script src="js/jquery.min.js"></script>
   <script src='resource/bootstrap/js/bootstrap.min.js'></script>
   <script src='js/manager.js'></script>
-
+  <script src="js/statistic.js"></script>
 
   </body>
 

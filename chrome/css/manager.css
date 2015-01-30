@@ -162,6 +162,7 @@ a:hover {
   font-size:25px;
 }
 #sentence-content {
+  display: none;
   position:absolute;
   top:40%;
   width:65%;
@@ -357,18 +358,37 @@ a:hover {
 .title-tab {
   position:absolute;
   transition:1s;
-  cursor:pointer;
-  /*  -webkit-transform:scale(0.5);*/
   height:54px;
+  display: inline-block;
 }
-#sentence {
-  left:20%;
+
+input[type=radio]{
+  display:none;
 }
-#ABC {
-  left:40%;
+
+#sentence-pic {
+  cursor:pointer;
+  background-image: url(../resource/img/others/title-sentence-2.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
 }
-#cc {
-  left:60%;
+#ABC-pic {
+  cursor:pointer;
+  background-image: url(../resource/img/others/title-ABC-2.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
+}
+#cc-pic {
+  cursor:pointer;
+  background-image: url(../resource/img/others/title-cc-2.png);
+  background-repeat: no-repeat;
+  height: 54px;
+  width: 180px;
+  background-size: 180px 54px;
 }
 #shake-result {
   display:none;

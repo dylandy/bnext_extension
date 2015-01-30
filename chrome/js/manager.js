@@ -1,4 +1,5 @@
 var time_format = "";
+last_tab = "";
 
 var set_current_time = function () {
   var current = new Date;
@@ -215,8 +216,7 @@ var get_weather = function () {
 var get_sentence = function () {
   update_sentence = new Date(localStorage.update_sentence);
   current = new Date()
-  if (update_sentence.getDate() !== current.getDate()) {
-    //      console.log("in sentence");
+  if (update_sentence.getDate() !== current.getDate() && current.getHours() >= 3) {
     $.ajax({
       type: "GET",
       url: "http://api.managers.today/sentence",
@@ -227,12 +227,10 @@ var get_sentence = function () {
           localStorage.setItem("author", this.author_chin_name);
           localStorage.setItem("author_eng", this.author_eng_name);
           localStorage.setItem("title", this.author_title);
-//          localStorage.setItem("english", this.eng_content);
           localStorage.setItem("sentence_url", this.url);
           localStorage.setItem("author_url", this.author_url);
 
           $('#sentence-content h2')[0].innerHTML = this.content;
-//          $('#sentence-content h2')[1].innerHTML = this.eng_content;
           if(this.author_eng_name){
             $('#sentence-content h3')[0].innerHTML = this.author_chin_name + "（" + this.author_eng_name + "）" +
             "<br>" + this.author_title;
@@ -249,7 +247,6 @@ var get_sentence = function () {
         if (localStorage.getItem("sentence")) {
           var tmp = localStorage.getItem("sentence");
           $('#sentence-content h2')[0].innerHTML = tmp;
-//          $('#sentence-content h2')[1].innerHTML = localStorage.english;
           if( localStorage.author_eng ){
             $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
             "<br>" + localStorage.title;
@@ -266,7 +263,6 @@ var get_sentence = function () {
   } else {
     var tmp = localStorage.getItem("sentence");
     $('#sentence-content h2')[0].innerHTML = tmp;
-//    $('#sentence-content h2')[1].innerHTML = localStorage.english;
 
     if( localStorage.author_eng ){
             $('#sentence-content h3')[0].innerHTML = localStorage.author + "（" + localStorage.author_eng + "）" +
@@ -383,41 +379,37 @@ var initial_name_and_location = function () {
 
 }
 
+var place_tab = function(){
+  $("input:checked").parent().css("left" , $(window).width()*0.2 );
+  var i = 0.2;
+  $("input:checked").parent().siblings().each(function(){
+    $(this).css("left" , $(window).width()*(i+=0.2));
+  });
+}
+
 var tab_animation = function () {
-  $('.title-tab').click(function () {
+  $('label').click(function () {
     var left = $(window).width() * 0.2;
-    var tmp = $(this).css('left');
-    var check;
-    for (var i = 0; i < 3; i++) {
-      if (parseInt($('.title-tab:eq(' + i + ')').css('left')) == parseInt($(window).width() * 0.2)) {
-        check = i;
-      }
-    }
-
-    if($(this).attr("src") !== $('.title-tab:eq('+ check + ')').attr("src")){
-      $(this).css('left', $('.title-tab:eq(' + check + ')').css('left'));
-      $('.title-tab:eq(' + check + ')').css('left', tmp);
-      $(this).addClass('active');
-      $('.title-tab:eq(' + check + ')').removeClass('active');
-      active_tab();
-      deactive_tab();
-    }
+    var tmp = $(this).parent().css('left');
+    var id = $(this).attr("id").split('-')[0];
+    $("#"+id+"-content").siblings().hide();
+    $(this).parent().css("left", left);
+    $("#"+last_tab).parent().css("left", tmp);
+    last_tab = $(this).attr("id");
   });
 }
 
-var active_tab = function () {
-  var target = $('.active');
-  var id_name = target.attr('id');
-  target.attr('src', 'resource/img/others/title-' + id_name + '.png');
-  $('#' + id_name + '-content').fadeIn(1000);
-  $('#' + id_name + '-content').siblings().hide();
-}
-
-var deactive_tab = function () {
-  var target = $('.title-tab:not(.active)');
-  target.map(function () {
-    $(this).attr('src', 'resource/img/others/title-' + $(this).attr('id') + '-2.png')
+var checked_pic = function(){
+  var id_name = $('input:checked ~ label').attr("id").split('-')[0];
+  $( "#"+id_name+"-content").fadeIn(1000);
+  $('input:checked ~ label').css('background-image' ,
+                                             "url(../resource/img/others/title-"+id_name+".png)");
+  $('input:not(:checked) ~ label').map(function(){
+    var id = $(this).attr("id").split('-')[0];
+    $(this).css("background-image", "url(../resource/img/others/title-"+id+"-2.png)");
   });
+
+
 }
 
 var get_divination_essay = function () {
@@ -482,18 +474,20 @@ var get_divination_result = function () {
 }
 
 var set_default_content = function () {
+  var random_tab = parseInt(Math.random() * 3);
+  $("input").eq(random_tab).prop("checked" , true);
+  last_tab = $("input:checked ~ label").attr("id");
   localStorage.setItem("sentence", "通往成功的電梯故障了，你就只好爬樓梯，一次一步慢慢爬。");
   localStorage.setItem("author", "喬．吉拉德");
   localStorage.setItem("author_eng", "Joe Girard");
   localStorage.setItem("title", "美國著名業務員");
-//  localStorage.setItem("english",
-//    "The elevator to success is out of order. You'll have to use the stairs... one step at a time.");
   localStorage.setItem("sentence_url", "/quotes/view/830");
   localStorage.setItem("author_url", "/quotes/celebrity/239");
   localStorage.setItem("vocabulary", "workaholic");
   localStorage.setItem("chinese_meaning", "工作狂");
   localStorage.setItem("words_url", "/dictionary/word/26");
   localStorage.setItem("counter", 1);
+  localStorage.setItem("last_to_server" , new Date());
   return 1;
 }
 
@@ -509,6 +503,9 @@ var initial = function () {
   } else {
     $('#content').siblings().hide();
     $('#content').show();
+    var random_tab = parseInt(Math.random() * 3);
+    $("input").eq(random_tab).prop("checked" , true);
+    last_tab = $("input:checked ~ label").attr("id");
     get_city(function () {
       set_current_time();
       set_greeting_word();
@@ -519,6 +516,7 @@ var initial = function () {
       setInterval(set_greeting_word, 3600000);
       get_weather_controller();
       get_divination_result();
+
     });
     var current = new Date();
     if( new Date(localStorage.update_divi).getDate() != current.getDate() ){
@@ -535,11 +533,17 @@ var mix_sharing_link = function(){
 
 jQuery(function ($) {
   initial();
+  checked_pic();
+  $("label").click(function(){
+    $("input").prop("checked" , "false");
+    $(this).prev().prop("checked", "true");
+    checked_pic();
+  });
   mix_sharing_link();
   get_divination_result();
-  $('.title-tab:eq(2)').click(function(){
+  $('#cc-pic').click(function(){
     if(localStorage.counter < 3){
-      if( $('.title-tab:eq(2)').hasClass("active") && $('#shake-result').css("display") === "block"){
+      if( $('#cc').attr("id") === $("input:checked").attr("id") && $('#shake-result').css("display") === "block"){
         localStorage.setItem("counter" , parseInt(localStorage.counter) + 1 );
       }
       $('#shake-result').hide();
@@ -561,10 +565,9 @@ jQuery(function ($) {
       localStorage.setItem("update_divi" , new Date());
     }
   });
-  $('.title-tab:eq(1)').click(function(){
+  $('#ABC-pic').click(function(){
       get_english();  
   });
   tab_animation();
-  active_tab();
-  deactive_tab();
+  place_tab();
 });
