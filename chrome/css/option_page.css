@@ -14,7 +14,7 @@ font-family:MyCustomFont;
 body {
   font-family:MyCustomFont,
   sans-serif;
-  background:url("../resource/C1920x1080.jpg");
+  background:url("../resource/C1920x1080_a.jpg");
   background-size: 1920px 1080px;
   color:white;
 }
@@ -23,7 +23,7 @@ body {
   width:70%;
   left:15%;
   top:25%;
-  background:white;
+  background:rgba(255,255,255,0.7);
   border-radius:20px;
   font-size:25px;
   color:black;
@@ -32,16 +32,14 @@ body {
 input[type='text'] {
   padding:5px;
   vertical-align:middle;
-  background:rgb(232,
-  232,
-  232);
+  background:rgba(0,0,0,0.3);
   float:right;
   width:80%;
   margin-bottom:10px;
   text-align:right;
 }
 #logo {
-  color:#72828f;
+  color:#165169;
   position:absolute;
   top:10%;
   left:15%;
@@ -51,7 +49,7 @@ input[type='text'] {
   font-weight:bold;
 }
 #name {
-  color:black;
+  color:white;
   border:0;
 }
 #name:focus {
@@ -151,13 +149,13 @@ input[type='text'] {
 .content-logo {
   position:absolute;
   left:10%;
-  top:88%;
-  width:157px;
+  bottom:5%;
+  width:200px;
 }
 .share-in-content {
   position:absolute;
-  top:88%;
-  left:18%;
+  top:90%;
+  left:25%;
 }
 .share-in-content img {
   margin:0 5px;
@@ -278,7 +276,7 @@ input[type='text'] {
 
 @media screen and (max-width : 1280px ){
   body{
-    background-image: url("../resource/C1920x1440.jpg");
+    background-image: url("../resource/C1920x1440_a.jpg");
     background-size: 1280px 768px;
     background-repeat: no-repeat;
   }

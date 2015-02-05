@@ -380,11 +380,33 @@ var initial_name_and_location = function () {
 }
 
 var place_tab = function(){
-  $("input:checked").parent().css("left" , $(window).width()*0.2 );
   var i = 0.2;
+  var default_background;
+  $("input:checked").parent().css("left" , $(window).width()*0.2 );
   $("input:checked").parent().siblings().each(function(){
     $(this).css("left" , $(window).width()*(i+=0.2));
   });
+  if( $(window).width() <= 1440 ){
+    if( $("input:checked").attr("id") == "sentence" ){
+      $("body").css("background-image" , "url(../resource/C1920x1440_a.jpg)");
+    }
+    if( $("input:checked").attr("id") == "ABC" ){
+      $("body").css("background-image" , "url(../resource/C1920x1440_b.jpg)");
+    }
+    if( $("input:checked").attr("id") == "cc" ){
+      $("body").css("background-image" , "url(../resource/C1920x1440_c.jpg)");
+    }
+  }else{
+    if( $("input:checked").attr("id") == "sentence" ){
+      $("body").css("background-image" , "url(../resource/C1920x1080_a.jpg)");
+    }
+    if( $("input:checked").attr("id") == "ABC" ){
+      $("body").css("background-image" , "url(../resource/C1920x1080_b.jpg)");
+    }
+    if( $("input:checked").attr("id") == "cc" ){
+      $("body").css("background-image" , "url(../resource/C1920x1080_c.jpg)");
+    }
+  }
 }
 
 var tab_animation = function () {
@@ -397,6 +419,31 @@ var tab_animation = function () {
     $("#"+last_tab).parent().css("left", tmp);
     last_tab = $(this).attr("id");
   });
+}
+
+var tab_background = function(){
+  var window_width = $(window).width();
+  if( window_width <= 1440 ){
+    $("label:eq(0)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1440_a.jpg)");
+    });
+    $("label:eq(1)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1440_b.jpg)");
+    });
+    $("label:eq(2)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1440_c.jpg)");
+    });
+  }else{
+    $("label:eq(0)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1080_a.jpg)");
+    });
+    $("label:eq(1)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1080_b.jpg)");
+    });
+    $("label:eq(2)").click(function(){
+      $("body").css("background-image" , "url(../resource/C1920x1080_c.jpg)");
+    });
+  }
 }
 
 var checked_pic = function(){
@@ -570,4 +617,5 @@ jQuery(function ($) {
   });
   tab_animation();
   place_tab();
+  tab_background();
 });
